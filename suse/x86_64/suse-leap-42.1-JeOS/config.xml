@@ -48,13 +48,7 @@
         </type>
     </preferences>
     <preferences profiles="vmxFlavour">
-        <type image="vmx" filesystem="ext3" boot="vmxboot/suse-leap42.1" format="ova" bootloader="grub2" kernelcmdline="splash" firmware="efi">
-            <machine memory="4096" guestOS="sles-64" HWversion="7" arch="x86_64" ovftype="vmware">
-                <vmdisk controller="lsilogic" id="0" diskmode="streamOptimized"/>
-                <vmdvd controller="ide" id="0"/>
-                <vmnic driver="vmxnet3" interface="0" mode="bridged"/>
-            </machine>
-        </type>
+        <type image="vmx" filesystem="ext3" boot="vmxboot/suse-leap42.1" bootloader="grub2" kernelcmdline="splash" firmware="efi"/>
         <type image="oem" filesystem="ext3" boot="oemboot/suse-leap42.1" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi">
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
