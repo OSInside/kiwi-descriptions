@@ -47,22 +47,12 @@
         </type>
     </preferences>
     <preferences profiles="vmxFlavour">
-        <type image="vmx" filesystem="ext3" boot="vmxboot/suse-13.2" format="ova" bootloader="grub2" kernelcmdline="splash" firmware="efi">
-            <machine memory="4096" guestOS="sles-64" HWversion="7" arch="x86_64" ovftype="vmware">
-                <vmdisk controller="lsilogic" id="0" diskmode="streamOptimized"/>
-                <vmdvd controller="ide" id="0"/>
-                <vmnic driver="vmxnet3" interface="0" mode="bridged"/>
-            </machine>
-        </type>
+        <type image="vmx" filesystem="ext3" boot="vmxboot/suse-13.2" format="qcow2" bootloader="grub2" kernelcmdline="splash" firmware="efi"/>
         <type image="oem" filesystem="ext3" boot="oemboot/suse-13.2" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi">
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
                 <oem-swap>true</oem-swap>
             </oemconfig>
-            <machine memory="512" guestOS="suse" HWversion="4">
-                <vmdisk id="0" controller="ide"/>
-                <vmnic driver="e1000" interface="0" mode="bridged"/>
-            </machine>
         </type>
     </preferences>
     <users group="root">
