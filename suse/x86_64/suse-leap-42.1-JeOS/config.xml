@@ -68,7 +68,24 @@
         <source path="obs://leap/42.1/repo/oss"/>
     </repository>
     <packages type="image">
+<!-- 
+        pattern system for leap is based on packages, zypper has metadata
+        information which allows to use the pattern name as part of a
+        namedCollection. However we want this image to be able to build with
+        dice and that would require pattern metadata to be present as part
+        of the repository metadata in order to resolve the pattern by name.
+     
+        This repository metadata is gone, thus we put in the pattern package
+        instead to allow dice to resolve the pattern. If you don't build with
+     
+        https://github.com/SUSE/dice
+
+        you can enable the use of pyttern by name via namedCollection
+        instead of the package: patterns-openSUSE-base as follows
+
         <namedCollection name="base"/>
+-->
+        <package name="patterns-openSUSE-base"/>
         <package name="plymouth-branding-openSUSE" bootinclude="true"/>
         <package name="grub2-branding-openSUSE" bootinclude="true"/>
         <package name="ifplugd"/>

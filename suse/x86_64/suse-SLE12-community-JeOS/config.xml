@@ -109,12 +109,22 @@
         <source path="http://download.suse.de/ibs/SUSE:/SLE-12:/GA/standard"/>
     </repository>
     <packages type="image">
-<!--
-        new pattern system works only with zypper from 13.2
+<!-- 
+        pattern system for SLE12 is based on packages, zypper has metadata
+        information which allows to use the pattern name as part of a
+        namedCollection. However we want this image to be able to build with
+        dice and that would require pattern metadata to be present as part
+        of the repository metadata in order to resolve the pattern by name.
+     
+        This repository metadata is gone, thus we put in the pattern package
+        instead to allow dice to resolve the pattern. If you don't build with
+     
+        https://github.com/SUSE/dice
+
+        you can enable the use of pyttern by name via namedCollection
+        instead of the package: patterns-sles-Minimal as follows
 
         <namedCollection name="Minimal"/>
-
-        using pattern package directly instead to stay compatible
 -->
         <package name="patterns-sles-Minimal"/>
         <package name="plymouth-branding-SLE" bootinclude="true"/>
