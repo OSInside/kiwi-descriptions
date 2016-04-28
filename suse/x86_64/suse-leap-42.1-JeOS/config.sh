@@ -70,13 +70,6 @@ sed -i -e's/^syntax on/" syntax on/' /etc/vimrc
 suseConfig
 
 #======================================
-# Add leap repo
-#--------------------------------------
-baseRepo="http://download.opensuse.org/distribution/leap/42.1-Current/repo/oss"
-baseName="leap-42.1"
-zypper ar $baseRepo $baseName
-
-#======================================
 # Remove yast if not in use
 #--------------------------------------
 suseRemoveYaST

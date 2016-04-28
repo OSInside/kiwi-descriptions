@@ -64,7 +64,7 @@
     <users group="root">
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
     </users>
-    <repository type="yast2">
+    <repository type="yast2" imageinclude="true">
         <source path="obs://leap/42.1/repo/oss"/>
     </repository>
     <packages type="image">
