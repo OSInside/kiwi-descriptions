@@ -48,7 +48,7 @@
         </type>
     </preferences>
     <preferences profiles="vmxFlavour">
-        <type image="vmx" filesystem="ext3" boot="vmxboot/suse-leap42.1" bootloader="grub2" kernelcmdline="splash" firmware="efi"/>
+        <type image="vmx" filesystem="ext3" boot="vmxboot/suse-leap42.1" bootloader="grub2" kernelcmdline="splash" firmware="efi" format="vmdk"/>
         <type image="oem" filesystem="ext3" boot="oemboot/suse-leap42.1" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi">
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
