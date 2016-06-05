@@ -9,8 +9,8 @@
     <preferences>
         <version>16.0.4</version>
         <packagemanager>apt-get</packagemanager>
-        <bootsplash-theme>upstream</bootsplash-theme>
-        <bootloader-theme>upstream</bootloader-theme>
+        <bootsplash-theme>sabily</bootsplash-theme>
+        <bootloader-theme>sabily</bootloader-theme>
         <locale>en_US</locale>
         <keytable>us.map.gz</keytable>
         <timezone>Europe/Berlin</timezone>
@@ -25,6 +25,9 @@
     </repository>
     <packages type="image">
         <package name="vim"/>
+        <package name="plymouth"/>
+        <package name="plymouth-theme-sabily"/>
+        <package name="initramfs-tools"/>
         <package name="dracut"/>
         <package name="grub2"/>
         <package name="linux-generic"/>
