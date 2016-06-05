@@ -27,7 +27,7 @@
         <package name="vim"/>
         <package name="dracut"/>
         <package name="grub2"/>
-        <package name="kernel-generic"/>
+        <package name="linux-generic"/>
     </packages>
     <packages type="bootstrap">
         <!-- done by debootstrap -->
