@@ -27,12 +27,11 @@
         <package name="vim"/>
         <package name="plymouth"/>
         <package name="plymouth-theme-sabily"/>
-        <package name="initramfs-tools"/>
-        <package name="dracut"/>
         <package name="grub2"/>
-        <package name="linux-generic"/>
+        <package name="dracut"/>
     </packages>
     <packages type="bootstrap">
-        <!-- done by debootstrap -->
+        <package name="initramfs-tools"/>
+        <package name="linux-generic"/>
     </packages>
 </image>
