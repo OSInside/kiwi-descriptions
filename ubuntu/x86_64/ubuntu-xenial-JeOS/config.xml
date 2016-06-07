@@ -10,7 +10,7 @@
         <version>16.0.4</version>
         <packagemanager>apt-get</packagemanager>
         <bootsplash-theme>sabily</bootsplash-theme>
-        <bootloader-theme>sabily</bootloader-theme>
+        <bootloader-theme>ubuntu-mate</bootloader-theme>
         <locale>en_US</locale>
         <keytable>us.map.gz</keytable>
         <timezone>Europe/Berlin</timezone>
@@ -24,9 +24,10 @@
         <source path="http://ftp.halifax.rwth-aachen.de/ubuntu"/>
     </repository>
     <packages type="image">
+        <package name="grub2-themes-ubuntu-mate" bootinclude="true"/>
+        <package name="plymouth-theme-sabily" bootinclude="true"/>
         <package name="vim"/>
         <package name="plymouth"/>
-        <package name="plymouth-theme-sabily"/>
         <package name="grub2"/>
         <package name="dracut"/>
     </packages>
