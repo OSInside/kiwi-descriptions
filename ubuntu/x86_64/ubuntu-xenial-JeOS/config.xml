@@ -15,7 +15,7 @@
         <keytable>us.map.gz</keytable>
         <timezone>Europe/Berlin</timezone>
         <hwclock>utc</hwclock>
-        <type image="vmx" filesystem="ext4" boot="vmxboot/ubuntu-16.0" bootloader="grub2" firmware="efi" initrd_system="dracut"/>
+        <type image="vmx" filesystem="ext4" boot="vmxboot/ubuntu-xenial" bootloader="grub2" firmware="efi" initrd_system="dracut"/>
     </preferences>
     <users group="root">
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
