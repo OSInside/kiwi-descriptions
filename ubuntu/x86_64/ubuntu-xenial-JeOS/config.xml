@@ -29,6 +29,7 @@
         <package name="vim"/>
         <package name="plymouth"/>
         <package name="grub2"/>
+        <package name="grub-efi-amd64"/>
         <package name="dracut"/>
     </packages>
     <packages type="bootstrap">
