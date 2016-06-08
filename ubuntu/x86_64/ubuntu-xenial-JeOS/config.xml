@@ -28,12 +28,12 @@
         <package name="plymouth-theme-sabily" bootinclude="true"/>
         <package name="vim"/>
         <package name="plymouth"/>
-        <package name="grub2"/>
         <package name="grub-efi-amd64"/>
         <package name="dracut"/>
     </packages>
     <packages type="bootstrap">
         <package name="initramfs-tools"/>
         <package name="linux-generic"/>
+        <package name="grub2"/>
     </packages>
 </image>
