@@ -15,13 +15,17 @@
         <keytable>us.map.gz</keytable>
         <timezone>Europe/Berlin</timezone>
         <hwclock>utc</hwclock>
-        <type image="vmx" filesystem="ext4" boot="vmxboot/ubuntu-xenial" bootloader="grub2" firmware="efi" initrd_system="dracut"/>
+        <type image="iso" boot="isoboot/ubuntu-xenial" flags="overlay" hybrid="true" firmware="efi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+        <type image="vmx" primary="true" filesystem="ext4" boot="vmxboot/ubuntu-xenial" bootloader="grub2" firmware="efi" initrd_system="dracut"/>
     </preferences>
     <users group="root">
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
     </users>
     <repository type="apt-deb" distribution="xenial" components="main multiverse restricted universe">
         <source path="http://ftp.halifax.rwth-aachen.de/ubuntu"/>
+    </repository>
+    <repository type="apt-deb">
+        <source path="obs://Virtualization:/Appliances:/CommonBoot/xUbuntu_16.04"/>
     </repository>
     <packages type="image">
         <package name="grub2-themes-ubuntu-mate" bootinclude="true"/>
