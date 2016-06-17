@@ -28,7 +28,7 @@
         <source path="obs://Virtualization:/Appliances:/CommonBoot/xUbuntu_16.04"/>
     </repository>
     <packages type="iso">
-        <package name="gfxboot-theme-ubuntu" bootinclude="true" bootdelete="true"/>
+        <package name="gfxboot-themes" bootinclude="true" bootdelete="true"/>
     </packages>
     <packages type="image">
         <package name="grub2-themes-ubuntu-mate" bootinclude="true"/>
