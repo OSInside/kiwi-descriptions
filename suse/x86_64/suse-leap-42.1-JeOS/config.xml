@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.2" name="LimeJeOS-Leap-42.1">
+<image schemaversion="6.3" name="LimeJeOS-Leap-42.1">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.com</contact>
