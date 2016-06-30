@@ -17,7 +17,12 @@
         <hwclock>utc</hwclock>
         <type image="iso" boot="isoboot/ubuntu-xenial" flags="overlay" hybrid="true" firmware="efi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
         <type image="vmx" primary="true" filesystem="ext4" boot="vmxboot/ubuntu-xenial" bootloader="grub2" firmware="efi" initrd_system="dracut"/>
-        <type image="oem" filesystem="ext4" boot="oemboot/ubuntu-xenial" bootloader="grub2" firmware="efi" initrd_system="dracut" installiso="true"/>
+        <type image="oem" filesystem="ext4" boot="oemboot/ubuntu-xenial" bootloader="grub2" firmware="efi" initrd_system="dracut" installiso="true">
+            <oemconfig>
+                <oem-swap>true</oem-swap>
+                <oem-device-filter>/dev/ram</oem-device-filter>
+            </oemconfig>
+        </type>
     </preferences>
     <users group="root">
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
