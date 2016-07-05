@@ -28,7 +28,7 @@
         <rpm-check-signatures>false</rpm-check-signatures>
     </preferences>
     <preferences profiles="netboot">
-        <type image="pxe" filesystem="overlayfs" boot="netboot/suse-SLES12">
+        <type image="pxe" filesystem="squashfs" boot="netboot/suse-SLES12">
             <pxedeploy server="192.168.100.2" blocksize="4096">
                 <partitions device="/dev/sda">
                     <partition type="swap" number="1" size="5"/>
@@ -77,8 +77,11 @@
             </machine>
         </type>
         <type image="oem" filesystem="ext3" boot="oemboot/suse-SLES12" installiso="true" bootloader="grub2" firmware="efi" hybrid="true" kernelcmdline="splash">
+            <size unit="G">2</size>
+            <systemdisk>
+                <volume name="home" size="500M"/>
+            </systemdisk>
             <oemconfig>
-                <oem-systemsize>2048</oem-systemsize>
                 <oem-swap>true</oem-swap>
             </oemconfig>
             <machine memory="512" guestOS="suse" HWversion="4">
