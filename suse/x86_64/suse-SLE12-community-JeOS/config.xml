@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.3" name="LimeJeOS-SLE12-Community">
+<image schemaversion="6.4" name="LimeJeOS-SLE12-Community">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.com</contact>
@@ -90,14 +90,14 @@
             </machine>
         </type>
     </preferences>
-    <users group="vagrant" profiles="vagrant">
-        <user name="vagrant" password="vh4vw1N4alxKQ" home="/home/vagrant"/>
+    <users profiles="vagrant">
+        <user name="vagrant" password="vh4vw1N4alxKQ" home="/home/vagrant" groups="vagrant"/>
     </users>
-    <users group="root">
-        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <users group="kiwi">
-        <user name="kiwi" password="2exADvrjjX/kk" home="/home/kiwi"/>
+    <users>
+        <user name="kiwi" password="2exADvrjjX/kk" home="/home/kiwi" groups="kiwi"/>
     </users>
     <repository type="rpm-md">
         <source path="http://download.suse.de/ibs/SUSE:/SLE-12-SP1:/Update/standard"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.3" name="LimeJeOS-SLE12-Community">
+<image schemaversion="6.4" name="LimeJeOS-SLE12-Community">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.com</contact>
@@ -32,8 +32,8 @@
         </type>
         <type image="pxe" filesystem="ext3" boot="netboot/suse-SLES12"/>
     </preferences>
-    <users group="root">
-        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
     <repository type="yast2">
         <source path="http://download.suse.de/install/SLP/SLE-12-SP1-Server-GM/ppc64le/DVD1"/>
