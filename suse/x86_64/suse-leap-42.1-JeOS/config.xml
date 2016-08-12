@@ -114,6 +114,7 @@
         <package name="dhcp-client"/>
         <package name="which"/>
         <package name="pv"/>
+        <package name="open-vm-tools"/>
     </packages>
     <packages type="iso">
         <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
