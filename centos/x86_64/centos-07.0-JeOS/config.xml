@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.4" name="LimeJeOS-RHEL-07.0">
+<image schemaversion="6.4" name="LimeJeOS-CentOS-07.0">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.com</contact>
-        <specification>RHEL Enterprise 7 JeOS</specification>
+        <specification>CentOS Enterprise 7 JeOS</specification>
     </description>
     <strip type="delete">
         <file name="/usr/lib*/python*"/>
@@ -36,12 +36,12 @@
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
     <repository type="rpm-md">
-<!-- Using rhel dvd iso downloaded from access.redhat.com/downloads -->
-        <source path="iso:///image/CDs/RHEL-7.0-x86_64-DVD.iso"/>
+<!-- Using centos dvd downloaded from https://www.centos.org/download -->
+        <source path="iso:///image/CDs/CentOS-7-x86_64-DVD.iso"/>
     </repository>
 <!-- Don't remove the following repos, they contain tools needed by kiwi -->
     <repository type="rpm-md" priority="1">
-        <source path="obs://Virtualization:/Appliances:/CommonBoot/RHEL_7"/>
+        <source path="obs://Virtualization:/Appliances:/CommonBoot/CentOS_7"/>
     </repository>
     <packages type="image">
         <namedCollection name="Minimal Install"/>
@@ -49,7 +49,7 @@
         <package name="grub2"/>
         <package name="kernel"/>
         <package name="plymouth-theme-charge" bootinclude="true"/>
-<!-- kiwi-tools package for rhel has not yet been ported to CommonBoot
+<!-- kiwi-tools package for centos has not yet been ported to CommonBoot
      It contains tools like utimer or dcounter which provides
      nice boot timer or progress dialogs for showing data transfer
      progress. These tools are used by the kiwi installer if present
