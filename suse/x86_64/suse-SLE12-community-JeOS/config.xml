@@ -100,6 +100,12 @@
         <user name="kiwi" password="2exADvrjjX/kk" home="/home/kiwi" groups="kiwi"/>
     </users>
     <repository type="rpm-md">
+        <source path="http://download.suse.de/ibs/SUSE:/SLE-12-SP2:/Update/standard"/>
+    </repository>
+    <repository type="rpm-md">
+        <source path="http://download.suse.de/ibs/SUSE:/SLE-12-SP2:/GA/standard"/>
+    </repository>
+    <repository type="rpm-md">
         <source path="http://download.suse.de/ibs/SUSE:/SLE-12-SP1:/Update/standard"/>
     </repository>
     <repository type="rpm-md">
