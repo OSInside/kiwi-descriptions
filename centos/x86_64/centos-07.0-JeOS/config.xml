@@ -61,5 +61,6 @@
     <packages type="bootstrap">
         <package name="filesystem"/>
         <package name="basesystem"/>
+        <package name="yum-plugin-priorities"/>
     </packages>
 </image>
