@@ -35,12 +35,11 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <repository type="rpm-md">
-<!-- Using centos dvd downloaded from https://www.centos.org/download -->
-        <source path="iso:///image/CDs/CentOS-7-x86_64-DVD.iso"/>
+    <repository type="rpm-md" alias="centos">
+        <source path="http://bo.mirror.garr.it/1/slc/centos/7.2/os/x86_64"/>
     </repository>
 <!-- Don't remove the following repos, they contain tools needed by kiwi -->
-    <repository type="rpm-md" priority="1">
+    <repository type="rpm-md" priority="1" alias="kiwi-common-boot">
         <source path="obs://Virtualization:/Appliances:/CommonBoot/CentOS_7"/>
     </repository>
     <packages type="image">
