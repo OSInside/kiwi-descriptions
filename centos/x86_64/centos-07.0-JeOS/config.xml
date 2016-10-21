@@ -43,8 +43,8 @@
         <source path="obs://Virtualization:/Appliances:/CommonBoot/CentOS_7"/>
     </repository>
     <packages type="image">
-        <namedCollection name="Minimal Install"/>
-        <namedCollection name="Console Internet Tools"/>
+        <namedCollection name="core"/>
+        <namedCollection name="console-internet"/>
         <package name="grub2"/>
         <package name="kernel"/>
         <package name="plymouth-theme-charge" bootinclude="true"/>
