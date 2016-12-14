@@ -8,11 +8,6 @@
             Leap 42.2 JeOS, is a small text based image
         </specification>
     </description>
-    <profiles>
-        <profile name="xenFlavour" description="VMX with Xen kernel"/>
-        <profile name="ec2Flavour" description="VMX with EC2/Xen kernel"/>
-        <profile name="vmxFlavour" description="VMX with default kernel" import="true"/>
-    </profiles>
     <preferences>
         <type image="iso" primary="true" boot="isoboot/suse-leap42.2" flags="overlay" hybrid="true" firmware="efi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
         <version>1.42.2</version>
@@ -26,28 +21,7 @@
         <bootsplash-theme>openSUSE</bootsplash-theme>
         <bootloader-theme>openSUSE</bootloader-theme>
     </preferences>
-    <preferences profiles="ec2Flavour">
-        <type image="vmx" filesystem="ext3" boot="vmxboot/suse-leap42.2" bootprofile="ec2" bootkernel="ec2k" bootloader="grub2" kernelcmdline="xencons=xvc0 console=xvc0 multipath=off splash" firmware="ec2"/>
-    </preferences>
-    <preferences profiles="xenFlavour">
-        <type image="vmx" filesystem="ext3" boot="vmxboot/suse-leap42.2" bootprofile="xen" bootkernel="xenk" bootloader="grub2" kernelcmdline="splash">
-            <machine memory="512" domain="domU">
-                <vmdisk id="0" device="/dev/xvda" controller="ide"/>
-                <vmnic interface=""/>
-            </machine>
-        </type>
-        <type image="oem" filesystem="ext3" boot="oemboot/suse-leap42.2" bootprofile="xen" bootkernel="xenk" installiso="true" bootloader="grub2" kernelcmdline="splash">
-            <oemconfig>
-                <oem-systemsize>2048</oem-systemsize>
-                <oem-swap>true</oem-swap>
-                <oem-device-filter>/dev/ram</oem-device-filter>
-            </oemconfig>
-            <machine domain="dom0">
-                <vmdisk id="0" controller="ide"/>
-            </machine>
-        </type>
-    </preferences>
-    <preferences profiles="vmxFlavour">
+    <preferences>
         <type image="vmx" filesystem="ext3" boot="vmxboot/suse-leap42.2" bootloader="grub2" kernelcmdline="splash" firmware="uefi" format="vmdk"/>
         <type image="oem" filesystem="ext3" boot="oemboot/suse-leap42.2" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi">
             <oemconfig>
@@ -114,30 +88,13 @@
         <package name="dhcp-client"/>
         <package name="which"/>
         <package name="shim"/>
+        <package name="kernel-default"/>
     </packages>
     <packages type="iso">
         <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
     </packages>
     <packages type="oem">
         <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
-    </packages>
-    <packages type="image" profiles="ec2Flavour">
-        <package name="kernel-ec2" replaces="kernel-default"/>
-        <package name="kernel-ec2" replaces="kernel-xen"/>
-        <package name="xen-tools" arch="x86_64" replaces=""/>
-        <package name="xen" arch="x86_64" replaces=""/>
-    </packages>
-    <packages type="image" profiles="xenFlavour">
-        <package name="kernel-xen" replaces="kernel-default"/>
-        <package name="kernel-xen" replaces="kernel-ec2"/>
-        <package name="xen-tools" arch="x86_64" replaces=""/>
-        <package name="xen" arch="x86_64" replaces=""/>
-    </packages>
-    <packages type="image" profiles="vmxFlavour">
-        <package name="kernel-default" replaces="kernel-xen"/>
-        <package name="kernel-default" replaces="kernel-ec2"/>
-        <package name="kernel-default" replaces="xen-tools"/>
-        <package name="kernel-default" replaces="xen"/>
     </packages>
     <packages type="bootstrap">
         <package name="udev"/>
