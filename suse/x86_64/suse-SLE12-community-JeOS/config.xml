@@ -28,16 +28,7 @@
         <rpm-check-signatures>false</rpm-check-signatures>
     </preferences>
     <preferences profiles="netboot">
-        <type image="pxe" filesystem="squashfs" boot="netboot/suse-SLES12">
-            <pxedeploy server="192.168.100.2" blocksize="4096">
-                <partitions device="/dev/sda">
-                    <partition type="swap" number="1" size="5"/>
-                    <partition type="L" number="2" size="image" mountpoint="/" target="true"/>
-                    <partition type="L" number="3" target="false"/>
-                </partitions>
-                <union ro="/dev/sda2" rw="/dev/sda3" type="overlayfs"/>
-            </pxedeploy>
-        </type>
+        <type image="pxe" filesystem="squashfs" boot="netboot/suse-SLES12"/>
     </preferences>
     <preferences profiles="vagrant">
         <type image="vmx" filesystem="ext3" boot="vmxboot/suse-SLES12" format="vagrant" bootloader="grub2" kernelcmdline="nomodeset" boottimeout="2">
@@ -69,14 +60,26 @@
         </type>
     </preferences>
     <preferences profiles="vmxFlavour">
-        <type image="vmx" filesystem="ext3" boot="vmxboot/suse-SLES12" format="vmdk" bootloader="grub2" firmware="efi" kernelcmdline="splash" bootpartition="false">
-            <systemdisk name="systemVG"/>
-            <machine memory="512" guestOS="suse" HWversion="4">
-                <vmdisk id="0" controller="ide"/>
-                <vmnic driver="e1000" interface="0" mode="bridged"/>
-            </machine>
+        <type image="vmx" filesystem="btrfs" format="qcow2" bootloader="grub2" firmware="uefi" kernelcmdline="splash" bootpartition="false" devicepersistency="by-label" btrfs_root_is_snapshot="true" initrd_system="dracut">
+            <systemdisk name="systemVG">
+                <volume name="tmp"/>
+                <volume name="var/cache"/>
+                <volume name="var/crash"/>
+                <volume name="var/spool"/>
+                <volume name="boot/grub2/i386-pc"/>
+                <volume name="boot/grub2/x86_64-efi"/>
+                <volume name="var/lib/systemd"/>
+                <volume name="var/lib/wicked"/>
+                <volume name="var/lib/machine"/>
+                <volume name="var/lib/misc"/>
+                <volume name="var/lib/nfs"/>
+                <volume name="var/lib/rollback"/>
+                <volume name="var/log"/>
+                <volume name="var/tmp"/>
+            </systemdisk>
+            <size unit="G">40</size>
         </type>
-        <type image="oem" filesystem="ext3" boot="oemboot/suse-SLES12" installiso="true" bootloader="grub2" firmware="efi" hybrid="true" kernelcmdline="splash">
+        <type image="oem" filesystem="ext3" boot="oemboot/suse-SLES12" installiso="true" bootloader="grub2" firmware="efi" kernelcmdline="splash">
             <size unit="G">2</size>
             <systemdisk>
                 <volume name="home" size="500M"/>
