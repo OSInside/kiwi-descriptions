@@ -170,6 +170,7 @@
         <package name="sudo"/>
         <package name="dhcp-client"/>
         <package name="which"/>
+        <package name="shim"/>
     </packages>
     <packages type="iso">
         <package name="gfxboot-branding-SLE" bootinclude="true" bootdelete="true"/>
