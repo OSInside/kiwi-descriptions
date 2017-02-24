@@ -10,6 +10,7 @@
         <version>1.2.0</version>
         <packagemanager>dnf</packagemanager>
         <bootsplash-theme>charge</bootsplash-theme>
+        <bootloader-theme>system</bootloader-theme>
         <locale>en_US</locale>
         <keytable>us.map.gz</keytable>
         <timezone>UTC</timezone>
