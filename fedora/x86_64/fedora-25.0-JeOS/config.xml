@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="6.4" name="LimeJeOS-Fedora-25.0">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>ms@suse.com</contact>
+        <specification>Fedora 25 JeOS</specification>
+    </description>
+    <preferences>
+        <version>1.2.0</version>
+        <packagemanager>dnf</packagemanager>
+        <bootsplash-theme>charge</bootsplash-theme>
+        <locale>en_US</locale>
+        <keytable>us.map.gz</keytable>
+        <timezone>UTC</timezone>
+        <hwclock>utc</hwclock>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <type image="vmx" primary="true" initrd_system="dracut" filesystem="ext3" bootloader="grub2"/>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="rpm-md">
+        <source path="http://ftp.fau.de/fedora/linux/releases/25/Everything/x86_64/os"/>
+    </repository>
+    <packages type="image">
+        <namedCollection name="network-server"/>
+        <package name="grub2"/>
+        <package name="kernel"/>
+        <package name="plymouth-theme-charge" bootinclude="true"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="filesystem"/>
+        <package name="basesystem"/>
+    </packages>
+</image>
