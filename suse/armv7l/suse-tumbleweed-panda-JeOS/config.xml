@@ -105,7 +105,7 @@
         <file name="drivers/regulator/*"/>
     </drivers>
     <packages type="bootstrap">
-        <package name="kernel-default" bootinclude="true"/>
+        <package name="kernel-base" bootinclude="true"/>
         <package name="u-boot-omap4panda" bootinclude="true"/>
         <package name="dtb-omap4" bootinclude="true"/>
 <!-- Base packages -->

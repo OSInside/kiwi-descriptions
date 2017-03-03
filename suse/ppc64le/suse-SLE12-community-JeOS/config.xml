@@ -41,7 +41,7 @@
     <packages type="image">
         <namedCollection name="Minimal"/>
         <product name="SLES"/>
-        <package name="kernel-default"/>
+        <package name="kernel-base"/>
         <package name="iputils"/>
         <package name="iproute2"/>
         <package name="vim"/>
