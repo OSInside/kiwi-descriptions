@@ -176,7 +176,7 @@
         <package name="gfxboot-branding-SLE" bootinclude="true" bootdelete="true"/>
     </packages>
     <packages type="image" profiles="xenFlavourHVM">
-        <package name="kernel-base" replaces="kernel-xen"/>
+        <package name="kernel-default" replaces="kernel-xen"/>
         <package name="grub2-x86_64-xen" bootinclude="true"/>
         <package name="xen-kmp-default" bootinclude="true"/>
         <package name="xen-libs" arch="x86_64" replaces=""/>
@@ -185,7 +185,7 @@
         <package name="gfxboot-branding-SLE" bootinclude="true" bootdelete="true"/>
     </packages>
     <packages type="image" profiles="xenFlavour">
-        <package name="kernel-xen" replaces="kernel-base"/>
+        <package name="kernel-xen" replaces="kernel-default"/>
         <package name="kernel-xen" replaces="xen-kmp-default"/>
         <package name="xen-libs" arch="x86_64" replaces=""/>
         <package name="xen-tools" arch="x86_64" replaces=""/>
@@ -193,11 +193,11 @@
         <package name="gfxboot-branding-SLE" bootinclude="true" bootdelete="true"/>
     </packages>
     <packages type="image" profiles="vmxFlavour">
-        <package name="kernel-base" replaces="kernel-xen"/>
-        <package name="kernel-base" replaces="xen-kmp-default"/>
-        <package name="kernel-base" replaces="xen-libs"/>
-        <package name="kernel-base" replaces="xen-tools"/>
-        <package name="kernel-base" replaces="xen"/>
+        <package name="kernel-default" replaces="kernel-xen"/>
+        <package name="kernel-default" replaces="xen-kmp-default"/>
+        <package name="kernel-default" replaces="xen-libs"/>
+        <package name="kernel-default" replaces="xen-tools"/>
+        <package name="kernel-default" replaces="xen"/>
         <package name="gfxboot-branding-SLE" bootinclude="true" bootdelete="true"/>
     </packages>
     <packages type="bootstrap">

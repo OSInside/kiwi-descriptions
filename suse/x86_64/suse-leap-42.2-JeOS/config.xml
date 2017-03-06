@@ -88,7 +88,7 @@
         <package name="dhcp-client"/>
         <package name="which"/>
         <package name="shim"/>
-        <package name="kernel-base"/>
+        <package name="kernel-default"/>
     </packages>
     <packages type="iso">
         <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>

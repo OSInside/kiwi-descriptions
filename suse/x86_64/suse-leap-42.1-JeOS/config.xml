@@ -124,22 +124,22 @@
         <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
     </packages>
     <packages type="image" profiles="ec2Flavour">
-        <package name="kernel-ec2" replaces="kernel-base"/>
+        <package name="kernel-ec2" replaces="kernel-default"/>
         <package name="kernel-ec2" replaces="kernel-xen"/>
         <package name="xen-tools" arch="x86_64" replaces=""/>
         <package name="xen" arch="x86_64" replaces=""/>
     </packages>
     <packages type="image" profiles="xenFlavour">
-        <package name="kernel-xen" replaces="kernel-base"/>
+        <package name="kernel-xen" replaces="kernel-default"/>
         <package name="kernel-xen" replaces="kernel-ec2"/>
         <package name="xen-tools" arch="x86_64" replaces=""/>
         <package name="xen" arch="x86_64" replaces=""/>
     </packages>
     <packages type="image" profiles="vmxFlavour">
-        <package name="kernel-base" replaces="kernel-xen"/>
-        <package name="kernel-base" replaces="kernel-ec2"/>
-        <package name="kernel-base" replaces="xen-tools"/>
-        <package name="kernel-base" replaces="xen"/>
+        <package name="kernel-default" replaces="kernel-xen"/>
+        <package name="kernel-default" replaces="kernel-ec2"/>
+        <package name="kernel-default" replaces="xen-tools"/>
+        <package name="kernel-default" replaces="xen"/>
     </packages>
     <packages type="bootstrap">
         <package name="udev"/>
