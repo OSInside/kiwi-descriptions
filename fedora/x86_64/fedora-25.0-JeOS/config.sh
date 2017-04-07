@@ -18,7 +18,7 @@ baseMount
 #======================================
 # Activate services
 #--------------------------------------
-#...
+baseInsertService network
 
 #======================================
 # Setup default target, multi-user
