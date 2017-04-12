@@ -34,6 +34,7 @@
         <package name="plymouth-theme-charge"/>
         <package name="grub2-starfield-theme"/>
         <package name="selinux-policy-targeted"/>
+        <package name="dhclient"/>
     </packages>
     <packages type="bootstrap">
         <package name="filesystem"/>
