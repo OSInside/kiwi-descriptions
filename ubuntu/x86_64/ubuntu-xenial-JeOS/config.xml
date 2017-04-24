@@ -27,6 +27,11 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
+<!-- NOTE: the order of the repositories matters in case of apt. The first package
+     found matching the solver criteria will be used. Thus if the latest package should
+     be selected it is important that the repository providing it is added first in
+     the list, e.g the update repository
+-->
     <repository type="apt-deb" distribution="xenial" components="main multiverse restricted universe">
         <source path="http://ftp.halifax.rwth-aachen.de/ubuntu"/>
     </repository>
