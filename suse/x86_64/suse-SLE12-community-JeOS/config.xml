@@ -192,13 +192,20 @@
         <package name="xen" arch="x86_64" replaces=""/>
         <package name="gfxboot-branding-SLE" bootinclude="true" bootdelete="true"/>
     </packages>
-    <packages type="image" profiles="vmxFlavour">
+    <packages type="image" profiles="vmxFlavour,vagrant">
         <package name="kernel-default" replaces="kernel-xen"/>
         <package name="kernel-default" replaces="xen-kmp-default"/>
         <package name="kernel-default" replaces="xen-libs"/>
         <package name="kernel-default" replaces="xen-tools"/>
         <package name="kernel-default" replaces="xen"/>
         <package name="gfxboot-branding-SLE" bootinclude="true" bootdelete="true"/>
+    </packages>
+    <packages type="image" profiles="netboot">
+        <package name="kernel-default" replaces="kernel-xen"/>
+        <package name="kernel-default" replaces="xen-kmp-default"/>
+        <package name="kernel-default" replaces="xen-libs"/>
+        <package name="kernel-default" replaces="xen-tools"/>
+        <package name="kernel-default" replaces="xen"/>
     </packages>
     <packages type="bootstrap">
         <package name="udev"/>
