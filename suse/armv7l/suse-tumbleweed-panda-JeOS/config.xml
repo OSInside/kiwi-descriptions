@@ -175,7 +175,6 @@
         <package name="zypper"/>
         <package name="libdrm_omap1"/>
 <!-- Base: multiple choices -->
-        <package name="libffi4"/>
         <package name="libgcc_s1"/>
         <package name="libgomp1"/>
         <package name="libsystemd0"/>
