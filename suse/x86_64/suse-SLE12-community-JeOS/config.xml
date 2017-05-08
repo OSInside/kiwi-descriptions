@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.4" name="LimeJeOS-SLE12-Community">
+<image schemaversion="6.5" name="LimeJeOS-SLE12-Community">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.com</contact>
@@ -37,7 +37,9 @@
         </type>
     </preferences>
     <preferences profiles="docker">
-        <type image="docker" container="system"/>
+        <type image="docker">
+            <containerconfig name="sles12"/>
+        </type>
     </preferences>
     <preferences profiles="xenFlavourHVM">
         <type image="vmx" filesystem="ext3" boot="vmxboot/suse-SLES12" bootloader="grub2" kernelcmdline="splash"/>
