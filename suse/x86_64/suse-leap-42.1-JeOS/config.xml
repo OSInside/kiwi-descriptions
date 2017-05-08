@@ -12,6 +12,7 @@
         <profile name="xenFlavour" description="VMX with Xen kernel"/>
         <profile name="ec2Flavour" description="VMX with EC2/Xen kernel"/>
         <profile name="vmxFlavour" description="VMX with default kernel" import="true"/>
+        <profile name="netboot" description="compressed rootfs image for pxe"/>
     </profiles>
     <preferences>
         <type image="iso" primary="true" boot="isoboot/suse-leap42.1" flags="overlay" hybrid="true" firmware="uefi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
@@ -25,6 +26,9 @@
         <rpm-check-signatures>false</rpm-check-signatures>
         <bootsplash-theme>openSUSE</bootsplash-theme>
         <bootloader-theme>openSUSE</bootloader-theme>
+    </preferences>
+    <preferences profiles="netboot">
+        <type image="pxe" filesystem="squashfs" boot="netboot/suse-leap42.1"/>
     </preferences>
     <preferences profiles="ec2Flavour">
         <type image="vmx" filesystem="ext3" boot="vmxboot/suse-leap42.1" bootprofile="ec2" bootkernel="ec2k" bootloader="grub2" kernelcmdline="xencons=xvc0 console=xvc0 multipath=off splash" firmware="ec2"/>
@@ -101,12 +105,6 @@
         <package name="fonts-config"/>
         <package name="tar"/>
         <package name="parted"/>
-        <package name="kiwi"/>
-        <package name="kiwi-templates"/>
-        <package name="kiwi-desc-oemboot"/>
-        <package name="kiwi-desc-isoboot"/>
-        <package name="kiwi-desc-vmxboot"/>
-        <package name="kiwi-desc-netboot"/>
         <package name="openssh"/>
         <package name="iproute2"/>
         <package name="less"/>

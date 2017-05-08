@@ -43,12 +43,6 @@
         <package name="fonts-config"/>
         <package name="tar"/>
         <package name="parted"/>
-        <package name="kiwi"/>
-        <package name="kiwi-templates"/>
-        <package name="kiwi-desc-oemboot"/>
-        <package name="kiwi-desc-isoboot"/>
-        <package name="kiwi-desc-vmxboot"/>
-        <package name="kiwi-desc-netboot"/>
         <package name="openssh"/>
         <package name="iproute2"/>
         <package name="less"/>
