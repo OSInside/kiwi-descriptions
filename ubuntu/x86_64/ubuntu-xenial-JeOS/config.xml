@@ -53,6 +53,7 @@
         <package name="plymouth"/>
         <package name="grub-efi-amd64"/>
         <package name="dracut"/>
+        <package name="linux-generic"/>
     </packages>
     <packages type="bootstrap">
         <package name="initramfs-tools"/>
