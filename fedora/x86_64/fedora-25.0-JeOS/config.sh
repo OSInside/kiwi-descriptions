@@ -25,6 +25,9 @@ baseInsertService network
 #--------------------------------------
 baseSetRunlevel 3
 
+cp /lib/modules/*/System.map /boot
+cp /lib/modules/*/vmlinuz /boot
+
 #======================================
 # Umount kernel filesystems
 #--------------------------------------
