@@ -23,7 +23,7 @@
         <timezone>UTC</timezone>
         <hwclock>utc</hwclock>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <type image="vmx" primary="true" boot="vmxboot/rhel-07.0" filesystem="ext3" kernelcmdline="rhgb" bootloader="grub2"/>
+        <type image="vmx" primary="true" initrd_system="dracut" filesystem="ext3" kernelcmdline="rhgb" bootloader="grub2" firmware="uefi"/>
         <type image="oem" boot="oemboot/rhel-07.0" filesystem="ext3" installiso="true" bootloader="grub2" initrd_system="dracut">
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
@@ -61,5 +61,8 @@
         <package name="filesystem"/>
         <package name="basesystem"/>
         <package name="yum-plugin-priorities"/>
+        <package name="grub2-efi-modules"/>
+        <package name="grub2-efi"/>
+        <package name="shim" arch="x86_64"/>
     </packages>
 </image>
