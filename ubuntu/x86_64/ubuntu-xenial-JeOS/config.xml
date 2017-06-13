@@ -47,13 +47,16 @@
     </packages>
 -->
     <packages type="image">
-        <package name="grub2-themes-ubuntu-mate" bootinclude="true"/>
+        <package name="grub2-themes-ubuntu-mate"/>
         <package name="plymouth-theme-sabily" bootinclude="true"/>
         <package name="vim"/>
         <package name="plymouth"/>
         <package name="grub-efi-amd64"/>
         <package name="dracut"/>
         <package name="linux-generic"/>
+        <package name="isolinux"/>
+        <package name="syslinux"/>
+        <package name="syslinux-common"/>
     </packages>
     <packages type="bootstrap">
         <package name="initramfs-tools"/>

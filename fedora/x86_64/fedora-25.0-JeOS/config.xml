@@ -10,12 +10,13 @@
         <version>1.2.0</version>
         <packagemanager>dnf</packagemanager>
         <bootsplash-theme>charge</bootsplash-theme>
-        <bootloader-theme>system</bootloader-theme>
+        <bootloader-theme>starfield</bootloader-theme>
         <locale>en_US</locale>
         <keytable>us.map.gz</keytable>
         <timezone>UTC</timezone>
         <hwclock>utc</hwclock>
         <rpm-check-signatures>false</rpm-check-signatures>
+        <type image="iso" boot="isoboot/fedora-25.0" flags="overlay" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
         <type image="vmx" primary="true" initrd_system="dracut" filesystem="ext3" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="efi"/>
     </preferences>
     <users>
@@ -27,12 +28,16 @@
     <repository type="rpm-md" alias="Fedora25-updates">
         <source path="http://ftp.fau.de/fedora/linux/updates/25/x86_64"/>
     </repository>
+<!-- Don't remove the following repos, they contain tools needed by kiwi -->
+    <repository type="rpm-md" priority="1" alias="kiwi-common-boot">
+        <source path="obs://Virtualization:/Appliances:/CommonBoot/Fedora_25"/>
+    </repository>
     <packages type="image">
         <namedCollection name="network-server"/>
         <package name="grub2"/>
         <package name="grubby"/>
         <package name="kernel"/>
-        <package name="plymouth-theme-charge"/>
+        <package name="plymouth-theme-charge" bootinclude="true"/>
         <package name="grub2-starfield-theme"/>
         <package name="selinux-policy-targeted"/>
         <package name="dhclient"/>
@@ -42,5 +47,6 @@
         <package name="basesystem"/>
         <package name="grub2-efi-modules"/>
         <package name="grub2-efi"/>
+        <package name="shim" arch="x86_64"/>
     </packages>
 </image>
