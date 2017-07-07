@@ -68,8 +68,8 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <repository type="yast2" imageinclude="true">
-        <source path="obs://leap/42.1/repo/oss"/>
+    <repository type="rpm-md" imageinclude="true">
+        <source path="obs://openSUSE:Leap:42.1/standard"/>
     </repository>
     <packages type="image">
 <!-- 

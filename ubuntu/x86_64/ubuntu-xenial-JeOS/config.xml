@@ -36,7 +36,7 @@
         <source path="http://ftp.halifax.rwth-aachen.de/ubuntu"/>
     </repository>
     <repository type="apt-deb">
-        <source path="obs://Virtualization:/Appliances:/CommonBoot/xUbuntu_16.04"/>
+        <source path="obs://Virtualization:Appliances:CommonBoot/xUbuntu_16.04"/>
     </repository>
 <!-- isolinux boot graphics requires a gfxboot theme, however testing the
      theme caused an error in the theming code. Thus we disable this for
