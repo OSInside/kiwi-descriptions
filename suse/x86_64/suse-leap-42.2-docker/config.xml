@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.6" name="Docker-Leap-42.2">
+<image schemaversion="6.7" name="Docker-Leap-42.2">
     <description type="system">
         <author>David Cassany</author>
         <contact>dcassany@suse.de</contact>
@@ -13,7 +13,6 @@
         <version>1.0.0</version>
         <packagemanager>zypper</packagemanager>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <rpm-force>true</rpm-force>
         <rpm-excludedocs>true</rpm-excludedocs>
         <locale>en_US</locale>
         <keytable>us.map.gz</keytable>
