@@ -9,7 +9,7 @@
         </specification>
     </description>
     <preferences>
-        <type image="iso" primary="true" boot="isoboot/suse-tumbleweed" flags="overlay" hybrid="true" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+        <type image="iso" primary="true" flags="overlay" hybrid="true" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
         <version>1.99.1</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_US</locale>
@@ -24,7 +24,10 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <repository type="yast2" imageinclude="true">
+    <repository type="rpm-md" alias="kiwi" priority="1">
+        <source path="obs://Virtualization:Appliances:Builder/Factory"/>
+    </repository>
+    <repository type="yast2" alias="Factory" imageinclude="true">
         <source path="obs://openSUSE:Factory/standard"/>
     </repository>
     <packages type="image">
@@ -52,7 +55,8 @@
         <package name="kernel-default"/>
     </packages>
     <packages type="iso">
-        <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
+        <package name="gfxboot-branding-openSUSE"/>
+        <package name="dracut-kiwi-live"/>
     </packages>
     <packages type="bootstrap">
         <package name="udev"/>

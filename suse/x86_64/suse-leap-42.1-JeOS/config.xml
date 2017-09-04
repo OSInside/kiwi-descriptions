@@ -15,7 +15,7 @@
         <profile name="netboot" description="compressed rootfs image for pxe"/>
     </profiles>
     <preferences>
-        <type image="iso" primary="true" boot="isoboot/suse-leap42.1" flags="overlay" hybrid="true" firmware="uefi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+        <type image="iso" primary="true" flags="overlay" hybrid="true" firmware="uefi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
         <version>1.42.1</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_US</locale>
@@ -92,7 +92,8 @@
         <package name="kernel-default"/>
     </packages>
     <packages type="iso">
-        <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
+        <package name="gfxboot-branding-openSUSE"/>
+        <package name="kiwi-dracut-iso"/>
     </packages>
     <packages type="oem">
         <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>

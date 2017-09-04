@@ -15,7 +15,7 @@
         <keytable>us.map.gz</keytable>
         <timezone>Europe/Berlin</timezone>
         <hwclock>utc</hwclock>
-        <type image="iso" boot="isoboot/ubuntu-xenial" flags="overlay" hybrid="true" firmware="efi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+        <type image="iso" flags="overlay" hybrid="true" firmware="efi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
         <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" firmware="efi" initrd_system="dracut"/>
         <type image="oem" filesystem="ext4" boot="oemboot/ubuntu-xenial" bootloader="grub2" firmware="efi" initrd_system="dracut" installiso="true">
             <oemconfig>
@@ -27,10 +27,11 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-<!-- NOTE: the order of the repositories matters in case of apt. The first package
-     found matching the solver criteria will be used. Thus if the latest package should
-     be selected it is important that the repository providing it is added first in
-     the list, e.g the update repository
+<!-- NOTE: the order of the repositories matters in case of apt. The first
+     package found matching the solver criteria will be used. Thus if the
+     latest package should be selected it is important that the
+     repository providing it is added first in the list, e.g the
+     update repository
 -->
     <repository type="apt-deb" distribution="xenial" components="main multiverse restricted universe">
         <source path="http://ftp.halifax.rwth-aachen.de/ubuntu"/>
@@ -38,14 +39,14 @@
     <repository type="apt-deb">
         <source path="obs://Virtualization:Appliances:CommonBoot/xUbuntu_16.04"/>
     </repository>
+    <packages type="iso">
 <!-- isolinux boot graphics requires a gfxboot theme, however testing the
      theme caused an error in the theming code. Thus we disable this for
      the moment
-
-    <packages type="iso">
-        <package name="gfxboot-themes" bootinclude="true" bootdelete="true"/>
-    </packages>
+        <package name="gfxboot-themes"/>
 -->
+        <package name="dracut-kiwi-live"/>
+    </packages>
     <packages type="image">
         <package name="grub2-themes-ubuntu-mate"/>
         <package name="plymouth-theme-sabily" bootinclude="true"/>
