@@ -16,7 +16,7 @@
         <timezone>UTC</timezone>
         <hwclock>utc</hwclock>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <type image="vmx" primary="true" initrd_system="dracut" filesystem="ext4" bootloader="grub2" firmware="bios"/>
+        <type image="vmx" filesystem="ext4" bootloader="grub2" firmware="bios"/>
     </preferences>
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>

@@ -17,7 +17,7 @@
         <hwclock>utc</hwclock>
         <rpm-check-signatures>false</rpm-check-signatures>
         <type image="iso" flags="overlay" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
-        <type image="vmx" primary="true" initrd_system="dracut" filesystem="ext3" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="efi"/>
+        <type image="vmx" primary="true" filesystem="ext3" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="efi"/>
     </preferences>
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>

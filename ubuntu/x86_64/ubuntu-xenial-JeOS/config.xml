@@ -16,7 +16,7 @@
         <timezone>Europe/Berlin</timezone>
         <hwclock>utc</hwclock>
         <type image="iso" flags="overlay" hybrid="true" firmware="efi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
-        <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" firmware="efi" initrd_system="dracut"/>
+        <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" firmware="efi"/>
         <type image="oem" filesystem="ext4" boot="oemboot/ubuntu-xenial" bootloader="grub2" firmware="efi" initrd_system="dracut" installiso="true">
             <oemconfig>
                 <oem-swap>true</oem-swap>

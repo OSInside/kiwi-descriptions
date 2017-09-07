@@ -23,8 +23,8 @@
     </preferences>
     <preferences>
         <type image="pxe" filesystem="squashfs" boot="netboot/suse-leap42.3"/>
-        <type image="vmx" filesystem="ext3" boot="vmxboot/suse-leap42.3" bootloader="grub2" kernelcmdline="splash" firmware="uefi" format="vmdk"/>
-        <type image="oem" filesystem="ext3" boot="oemboot/suse-leap42.3" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi">
+        <type image="vmx" filesystem="ext4" bootloader="grub2" kernelcmdline="splash" firmware="efi"/>
+        <type image="oem" filesystem="ext4" boot="oemboot/suse-leap42.3" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi" initrd_system="dracut">
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
                 <oem-swap>true</oem-swap>
@@ -76,7 +76,7 @@
         <package name="dracut-kiwi-live"/>
     </packages>
     <packages type="oem">
-        <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
+        <package name="gfxboot-branding-openSUSE" bootinclude="true"/>
     </packages>
     <packages type="bootstrap">
         <package name="udev"/>
