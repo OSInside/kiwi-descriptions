@@ -16,8 +16,8 @@
         <timezone>UTC</timezone>
         <hwclock>utc</hwclock>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <type image="iso" boot="isoboot/fedora-25.0" flags="overlay" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
-        <type image="vmx" primary="true" initrd_system="dracut" filesystem="ext3" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="efi"/>
+        <type image="iso" flags="overlay" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+        <type image="vmx" primary="true" filesystem="ext3" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="efi"/>
     </preferences>
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
@@ -41,6 +41,9 @@
         <package name="grub2-starfield-theme"/>
         <package name="selinux-policy-targeted"/>
         <package name="dhclient"/>
+    </packages>
+    <packages type="iso">
+        <package name="dracut-kiwi-live"/>
     </packages>
     <packages type="bootstrap">
         <package name="filesystem"/>

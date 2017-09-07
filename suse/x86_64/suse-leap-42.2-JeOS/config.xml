@@ -9,7 +9,7 @@
         </specification>
     </description>
     <preferences>
-        <type image="iso" primary="true" boot="isoboot/suse-leap42.2" flags="overlay" hybrid="true" firmware="efi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+        <type image="iso" primary="true" flags="overlay" hybrid="true" firmware="efi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
         <version>1.42.2</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_US</locale>
@@ -23,7 +23,7 @@
     </preferences>
     <preferences>
         <type image="pxe" filesystem="squashfs" boot="netboot/suse-leap42.2"/>
-        <type image="vmx" filesystem="ext3" boot="vmxboot/suse-leap42.2" bootloader="grub2" kernelcmdline="splash" firmware="uefi" format="vmdk"/>
+        <type image="vmx" filesystem="ext3" bootloader="grub2" kernelcmdline="splash" firmware="uefi" format="vmdk"/>
         <type image="oem" filesystem="ext3" boot="oemboot/suse-leap42.2" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi">
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
@@ -39,27 +39,13 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <repository type="rpm-md" imageinclude="true">
+    <repository type="rpm-md" alias="kiwi" priority="1">
+        <source path="obs://Virtualization:Appliances:Builder/openSUSE_Leap_42.2"/>
+    </repository>
+    <repository type="rpm-md" alias="Leap_42_2" imageinclude="true">
         <source path="obs://openSUSE:Leap:42.2/standard"/>
     </repository>
     <packages type="image">
-<!-- 
-        pattern system for leap is based on packages, zypper has metadata
-        information which allows to use the pattern name as part of a
-        namedCollection. However we want this image to be able to build with
-        dice and that would require pattern metadata to be present as part
-        of the repository metadata in order to resolve the pattern by name.
-     
-        This repository metadata is gone, thus we put in the pattern package
-        instead to allow dice to resolve the pattern. If you don't build with
-     
-        https://github.com/SUSE/dice
-
-        you can enable the use of pyttern by name via namedCollection
-        instead of the package: patterns-openSUSE-base as follows
-
-        <namedCollection name="base"/>
--->
         <package name="patterns-openSUSE-base"/>
         <package name="plymouth-branding-openSUSE" bootinclude="true"/>
         <package name="grub2-branding-openSUSE" bootinclude="true"/>
@@ -86,10 +72,11 @@
         <package name="kernel-default"/>
     </packages>
     <packages type="iso">
-        <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
+        <package name="gfxboot-branding-openSUSE">
+        <package name="dracut-kiwi-live"/>
     </packages>
     <packages type="oem">
-        <package name="gfxboot-branding-openSUSE" bootinclude="true" bootdelete="true"/>
+        <package name="gfxboot-branding-openSUSE" bootinclude="true"/>
     </packages>
     <packages type="bootstrap">
         <package name="udev"/>

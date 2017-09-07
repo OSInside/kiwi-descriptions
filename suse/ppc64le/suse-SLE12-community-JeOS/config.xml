@@ -17,10 +17,10 @@
         <keytable>us.map.gz</keytable>
         <timezone>Europe/Berlin</timezone>
         <hwclock>utc</hwclock>
-        <type image="vmx" filesystem="ext4" boot="vmxboot/suse-SLES12" bootloader="grub2">
+        <type image="vmx" filesystem="ext4" bootloader="grub2">
             <size unit="G">4</size>
         </type>
-        <type image="oem" filesystem="btrfs" boot="oemboot/suse-SLES12" bootloader="grub2">
+        <type image="oem" filesystem="ext4" boot="oemboot/suse-SLES12" bootloader="grub2">
             <size unit="G">10</size>
             <systemdisk>
                 <volume name="home"/>
