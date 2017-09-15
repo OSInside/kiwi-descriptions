@@ -45,6 +45,7 @@ suseImportBuildKey
 # Activate services
 #--------------------------------------
 suseInsertService sshd
+suseInsertService grub_config
 
 #======================================
 # Setup default target, multi-user
