@@ -27,8 +27,8 @@
     <repository type="rpm-md" alias="kiwi" priority="1">
         <source path="obs://Virtualization:Appliances:Builder/Factory"/>
     </repository>
-    <repository type="yast2" alias="Factory" imageinclude="true">
-        <source path="obs://openSUSE:Factory/standard"/>
+    <repository type="yast2" alias="Tumbleweed" imageinclude="true">
+        <source path="http://download.opensuse.org/tumbleweed/repo/oss"/>
     </repository>
     <packages type="image">
         <package name="patterns-openSUSE-base"/>
