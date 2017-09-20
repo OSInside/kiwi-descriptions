@@ -45,7 +45,11 @@ suseImportBuildKey
 # Activate services
 #--------------------------------------
 suseInsertService sshd
-suseInsertService grub_config
+if [[ ${kiwi_type} =~ oem|vmx ]];then
+    suseInsertService grub_config
+else
+    suseRemoveService grub_config
+fi
 
 #======================================
 # Setup default target, multi-user

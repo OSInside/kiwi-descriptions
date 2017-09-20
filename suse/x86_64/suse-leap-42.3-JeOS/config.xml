@@ -9,7 +9,7 @@
         </specification>
     </description>
     <preferences>
-        <type image="iso" primary="true" flags="overlay" hybrid="true" firmware="efi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+        <type image="iso" primary="true" flags="overlay" hybrid="true" firmware="efi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true" mediacheck="true"/>
         <version>1.42.3</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_US</locale>
@@ -46,6 +46,7 @@
         <source path="obs://openSUSE:Leap:42.3/standard"/>
     </repository>
     <packages type="image">
+        <package name="checkmedia"/>
         <package name="patterns-openSUSE-base"/>
         <package name="plymouth-branding-openSUSE" bootinclude="true"/>
         <package name="grub2-branding-openSUSE" bootinclude="true"/>
