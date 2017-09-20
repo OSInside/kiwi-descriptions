@@ -49,6 +49,7 @@
         <package name="checkmedia"/>
         <package name="patterns-openSUSE-base"/>
         <package name="plymouth-branding-openSUSE" bootinclude="true"/>
+        <package name="plymouth-dracut"/>
         <package name="grub2-branding-openSUSE" bootinclude="true"/>
         <package name="ifplugd"/>
         <package name="iputils"/>
