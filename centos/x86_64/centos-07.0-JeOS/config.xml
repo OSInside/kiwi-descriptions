@@ -46,6 +46,7 @@
     <packages type="image">
         <namedCollection name="core"/>
         <namedCollection name="console-internet"/>
+        <package name="syslinux"/>
         <package name="grub2" bootinclude="true"/>
         <package name="kernel"/>
         <package name="plymouth-theme-charge" bootinclude="true"/>
