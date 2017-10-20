@@ -72,7 +72,7 @@
         <package name="kernel-default"/>
     </packages>
     <packages type="iso">
-        <package name="gfxboot-branding-openSUSE">
+        <package name="gfxboot-branding-openSUSE"/>
         <package name="dracut-kiwi-live"/>
     </packages>
     <packages type="oem">
