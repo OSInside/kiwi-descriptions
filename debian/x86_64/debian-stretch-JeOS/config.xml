@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="6.7" name="LimeJeOS-Debian-Stretch">
+    <description type="system">
+        <author>Marcus Schäfer</author>
+        <contact>ms@suse.com</contact>
+        <specification>Debian Stretch JeOS</specification>
+    </description>
+    <preferences>
+        <version>9.2</version>
+        <packagemanager>apt-get</packagemanager>
+        <!-- FIXME: Themes do not work for some reason -->
+        <bootsplash-theme>fade-in</bootsplash-theme>
+        <bootloader-theme>starfield</bootloader-theme>
+        <locale>en_US</locale>
+        <keytable>us.map.gz</keytable>
+        <timezone>Europe/Berlin</timezone>
+        <hwclock>utc</hwclock>
+        <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" firmware="efi"/>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+<!-- NOTE: the order of the repositories matters in case of apt. The first
+     package found matching the solver criteria will be used. Thus if the
+     latest package should be selected it is important that the
+     repository providing it is added first in the list, e.g the
+     update repository
+-->
+    <repository type="apt-deb" distribution="stretch" components="main contrib non-free">
+        <source path="http://ftp.halifax.rwth-aachen.de/debian"/>
+    </repository>
+    <repository type="apt-deb">
+      <source path="obs://Virtualization:Appliances:CommonBoot/Debian_9.0"/>
+    </repository>
+    <packages type="image">
+        <package name="grub-theme-starfield"/>
+        <package name="plymouth-themes" bootinclude="true"/>
+        <package name="vim"/>
+        <package name="plymouth"/>
+        <package name="grub-efi-amd64"/>
+        <package name="dracut"/>
+        <package name="xz-utils"/>
+        <package name="binutils"/>
+        <package name="linux-image-amd64"/>
+        <package name="isolinux"/>
+        <package name="syslinux"/>
+        <package name="syslinux-common"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="initramfs-tools"/>
+        <package name="linux-image-amd64"/>
+        <package name="grub2"/>
+    </packages>
+</image>
