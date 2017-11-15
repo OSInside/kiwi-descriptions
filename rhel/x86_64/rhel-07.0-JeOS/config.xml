@@ -24,7 +24,7 @@
         <hwclock>utc</hwclock>
         <rpm-check-signatures>false</rpm-check-signatures>
         <type image="vmx" primary="true" filesystem="ext3" kernelcmdline="rhgb" bootloader="grub2"/>
-        <type image="oem" boot="oemboot/rhel-07.0" filesystem="ext3" installiso="true" bootloader="grub2" initrd_system="dracut">
+        <type image="oem" boot="oemboot/rhel-07.0" filesystem="ext3" installiso="true" bootloader="grub2">
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
                 <oem-swap>true</oem-swap>

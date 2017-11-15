@@ -24,7 +24,7 @@
     <preferences>
         <type image="pxe" filesystem="squashfs" boot="netboot/suse-leap42.3"/>
         <type image="vmx" filesystem="ext4" bootloader="grub2" kernelcmdline="splash" firmware="efi"/>
-        <type image="oem" filesystem="ext4" boot="oemboot/suse-leap42.3" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi" initrd_system="dracut">
+        <type image="oem" filesystem="ext4" boot="oemboot/suse-leap42.3" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi">
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
                 <oem-swap>true</oem-swap>
