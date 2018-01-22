@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.7" name="LimeJeOS-Mageia-06.0">
+<image schemaversion="6.8" name="LimeJeOS-Mageia-06.0">
     <description type="system">
         <author>Neal Gompa</author>
         <contact>ngompa@mageia.org</contact>
@@ -14,7 +14,6 @@
         <locale>en_US</locale>
         <keytable>us.map.gz</keytable>
         <timezone>UTC</timezone>
-        <hwclock>utc</hwclock>
         <rpm-check-signatures>false</rpm-check-signatures>
         <type image="vmx" filesystem="ext4" bootloader="grub2" firmware="bios"/>
     </preferences>
@@ -36,7 +35,6 @@
         <package name="dnf-utils"/>
         <package name="dnf-yum"/>
     </packages>
-<!-- we only want dnf for kiwi appliances -->
     <packages type="image">
         <ignore name="perl-URPM"/>
         <ignore name="urpmi"/>

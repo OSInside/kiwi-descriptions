@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.7" name="Docker-Leap-42.2">
+<image schemaversion="6.8" name="Docker-Leap-42.2">
     <description type="system">
         <author>David Cassany</author>
         <contact>dcassany@suse.de</contact>
@@ -16,7 +16,6 @@
         <rpm-excludedocs>true</rpm-excludedocs>
         <locale>en_US</locale>
         <keytable>us.map.gz</keytable>
-        <hwclock>utc</hwclock>
     </preferences>
     <users>
         <user home="/root" name="root" groups="root"/>

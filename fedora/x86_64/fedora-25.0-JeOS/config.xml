@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.7" name="LimeJeOS-Fedora-25.0">
+<image schemaversion="6.8" name="LimeJeOS-Fedora-25.0">
     <description type="system">
         <author>Marcus Schaefer</author>
-        <contact>ms@suse.com</contact>
+        <contact>ms@suse.de</contact>
         <specification>Fedora 25 JeOS</specification>
     </description>
     <preferences>
@@ -14,7 +14,6 @@
         <locale>en_US</locale>
         <keytable>us.map.gz</keytable>
         <timezone>UTC</timezone>
-        <hwclock>utc</hwclock>
         <rpm-check-signatures>false</rpm-check-signatures>
         <type image="iso" flags="overlay" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
         <type image="vmx" primary="true" filesystem="ext3" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="efi"/>
@@ -28,16 +27,15 @@
     <repository type="rpm-md" alias="Fedora25-updates">
         <source path="http://ftp.fau.de/fedora/linux/updates/25/x86_64"/>
     </repository>
-<!-- Don't remove the following repos, they contain tools needed by kiwi -->
     <repository type="rpm-md" priority="1" alias="kiwi-common-boot">
-        <source path="obs://Virtualization:Appliances:CommonBoot/Fedora_25"/>
+        <source path="obs://Virtualization:Appliances:Builder/Fedora_25"/>
     </repository>
     <packages type="image">
         <namedCollection name="network-server"/>
         <package name="grub2"/>
         <package name="grubby"/>
         <package name="kernel"/>
-        <package name="plymouth-theme-charge" bootinclude="true"/>
+        <package name="plymouth-theme-charge"/>
         <package name="grub2-starfield-theme"/>
         <package name="selinux-policy-targeted"/>
         <package name="dhclient"/>
