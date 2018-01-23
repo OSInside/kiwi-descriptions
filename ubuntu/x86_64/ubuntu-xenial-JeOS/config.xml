@@ -12,7 +12,7 @@
         <bootsplash-theme>sabily</bootsplash-theme>
         <bootloader-theme>ubuntu-mate</bootloader-theme>
         <locale>en_US</locale>
-        <keytable>us.map.gz</keytable>
+        <keytable>us</keytable>
         <timezone>Europe/Berlin</timezone>
         <type image="iso" flags="overlay" hybrid="true" firmware="efi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
         <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" firmware="efi"/>

@@ -12,7 +12,7 @@
         <bootsplash-theme>mageia-Default</bootsplash-theme>
         <bootloader-theme>maggy</bootloader-theme>
         <locale>en_US</locale>
-        <keytable>us.map.gz</keytable>
+        <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
         <type image="vmx" filesystem="ext4" bootloader="grub2" firmware="bios"/>

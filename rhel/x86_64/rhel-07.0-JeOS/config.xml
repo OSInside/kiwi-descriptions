@@ -19,7 +19,7 @@
         <packagemanager>yum</packagemanager>
         <bootsplash-theme>charge</bootsplash-theme>
         <locale>en_US</locale>
-        <keytable>us.map.gz</keytable>
+        <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
         <type image="vmx" primary="true" filesystem="ext3" kernelcmdline="rhgb" bootloader="grub2"/>
