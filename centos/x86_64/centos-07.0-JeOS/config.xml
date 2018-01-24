@@ -38,6 +38,9 @@
     <repository type="rpm-md" alias="centos">
         <source path="http://bo.mirror.garr.it/1/slc/centos/7.2/os/x86_64"/>
     </repository>
+    <repository type="rpm-md" alias="epel">
+        <source path="http://dl.fedoraproject.org/pub/epel/7/x86_64"/>
+    </repository>
     <repository type="rpm-md" priority="1" alias="kiwi-common-boot">
         <source path="obs://Virtualization:Appliances:Builder/CentOS_7"/>
     </repository>
