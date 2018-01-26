@@ -21,6 +21,7 @@
         <bootloader-theme>openSUSE</bootloader-theme>
     </preferences>
     <preferences>
+        <type image="pxe" filesystem="squashfs" boot="netboot/suse-leap42.3"/>
         <type image="vmx" filesystem="ext4" bootloader="grub2" kernelcmdline="splash" firmware="efi"/>
         <type image="oem" filesystem="ext4" initrd_system="dracut" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi">
             <oemconfig>
