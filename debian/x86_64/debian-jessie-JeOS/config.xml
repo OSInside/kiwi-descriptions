@@ -23,7 +23,7 @@
         <source path="http://ftp.halifax.rwth-aachen.de/debian"/>
     </repository>
     <repository type="apt-deb">
-        <source path="obs://Virtualization:Appliances:CommonBoot/Debian_8.0"/>
+        <source path="obs://Virtualization:Appliances:Builder/Debian_8.0"/>
     </repository>
     <packages type="image">
         <package name="grub-theme-starfield"/>
