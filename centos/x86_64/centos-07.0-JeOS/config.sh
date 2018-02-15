@@ -18,7 +18,7 @@ baseMount
 #======================================
 # Activate services
 #--------------------------------------
-#...
+suseInsertService dracut_hostonly
 
 #======================================
 # Setup default target, multi-user
