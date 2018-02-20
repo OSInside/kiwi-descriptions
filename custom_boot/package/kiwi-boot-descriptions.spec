@@ -117,7 +117,9 @@ BuildRequires:  gettext-runtime
 Custom KIWI boot descriptions. Before KIWI switched to dracut
 as initrd system, the initrd was build from extra image descriptions.
 The collection of those image descriptions is available for
-convenience and compatibility reasons
+convenience and compatibility reasons. Also creating meta sub packages
+for the buildservice to allow inclusion of tools into the worker
+which are needed to build a specific image type
 
 %if 0%{?suse_version}
 %package -n kiwi-boot-requires
@@ -125,35 +127,82 @@ Summary:        KIWI - buildservice package requirements for boot images
 Group:          System/Management
 Provides:       kiwi-boot:netboot
 Provides:       kiwi-boot:oemboot
-Provides:       kiwi-filesystem:btrfs
-Provides:       kiwi-filesystem:ext3
-Provides:       kiwi-filesystem:ext4
-Provides:       kiwi-filesystem:squashfs
-Provides:       kiwi-filesystem:xfs
-Provides:       kiwi-image:docker
-Provides:       kiwi-image:iso
-Provides:       kiwi-image:oem
-Provides:       kiwi-image:pxe
-Provides:       kiwi-image:tbz
-Provides:       kiwi-image:vmx
-Requires:       e2fsprogs
-Requires:       skopeo
-Requires:       umoci
-Requires:       xfsprogs
-%if 0%{?fedora} || 0%{?rhel}
-Requires:       btrfs-progs
-%else
-Requires:       btrfsprogs
-%endif
 Requires:       %(echo `cat %{S:1}|grep %{_target_cpu}:%{distro}:|cut -f3- -d:`)
 
 %description -n kiwi-boot-requires
 Meta package for the buildservice to pull in all required packages in
 order to have them in the buildservice created repositories to allow
-kiwi to build the boot image. This package must never be published
-nor installed by anybody else except for the buildservice, it is part
-of the kiwi - buildservice integration exclusively
+kiwi to build the custom boot image.
 %endif
+
+%package -n kiwi-image-docker-requires
+Summary:        KIWI - buildservice host requirements for docker images
+Group:          System/Management
+Provides:       kiwi-image:docker
+Requires:       skopeo
+Requires:       umoci
+%description -n kiwi-image-docker-requires
+Meta package for the buildservice to pull in all required packages
+for the build host to build docker images
+
+%package -n kiwi-image-iso-requires
+Summary:        KIWI - buildservice host requirements for iso images
+Group:          System/Management
+Provides:       kiwi-image:iso
+Requires:       dosfstools
+Requires:       genisoimage
+%description -n kiwi-image-iso-requires
+Meta package for the buildservice to pull in all required packages
+for the build host to build live iso images
+
+%package -n kiwi-image-oem-requires
+Summary:        KIWI - buildservice host requirements for oem images
+Group:          System/Management
+Provides:       kiwi-image:oem
+Requires:       kiwi-filesystem-requires
+%description -n kiwi-image-oem-requires
+Meta package for the buildservice to pull in all required packages
+for the build host to build oem disk images
+
+%package -n kiwi-image-pxe-requires
+Summary:        KIWI - buildservice host requirements for pxe images
+Group:          System/Management
+Provides:       kiwi-image:pxe
+Requires:       kiwi-filesystem-requires
+%description -n kiwi-image-pxe-requires
+Meta package for the buildservice to pull in all required packages
+for the build host to build pxe images
+
+%package -n kiwi-image-vmx-requires
+Summary:        KIWI - buildservice host requirements for vmx images
+Group:          System/Management
+Provides:       kiwi-image:vmx
+Requires:       kiwi-filesystem-requires
+%description -n kiwi-image-vmx-requires
+Meta package for the buildservice to pull in all required packages
+for the build host to build simple disk images
+
+%package -n kiwi-filesystem-requires
+Summary:        KIWI - buildservice host requirements for filesystems
+Group:          System/Management
+Provides:       kiwi-filesystem:btrfs
+Provides:       kiwi-filesystem:ext3
+Provides:       kiwi-filesystem:ext4
+Provides:       kiwi-filesystem:squashfs
+Provides:       kiwi-filesystem:xfs
+Requires:       e2fsprogs
+Requires:       xfsprogs
+%if 0%{?fedora} || 0%{?rhel}
+Requires:       btrfs-progs
+Requires:       squashfs-tools
+%else
+Requires:       btrfsprogs
+Requires:       squashfs
+%endif
+%description -n kiwi-filesystem-requires
+Meta package for the buildservice to pull in a collection of
+filesystem packages for the build host to support the most common
+used filesystems for images
 
 %prep
 %setup -q -n custom_boot
@@ -176,5 +225,23 @@ make buildroot=%{buildroot} install
 %files -n kiwi-boot-requires
 %defattr(-, root, root)
 %endif
+
+%files -n kiwi-image-docker-requires
+%defattr(-, root, root)
+
+%files -n kiwi-image-iso-requires
+%defattr(-, root, root)
+
+%files -n kiwi-image-oem-requires
+%defattr(-, root, root)
+
+%files -n kiwi-image-pxe-requires
+%defattr(-, root, root)
+
+%files -n kiwi-image-vmx-requires
+%defattr(-, root, root)
+
+%files -n kiwi-filesystem-requires
+%defattr(-, root, root)
 
 %changelog
