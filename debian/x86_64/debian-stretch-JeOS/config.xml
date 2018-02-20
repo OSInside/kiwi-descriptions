@@ -38,6 +38,15 @@
         <package name="isolinux"/>
         <package name="syslinux"/>
         <package name="syslinux-common"/>
+        <package name="init"/>
+        <package name="gnupg"/>
+        <package name="iproute2"/>
+        <package name="iptables"/>
+        <package name="iputils-ping"/>
+        <package name="ifupdown"/>
+        <package name="isc-dhcp-client"/>
+        <package name="netbase"/>
+        <package name="bsdmainutils"/>
     </packages>
     <packages type="bootstrap">
         <package name="initramfs-tools"/>
