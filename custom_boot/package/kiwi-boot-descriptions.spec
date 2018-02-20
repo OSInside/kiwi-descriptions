@@ -127,6 +127,7 @@ Summary:        KIWI - buildservice package requirements for boot images
 Group:          System/Management
 Provides:       kiwi-boot:netboot
 Provides:       kiwi-boot:oemboot
+Requires:       kiwi-boot-descriptions
 Requires:       %(echo `cat %{S:1}|grep %{_target_cpu}:%{distro}:|cut -f3- -d:`)
 
 %description -n kiwi-boot-requires
