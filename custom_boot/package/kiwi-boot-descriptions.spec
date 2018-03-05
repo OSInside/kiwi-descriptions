@@ -151,7 +151,11 @@ Summary:        KIWI - buildservice host requirements for iso images
 Group:          System/Management
 Provides:       kiwi-image:iso
 Requires:       dosfstools
+%if 0%{suse_version} >= 1500
+Requires:       mkisofs
+%else
 Requires:       genisoimage
+%endif
 %description -n kiwi-image-iso-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build live iso images
