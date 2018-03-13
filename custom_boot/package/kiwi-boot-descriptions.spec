@@ -142,6 +142,7 @@ Group:          System/Management
 Provides:       kiwi-image:docker
 Requires:       skopeo
 Requires:       umoci
+Requires:       jing
 %description -n kiwi-image-docker-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build docker images
@@ -151,6 +152,7 @@ Summary:        KIWI - buildservice host requirements for iso images
 Group:          System/Management
 Provides:       kiwi-image:iso
 Requires:       dosfstools
+Requires:       jing
 %if 0%{suse_version} >= 1500
 Requires:       mkisofs
 %else
@@ -165,6 +167,7 @@ Summary:        KIWI - buildservice host requirements for oem images
 Group:          System/Management
 Provides:       kiwi-image:oem
 Requires:       kiwi-filesystem-requires
+Requires:       jing
 %description -n kiwi-image-oem-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build oem disk images
@@ -174,6 +177,7 @@ Summary:        KIWI - buildservice host requirements for pxe images
 Group:          System/Management
 Provides:       kiwi-image:pxe
 Requires:       kiwi-filesystem-requires
+Requires:       jing
 %description -n kiwi-image-pxe-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build pxe images
@@ -183,6 +187,7 @@ Summary:        KIWI - buildservice host requirements for vmx images
 Group:          System/Management
 Provides:       kiwi-image:vmx
 Requires:       kiwi-filesystem-requires
+Requires:       jing
 %description -n kiwi-image-vmx-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build simple disk images
@@ -195,6 +200,7 @@ Provides:       kiwi-filesystem:ext3
 Provides:       kiwi-filesystem:ext4
 Provides:       kiwi-filesystem:squashfs
 Provides:       kiwi-filesystem:xfs
+Requires:       jing
 Requires:       e2fsprogs
 Requires:       xfsprogs
 %if 0%{?fedora} || 0%{?rhel}
