@@ -192,6 +192,17 @@ Requires:       jing
 Meta package for the buildservice to pull in all required packages
 for the build host to build simple disk images
 
+%package -n kiwi-image-tbz-requires
+Summary:        KIWI - buildservice host requirements for root archive tarball
+Group:          System/Management
+Provides:       kiwi-image:tbz
+Requires:       jing
+Requires:       tar
+Requires:       xz
+%description -n kiwi-image-tbz-requires
+Meta package for the buildservice to pull in all required packages
+for the build host to build root archive tarball
+
 %package -n kiwi-filesystem-requires
 Summary:        KIWI - buildservice host requirements for filesystems
 Group:          System/Management
@@ -250,6 +261,9 @@ make buildroot=%{buildroot} install
 %defattr(-, root, root)
 
 %files -n kiwi-image-vmx-requires
+%defattr(-, root, root)
+
+%files -n kiwi-image-tbz-requires
 %defattr(-, root, root)
 
 %files -n kiwi-filesystem-requires
