@@ -47,6 +47,7 @@ suseImportBuildKey
 suseInsertService sshd
 if [[ ${kiwi_type} =~ oem|vmx ]];then
     suseInsertService grub_config
+    suseInsertService data_part
 else
     suseRemoveService grub_config
 fi
