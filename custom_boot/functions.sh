@@ -683,6 +683,19 @@ function udevSystemStart {
     export UDEVD_PID=$(pidof $udev_bin | tr ' ' ,)
 }
 #======================================
+# udevModulesLoad
+#--------------------------------------
+function udevModulesLoad {
+    # /.../
+    # autoload system modules from /usr/lib/modules-load.d et al
+    # ----
+    local loadmod_bin=/usr/lib/systemd/systemd-modules-load
+    $loadmod_bin
+    # run the coldplug triggers as well
+    /usr/bin/udevadm trigger --type=subsystems --action=add
+    /usr/bin/udevadm trigger --type=devices --action=add
+}
+#======================================
 # udevSystemStop
 #--------------------------------------
 function udevSystemStop {
@@ -764,6 +777,8 @@ function udevStart {
     # start the udev daemon
     udevSystemStart
     echo UDEVD_PID=$UDEVD_PID >> /iprocs
+    # trigger module loading as configured in modules-load
+    udevModulesLoad
     # trigger events for all devices
     udevTrigger
     # wait for events to finish
