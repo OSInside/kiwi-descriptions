@@ -1,11 +1,10 @@
 [Unit]
 Description=Add a data partition
-ConditionPathExists=/.kiwi_data_part.trigger
+Before=local-fs.target
 
 [Service]
 Type=oneshot
 ExecStart=/bin/bash /sbin/create_data_part
-ExecStartPost=/bin/bash -c 'rm -f /.kiwi_data_part.trigger'
 
 [Install]
 WantedBy=multi-user.target

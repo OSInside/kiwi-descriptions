@@ -1,9 +1,9 @@
 #!/bin/bash
 
-data_fs=ext4
-data_label=data
-data_mount=/data
+# Read configuration file
+source /etc/data_part.cfg
 
+# Functions space
 function lookup_disk_device_from_root {
     root_device=/dev/root
     if [ -L "${root_device}" ];then
@@ -21,24 +21,24 @@ function _partition_count {
     fi
 }
 
-root_disk=$(lookup_disk_device_from_root)
+# Get us a data partition if not already present
+if ! mount -L ${data_label} ${data_mount};then
+    root_disk=$(lookup_disk_device_from_root)
+    partitions_origin=$(_partition_count "${root_disk})")
 
-partitions_origin=$(_partition_count "${root_disk})")
+    echo -e "n\n\n\n\n\nw\ny\n" | gdisk "${root_disk}"
 
-echo -e "n\n\n\n\n\nw\ny\n" | gdisk "${root_disk}"
+    partprobe "${root_disk}" || exit 1
 
-if partprobe "${root_disk}";then
     if [ "$(_partition_count "${root_disk}")" -gt "${partitions_origin}" ];then
+        # create filesystem on data partition
         data_partition=$(lsblk "${root_disk}" -p -r -n -o NAME | tail -n1)
-        if mkfs."${data_fs}" -L "${data_label}" "${data_partition}"; then
-            mkdir -p ${data_mount}
-            echo "LABEL=${data_label} ${data_mount} ${data_fs} defaults 0 0" \
-                >>/etc/fstab
-        fi
+        mkfs."${data_fs}" -L "${data_label}" "${data_partition}" || exit 1
+
+        # mount data partition
+        mount -L ${data_label} ${data_mount} || exit 1
     fi
 fi
-
-mount -L ${data_label} ${data_mount}
 
 # NOTES:
 # - consider self destruction of this code, to avoid recall

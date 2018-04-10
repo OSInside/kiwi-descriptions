@@ -53,6 +53,13 @@ else
 fi
 
 #======================================
+# Pre setup fstab for data part
+#--------------------------------------
+source /etc/data_part.cfg
+mkdir -p ${data_mount}
+echo "LABEL=${data_label} ${data_mount} ${data_fs} defaults 0 0" >>/etc/fstab.append
+
+#======================================
 # Setup default target, multi-user
 #--------------------------------------
 baseSetRunlevel 3
