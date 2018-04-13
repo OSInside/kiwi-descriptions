@@ -45,7 +45,7 @@ if ! mount -L ${data_label} ${data_mount};then
         mkfs."${data_fs}" -L "${data_label}" "${data_partition}" || exit 1
 
         # mount data partition
-        mount -L ${data_label} ${data_mount} || exit 1
+        mount ${data_partition} ${data_mount} || exit 1
     fi
 fi
 
