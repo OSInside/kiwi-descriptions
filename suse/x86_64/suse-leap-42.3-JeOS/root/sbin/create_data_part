@@ -4,8 +4,17 @@
 source /etc/data_part.cfg
 
 # Functions space
+function get_root_device {
+    for boot_option in $(cat /proc/cmdline);do
+        if [[ "${boot_option}" =~ ^root=UUID ]];then
+            echo "/dev/disk/by-uuid/${boot_option#root=UUID=}"
+            break
+        fi
+    done
+}
+
 function lookup_disk_device_from_root {
-    root_device=/dev/root
+    root_device=$(get_root_device)
     if [ -L "${root_device}" ];then
         root_device=/dev/$(basename "$(readlink "${root_device}")")
     fi
