@@ -4680,6 +4680,7 @@ function validateSize {
     # An information about the sizes is printed out
     # ----
     local IFS=$IFS_ORIG
+    waitForStorageDevice $imageDevice
     haveBytes=$(partitionSize $imageDevice)
     haveBytes=$((haveBytes * 1024))
     haveMByte=$((haveBytes / 1048576))
