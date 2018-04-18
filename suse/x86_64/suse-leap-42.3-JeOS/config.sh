@@ -47,9 +47,17 @@ suseImportBuildKey
 suseInsertService sshd
 if [[ ${kiwi_type} =~ oem|vmx ]];then
     suseInsertService grub_config
+    suseInsertService data_part
 else
     suseRemoveService grub_config
 fi
+
+#======================================
+# Pre setup fstab for data part
+#--------------------------------------
+source /etc/data_part.cfg
+mkdir -p ${data_mount}
+echo "LABEL=${data_label} ${data_mount} ${data_fs} defaults 0 0" >>/etc/fstab.append
 
 #======================================
 # Setup default target, multi-user

@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Read configuration file
+source /etc/data_part.cfg
+
+# Functions space
+function get_root_device {
+    for boot_option in $(cat /proc/cmdline);do
+        if [[ "${boot_option}" =~ ^root=UUID ]];then
+            echo "/dev/disk/by-uuid/${boot_option#root=UUID=}"
+            break
+        fi
+    done
+}
+
+function lookup_disk_device_from_root {
+    root_device=$(get_root_device)
+    if [ -L "${root_device}" ];then
+        root_device=/dev/$(basename "$(readlink "${root_device}")")
+    fi
+    lsblk -p -n -r -s -o NAME,TYPE "${root_device}" |\
+        grep disk | cut -f1 -d ' '
+}
+
+function _partition_count {
+    if [ -z "$1" ]; then
+        echo 0
+    else
+        lsblk "$1" -p -r -n -o TYPE | grep -c part
+    fi
+}
+
+# Get us a data partition if not already present
+if ! mount -L ${data_label} ${data_mount};then
+    root_disk=$(lookup_disk_device_from_root)
+    partitions_origin=$(_partition_count "${root_disk})")
+
+    echo -e "n\n\n\n\n\nw\ny\n" | gdisk "${root_disk}"
+
+    partprobe "${root_disk}" || exit 1
+
+    if [ "$(_partition_count "${root_disk}")" -gt "${partitions_origin}" ];then
+        # create filesystem on data partition
+        data_partition=$(lsblk "${root_disk}" -p -r -n -o NAME | tail -n1)
+        mkfs."${data_fs}" -L "${data_label}" "${data_partition}" || exit 1
+
+        # mount data partition
+        mount ${data_partition} ${data_mount} || exit 1
+    fi
+fi
+
+# NOTES:
+# - consider self destruction of this code, to avoid recall
+# - consider backup/move of data if data_mount has data before data part
+# - consider quota setup of data

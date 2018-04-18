@@ -63,6 +63,8 @@
         <package name="fontconfig"/>
         <package name="fonts-config"/>
         <package name="tar"/>
+        <package name="gptfdisk"/>
+        <package name="e2fsprogs"/>
         <package name="parted"/>
         <package name="openssh"/>
         <package name="iproute2"/>

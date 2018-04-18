@@ -1,0 +1,10 @@
+[Unit]
+Description=Add a data partition
+Before=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /sbin/create_data_part
+
+[Install]
+WantedBy=multi-user.target
