@@ -2154,6 +2154,10 @@ function updateRootDeviceFstab {
     local config_tmp=$1
     local rdev=$2
     local nfstab=$config_tmp/etc/fstab
+    local devicepersistency="by-uuid"
+    if [ ! -z "$kiwi_devicepersistency" ];then
+        devicepersistency=$kiwi_devicepersistency
+    fi
     #======================================
     # check for NFSROOT
     #--------------------------------------
@@ -2168,6 +2172,18 @@ function updateRootDeviceFstab {
     #--------------------------------------
     if [ ! -z "$UNIONFS_CONFIG" ]; then
         echo "/dev/root / auto defaults 1 1" >> $nfstab
+    fi
+    #======================================
+    # check for device by DISK
+    #--------------------------------------
+    if [ ! -z "$DISK" ];then
+        if [ $devicepersistency = "by-label" ];then
+            local device="LABEL=$(blkid $rdev -s LABEL -o value)"
+        else
+            local device="UUID=$(blkid $rdev -s UUID -o value)"
+        fi
+        local filesystem=$(blkid $rdev -s TYPE -o value)
+        echo "$device / $filesystem defaults 1 1" >> $nfstab
     fi
 }
 #======================================
