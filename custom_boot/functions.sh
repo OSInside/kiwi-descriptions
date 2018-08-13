@@ -7354,6 +7354,7 @@ function Dialog {
     local dialog_code=/tmp/dialog_code
     hideSplash
     cat > $dialog_call <<- EOF
+		reset
 		dialog \
 			--ok-label "$TEXT_OK" \
 			--cancel-label "$TEXT_CANCEL" \
