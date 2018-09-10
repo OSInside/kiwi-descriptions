@@ -158,6 +158,7 @@ Requires:       mkisofs
 %else
 Requires:       genisoimage
 %endif
+Requires:       syslinux
 %description -n kiwi-image-iso-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build live iso images
