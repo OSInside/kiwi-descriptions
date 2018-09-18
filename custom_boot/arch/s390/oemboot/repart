@@ -652,7 +652,7 @@ function OEMRepart {
         waitForStorageDevice $imageSwapDevice &>/dev/null
         if partitionSize $imageSwapDevice &>/dev/null;then
             Echo "Creating swap space on $imageSwapDevice"
-            if ! mkswap $imageSwapDevice 1>&2;then
+            if ! createSwap $imageSwapDevice 1>&2;then
                 systemException "Failed to create swap signature" "reboot"
             fi
         fi
