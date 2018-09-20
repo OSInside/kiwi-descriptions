@@ -454,7 +454,7 @@ then
     fi
     runHook preswap
     if [ ! -z "$imageSwapDevice" ];then
-        if ! mkswap $imageSwapDevice 1>&2;then
+        if ! createSwap $imageSwapDevice 1>&2;then
             systemException "Failed to create swap signature" "reboot"
         fi
     fi

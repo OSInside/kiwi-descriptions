@@ -557,7 +557,7 @@ if [ ! -z "$KIWI_RECOVERY" ];then
         imageSwapDevice=$(cat /mnt/etc/fstab | grep swap | cut -f1 -d " ")
         imageSwapDevice=$(echo $imageSwapDevice)
         if [ -e "$imageSwapDevice" ];then
-            if ! mkswap $imageSwapDevice 1>&2;then
+            if ! createSwap $imageSwapDevice 1>&2;then
                 systemException "Failed to restore swap signature" "reboot"
             fi
         fi

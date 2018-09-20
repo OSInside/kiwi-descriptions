@@ -2198,15 +2198,7 @@ function updateSwapDeviceFstab {
     local prefix=$1
     local sdev=$2
     local nfstab=$prefix/etc/fstab
-    local devicepersistency="by-uuid"
-    if [ ! -z "$kiwi_devicepersistency" ];then
-        devicepersistency=$kiwi_devicepersistency
-    fi
-    if [ $devicepersistency = "by-label" ];then
-        local device="LABEL=$(blkid $sdev -s LABEL -o value)"
-    else
-        local device="UUID=$(blkid $sdev -s UUID -o value)"
-    fi
+    local device="LABEL=$(blkid $sdev -s LABEL -o value)"
     echo "$device swap swap defaults 0 0" >> $nfstab
 }
 #======================================
@@ -5661,6 +5653,17 @@ function killShell {
     if [ $umountProc -eq 1 ];then
         umount /proc
     fi
+}
+#======================================
+# createSwap
+#--------------------------------------
+function createSwap {
+    # /.../
+    # create swap space on given device
+    # ----
+    local IFS=$IFS_ORIG
+    local device=$1
+    mkswap --label SWAP "${device}"
 }
 #======================================
 # waitForStorageDevice
