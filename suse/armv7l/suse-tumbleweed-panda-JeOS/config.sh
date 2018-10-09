@@ -103,8 +103,9 @@ suseConfig
 #======================================
 # Add Factory repo
 #--------------------------------------
-zypper ar -f \
-    http://download.opensuse.org/ports/armv7hl/tumbleweed/repo/oss/ openSUSE-Ports-Tumbleweed-repo-oss
+zypper ar \
+    http://download.opensuse.org/ports/armv7hl/tumbleweed/repo/oss/ \
+    openSUSE-Ports-Tumbleweed-repo-oss
 
 #======================================
 # Add xorg config with fbdev
