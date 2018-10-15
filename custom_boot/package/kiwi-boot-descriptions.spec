@@ -169,6 +169,7 @@ Group:          System/Management
 Provides:       kiwi-image:oem
 Requires:       kiwi-filesystem-requires
 Requires:       jing
+Requires:       syslinux
 %description -n kiwi-image-oem-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build oem disk images
