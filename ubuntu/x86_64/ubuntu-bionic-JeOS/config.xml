@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- The line below is required in order to use the multibuild OBS features -->
+<!-- OBS-Profiles: @BUILD_FLAVOR@ -->
+
+<image schemaversion="6.9" name="LimeJeOS-Ubuntu-18.04">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>ms@suse.com</contact>
+        <specification>vmx disk test build for Ubuntu</specification>
+    </description>
+    <preferences>
+        <version>1.16.4</version>
+        <packagemanager>apt-get</packagemanager>
+        <bootsplash-theme>sabily</bootsplash-theme>
+        <bootloader-theme>ubuntu-mate</bootloader-theme>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <type image="iso" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+        <type image="vmx" filesystem="ext4" bootloader="grub2" kernelcmdline="console=ttyS0 splash"/>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="apt-deb" repository_gpgcheck="false">
+        <source path="obs://Virtualization:Appliances:Staging/xUbuntu_18.04"/>
+    </repository>
+    <repository type="apt-deb" alias="Bionic-security" distribution="bionic-security" components="main multiverse restricted universe" repository_gpgcheck="false">
+        <source path="http://security.ubuntu.com/ubuntu"/>
+    </repository>
+    <repository type="apt-deb" alias="Bionic-updates" distribution="bionic-updates" components="main multiverse restricted universe" repository_gpgcheck="false">
+        <source path="http://us.archive.ubuntu.com/ubuntu/"/>
+    </repository>
+    <repository type="apt-deb" alias="Bionic" distribution="bionic" components="main multiverse restricted universe" repository_gpgcheck="false">
+        <source path="http://us.archive.ubuntu.com/ubuntu/"/>
+    </repository>
+    <packages type="image">
+        <package name="grub2-themes-ubuntu-mate"/>
+        <package name="plymouth-theme-sabily"/>
+        <package name="plymouth"/>
+        <package name="linux-generic"/>
+        <package name="isolinux"/>
+        <package name="syslinux"/>
+        <package name="syslinux-common"/>
+        <package name="dracut"/>
+        <package name="grub2"/>
+        <package name="init"/>
+        <package name="gnupg"/>
+        <package name="iproute2"/>
+        <package name="iptables"/>
+        <package name="iputils-ping"/>
+        <package name="ifupdown"/>
+        <package name="isc-dhcp-client"/>
+        <package name="netbase"/>
+        <package name="dbus"/>
+    </packages>
+    <packages type="iso">
+        <package name="dracut-kiwi-live"/>
+    </packages>
+    <!-- Needed to make sure debootstrap is called -->
+    <packages type="bootstrap"/>
+</image>
