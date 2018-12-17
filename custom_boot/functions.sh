@@ -120,11 +120,10 @@ function hideSplash {
     # hook called at the end of this function
     # ----
     local IFS=$IFS_ORIG
-    test -e /proc/splash && echo verbose > /proc/splash
     if lookup plymouthd &>/dev/null;then
-        plymouth hide-splash
-        # reset tty after plymouth messed with it
-        consoleInit
+        if [ "$(activeConsoles)" -lt "2" ]; then
+            plymouth hide-splash
+        fi
     fi
     runHook handleSplash "$@"
 }
@@ -7357,7 +7356,6 @@ function Dialog {
     local dialog_code=/tmp/dialog_code
     hideSplash
     cat > $dialog_call <<- EOF
-		reset
 		dialog \
 			--ok-label "$TEXT_OK" \
 			--cancel-label "$TEXT_CANCEL" \
