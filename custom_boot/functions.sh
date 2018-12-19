@@ -335,7 +335,7 @@ function systemException {
             Echo "ssh root@${IPADDR}"
         fi
         echo reset > /root/.bashrc
-        sulogin -e -p $ttydev
+        sulogin --force --login-shell $ttydev
     ;;
     "user_reboot")
         Echo "reboot triggered by user"
@@ -5626,7 +5626,11 @@ function startShell {
             return
         fi
         Echo "Starting boot shell on $ELOG_BOOTSHELL"
-        setctsid -f $ELOG_BOOTSHELL /bin/bash
+        if lookup setctsid &>/dev/null;then
+            setctsid -f $ELOG_BOOTSHELL /bin/bash
+        else
+            sulogin --force --login-shell $ELOG_BOOTSHELL &
+        fi
         sleep 2
         ELOGSHELL_PID=$(fuser $ELOG_BOOTSHELL | tr -d " ")
         echo ELOGSHELL_PID=$ELOGSHELL_PID >> /iprocs
