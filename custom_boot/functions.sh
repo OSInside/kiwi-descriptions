@@ -5626,7 +5626,7 @@ function startShell {
             return
         fi
         Echo "Starting boot shell on $ELOG_BOOTSHELL"
-        sulogin -e -p $ELOG_BOOTSHELL &
+        setctsid -f $ELOG_BOOTSHELL /bin/bash
         sleep 2
         ELOGSHELL_PID=$(fuser $ELOG_BOOTSHELL | tr -d " ")
         echo ELOGSHELL_PID=$ELOGSHELL_PID >> /iprocs
