@@ -25,7 +25,7 @@
         <source path="http://ftp.fau.de/fedora/linux/releases/28/Everything/x86_64/os"/>
     </repository>
     <repository type="rpm-md" alias="Fedora28-updates">
-        <source path="http://ftp.fau.de/fedora/linux/updates/28/x86_64"/>
+        <source path="http://ftp.fau.de/fedora/linux/updates/28/Everything/x86_64"/>
     </repository>
     <repository type="rpm-md" priority="1" alias="kiwi-common-boot">
         <source path="obs://Virtualization:Appliances:Builder/Fedora_28"/>
