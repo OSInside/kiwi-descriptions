@@ -1,7 +1,7 @@
 #
 # spec file for package kiwi-boot-descriptions
 #
-# Copyright (c) 2018 SUSE LINUX GmbH, Nuernberg, Germany.
+# Copyright (c) 2019 SUSE LINUX GmbH, Nuernberg, Germany.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -12,7 +12,10 @@
 # license that conforms to the Open Source Definition (Version 1.9)
 # published by the Open Source Initiative.
 
-# Please submit bugfixes or comments via http://bugs.opensuse.org/
+# Please submit bugfixes or comments via https://bugs.opensuse.org/
+#
+
+
 #
 %if 0%{?fedora}
 %global debug_package %{nil}
@@ -97,7 +100,7 @@ Version:        1.1.0
 Release:        0
 Url:            https://github.com/SUSE/kiwi-descriptions
 Summary:        KIWI - Custom Boot Descriptions
-License:        GPL-3.0+
+License:        GPL-3.0-or-later
 Group:          System/Management
 Source:         %{name}.tar.gz
 Source1:        kiwi-boot-packages
@@ -140,9 +143,10 @@ kiwi to build the custom boot image.
 Summary:        KIWI - buildservice host requirements for docker images
 Group:          System/Management
 Provides:       kiwi-image:docker
+Requires:       jing
 Requires:       skopeo
 Requires:       umoci
-Requires:       jing
+
 %description -n kiwi-image-docker-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build docker images
@@ -158,7 +162,9 @@ Requires:       mkisofs
 %else
 Requires:       genisoimage
 %endif
+%ifarch %{ix86} x86_64
 Requires:       syslinux
+%endif
 %description -n kiwi-image-iso-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build live iso images
@@ -167,9 +173,11 @@ for the build host to build live iso images
 Summary:        KIWI - buildservice host requirements for oem images
 Group:          System/Management
 Provides:       kiwi-image:oem
-Requires:       kiwi-filesystem-requires
 Requires:       jing
+Requires:       kiwi-filesystem-requires
+%ifarch %{ix86} x86_64
 Requires:       syslinux
+%endif
 %description -n kiwi-image-oem-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build oem disk images
@@ -178,8 +186,9 @@ for the build host to build oem disk images
 Summary:        KIWI - buildservice host requirements for pxe images
 Group:          System/Management
 Provides:       kiwi-image:pxe
-Requires:       kiwi-filesystem-requires
 Requires:       jing
+Requires:       kiwi-filesystem-requires
+
 %description -n kiwi-image-pxe-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build pxe images
@@ -188,8 +197,9 @@ for the build host to build pxe images
 Summary:        KIWI - buildservice host requirements for vmx images
 Group:          System/Management
 Provides:       kiwi-image:vmx
-Requires:       kiwi-filesystem-requires
 Requires:       jing
+Requires:       kiwi-filesystem-requires
+
 %description -n kiwi-image-vmx-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build simple disk images
@@ -201,6 +211,7 @@ Provides:       kiwi-image:tbz
 Requires:       jing
 Requires:       tar
 Requires:       xz
+
 %description -n kiwi-image-tbz-requires
 Meta package for the buildservice to pull in all required packages
 for the build host to build root archive tarball
@@ -213,8 +224,8 @@ Provides:       kiwi-filesystem:ext3
 Provides:       kiwi-filesystem:ext4
 Provides:       kiwi-filesystem:squashfs
 Provides:       kiwi-filesystem:xfs
-Requires:       jing
 Requires:       e2fsprogs
+Requires:       jing
 Requires:       xfsprogs
 %if 0%{?fedora} || 0%{?rhel}
 Requires:       btrfs-progs
