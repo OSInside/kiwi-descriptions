@@ -1668,6 +1668,7 @@ cat > $conf << EOF
 insmod ext2
 insmod gettext
 insmod part_msdos
+insmod part_gpt
 insmod chain
 insmod png
 insmod vbe
@@ -7757,6 +7758,9 @@ function partedInit {
     local cksize=$(echo $header | cut -f4 -d: | cut -f1 -dk)
     local diskhd=$(echo $parted | head -n 3 | tail -n 2 | head -n 1)
     local plabel=$(echo $diskhd | cut -f6 -d:)
+    if [ -n "$PLABEL" ]; then
+        plabel=$PLABEL
+    fi
     if [[ $plabel =~ gpt ]];then
         plabel=gpt
     fi
@@ -9332,10 +9336,15 @@ function cleanPartitionTable {
     # remove partition table and create a new msdos
     # table label if parted is in use
     # ----
+    if [ -n "$PLABEL" ]; then
+        plabel=$PLABEL
+    else
+        plabel=msdos
+    fi
     local IFS=$IFS_ORIG
     dd if=/dev/zero of=$imageDiskDevice bs=512 count=1 >/dev/null
     if [ $PARTITIONER = "parted" ];then
-        parted -s $imageDiskDevice mklabel msdos
+        parted -s $imageDiskDevice mklabel $plabel
     fi
 }
 #======================================
