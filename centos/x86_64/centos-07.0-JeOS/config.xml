@@ -39,8 +39,17 @@
     <repository type="rpm-md" alias="kiwi-next-generation" priority="1">
         <source path="obs://Virtualization:Appliances:Staging/CentOS_7"/>
     </repository>
-    <repository type="rpm-md" alias="epel">
-        <source path="http://dl.fedoraproject.org/pub/epel/7/x86_64"/>
+    <repository type="rpm-md" alias="Fedora-EPEL7">
+        <source path="http://download.fedoraproject.org/pub/epel/7/x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="CentOS7-Extras">
+        <source path="http://mirror.centos.org/centos-7/7/extras/x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="CentOS7-Updates">
+        <source path="http://mirror.centos.org/centos-7/7/updates/x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="CentOS7">
+        <source path="http://mirror.centos.org/centos-7/7/os/x86_64"/>
     </repository>
     <packages type="image">
         <namedCollection name="core"/>
