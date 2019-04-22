@@ -42,11 +42,6 @@ suseInsertService NetworkManager
 suseRemoveService avahi-dnsconfd
 suseRemoveService avahi-daemon
 
-#==========================================
-# remove unneeded packages
-#------------------------------------------
-suseRemovePackagesMarkedForDeletion
-
 #======================================
 # Add missing gpg keys to rpm
 #--------------------------------------
