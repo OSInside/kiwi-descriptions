@@ -5931,6 +5931,8 @@ function fetchFile {
     #--------------------------------------
     if [ ! -z $kiwiserver ];then
         host=$kiwiserver
+    elif [ ! -z $SERVER ];then 
+        host="$SERVER"
     fi
     if [ -z "$host" ]; then
         systemException "No source server specified" "reboot"
@@ -5946,6 +5948,8 @@ function fetchFile {
     #--------------------------------------
     if [ ! -z $kiwiservertype ]; then
         type=$kiwiservertype
+    elif [ ! -z $SERVERTYPE ]; then
+        type="$SERVERTYPE"
     fi
     if [ -z "$type" ]; then
         type="tftp"
@@ -6196,12 +6200,16 @@ function putFile {
     fi
     if [ ! -z $kiwiserver ];then
         host=$kiwiserver
+    elif [ ! -z $SERVER ];then 
+        host="$SERVER"
     fi
     if test -z "$host"; then
         systemException "No server specified" "reboot"
     fi
     if [ ! -z $kiwiservertype ]; then
         type=$kiwiservertype
+    elif [ ! -z $SERVERTYPE ]; then
+        type="$SERVERTYPE"
     fi
     if test -z "$type"; then
         type="tftp"
