@@ -9697,6 +9697,15 @@ function startMultipathd {
     local multipath_config=/etc/multipath.conf
     local wwid_timeout=3
     #======================================
+    # check if disabled on cmdline
+    #
+    if cat /proc/cmdline | grep -qi "multipath=off";then
+        return 0
+    fi
+    if cat /proc/cmdline | grep -qi "nompath";then
+        return 0
+    fi
+    #======================================
     # check already running
     #--------------------------------------
     if pidof multipathd &>/dev/null; then
