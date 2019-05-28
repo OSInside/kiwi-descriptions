@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="LimeJeOS-Fedora-28.0">
+<image schemaversion="6.8" name="LimeJeOS-Fedora-29.0">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.de</contact>
-        <specification>Fedora 28 JeOS</specification>
+        <specification>Fedora 29 JeOS</specification>
     </description>
     <preferences>
-        <version>1.3.0</version>
+        <version>1.0.0</version>
         <packagemanager>dnf</packagemanager>
         <bootsplash-theme>charge</bootsplash-theme>
         <bootloader-theme>breeze</bootloader-theme>
@@ -21,14 +21,14 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <repository type="rpm-md" alias="Fedora28">
-        <source path="http://download.fedoraproject.org/pub/fedora/linux/releases/28/Everything/x86_64/os"/>
+    <repository type="rpm-md" alias="Fedora29">
+        <source path="http://download.fedoraproject.org/pub/fedora/linux/releases/29/Everything/x86_64/os"/>
     </repository>
-    <repository type="rpm-md" alias="Fedora28-updates">
-        <source path="http://download.fedoraproject.org/pub/fedora/linux/updates/28/Everything/x86_64"/>
+    <repository type="rpm-md" alias="Fedora29-updates">
+        <source path="http://download.fedoraproject.org/pub/fedora/linux/updates/29/Everything/x86_64"/>
     </repository>
     <repository type="rpm-md" priority="1" alias="kiwi-common-boot">
-        <source path="obs://Virtualization:Appliances:Builder/Fedora_28"/>
+        <source path="obs://Virtualization:Appliances:Builder/Fedora_29"/>
     </repository>
     <packages type="image">
         <namedCollection name="network-server"/>
