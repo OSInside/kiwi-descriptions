@@ -155,6 +155,7 @@ for the build host to build docker images
 Summary:        KIWI - buildservice host requirements for iso images
 Group:          System/Management
 Provides:       kiwi-image:iso
+Requires:       checkmedia
 Requires:       dosfstools
 Requires:       jing
 %if 0%{suse_version} >= 1500
