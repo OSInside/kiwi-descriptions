@@ -4491,10 +4491,9 @@ function fdasdGetPartitionID {
 function partedGetPartitionID {
     # /.../
     # prints the partition ID for the given device and number
-    # In case of a GPT map to the GUID code from the sgdisk
-    # utility. If sgdisk is not available map to the kiwi
-    # fdisk compatible hex id's which uses ee for any kind
-    # of unknown GPT partition entry
+    # In case of GPT it maps ID values according to the name kiwi
+    # defines for the partition. In case of unknown name try to use
+    # sgdisk, if available, or just default to `ee`
     # ----
     local IFS=$IFS_ORIG
     local parted=$(parted -m -s $1 print | grep -v Warning:)
@@ -4513,11 +4512,7 @@ function partedGetPartitionID {
             sed -e 's@[,; ]@@g' | tr -d 0
     else
         local name=$(parted -m -s $1 print | grep ^$2: | cut -f6 -d:)
-        if lookup sgdisk &>/dev/null;then
-            # map to short gdisk code
-            echo $(sgdisk -p $1 | grep -E "^   $2") |\
-                cut -f6 -d ' ' | cut -c-2 | tr [:upper:] [:lower:]
-        elif [ "$name" = "lxroot" ];then
+        if [ "$name" = "lxroot" ];then 
             # map lxroot to MBR type 83 (linux)
             echo 83
         elif [ "$name" = "lxswap" ];then
@@ -4532,6 +4527,11 @@ function partedGetPartitionID {
         elif [ "$name" = "legacy" ];then
             # map bios grub legacy partition to MBR type ef (EFI)
             echo ef
+        elif lookup sgdisk &>/dev/null;then
+            # map to short gdisk code
+            local id=$(echo $(sgdisk -p $1 | grep -E "^   $2") |\
+                cut -f6 -d ' ' | cut -c-2)
+            echo ${id,,}
         else
             # map anything else to ee (GPT)
             echo ee
@@ -7871,8 +7871,8 @@ function partedMBToCylinder {
     local IFS=$IFS_ORIG
     local sizeBytes=$(($1 * 1048576))
     # bc truncates to zero decimal places, which results in a partition that
-    # is slightly smaller than the requested size. Add one cylinder to compensate.
-    local cylreq=$(echo "scale=0; $sizeBytes / ($partedCylKSize * 1000) + 1" | bc)
+    # is slightly smaller than the requested size. Add half cylinder to round to nearest integer value.
+    local cylreq=$(echo "scale=1; cs = $sizeBytes / ($partedCylKSize * 1000) + 0.5; scale=0; cs/1" | bc)
     echo $cylreq
 }
 #======================================
@@ -8628,6 +8628,10 @@ function pxePartitionInputGeneric {
             partID=fd
             pname=lxroot
         fi
+        if [ $partID = "ef" ];then
+            partID=ef
+            pname=legacy
+        fi
         if [ $count -eq 1 ];then
             echo -n "n p:$pname $count 1 $partSize "
             if  [ $partID = "82" ] || \
@@ -8850,8 +8854,8 @@ function pxeRaidPartCheck {
     local raidFirst
     local raidSecond
     local size
-    local maxDiffPlus=10240  # max 10MB bigger
-    local maxDiffMinus=10240 # max 10MB smaller
+    local maxDiffPlus=12288  # max 1.5cyl ~12MB bigger
+    local maxDiffMinus=12288 # max 1.5cyl ~12MB smaller
     for n in $RAID;do
         case $field in
             0) raidLevel=$n     ; field=1 ;;
@@ -8969,8 +8973,8 @@ function pxePartCheck {
     local partMount
     local device
     local size
-    local maxDiffPlus=10240  # max 10MB bigger
-    local maxDiffMinus=10240 # max 10MB smaller
+    local maxDiffPlus=12288  # max 1.5cyl ~12MB bigger
+    local maxDiffMinus=12288 # max 1.5cyl ~12MB smaller
     IFS=","
     for i in $PART;do
         count=$((count + 1))
