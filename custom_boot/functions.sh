@@ -7332,7 +7332,7 @@ function dn {
     if [[ $part =~ mapper/loop ]];then
         part=$(echo $part | sed -e s@/mapper@@)
     fi
-    local part_new=$(echo $part | sed -e 's@\(^.*\)\(p[0-9].*$\)@\1@')
+    local part_new=$(echo $part | sed -e 's@\(^.*[0-9]+\)\(p[0-9].*$\)@\1@')
     if [ $part = $part_new ];then
         part_new=$(echo $part | sed -e 's@\(^.*\)\([0-9].*$\)@\1@')
     fi
