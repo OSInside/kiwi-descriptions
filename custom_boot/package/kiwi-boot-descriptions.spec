@@ -78,11 +78,6 @@
 %define distro suse-tumbleweed
 %endif
 
-# SLES with sles_version macro
-%if 0%{?sles_version}
-%define distro suse-SLES%{sles_version}
-%endif
-
 # RHEL // CentOS
 # use the rhel templates for CentOS, too
 %if 0%{?rhel} == 7
