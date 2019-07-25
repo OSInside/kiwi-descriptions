@@ -33,7 +33,7 @@
 %endif
 
 # SLE15:
-%if 0%{?sle_version} == 150000 && !0%{?is_opensuse}
+%if 0%{?suse_version} == 1500 && !0%{?is_opensuse}
 %define distro suse-SLES15
 %endif
 
