@@ -33,7 +33,7 @@
 %endif
 
 # SLE15:
-%if 0%{?sle_version} == 150000 && !0%{?is_opensuse}
+%if 0%{?suse_version} == 1500 && !0%{?is_opensuse}
 %define distro suse-SLES15
 %endif
 
@@ -76,11 +76,6 @@
 # Current Tumbleweed version, moving target
 %if 0%{?suse_version} >= 1330 && !0%{?sle_version}
 %define distro suse-tumbleweed
-%endif
-
-# SLES with sles_version macro
-%if 0%{?sles_version}
-%define distro suse-SLES%{sles_version}
 %endif
 
 # RHEL // CentOS
