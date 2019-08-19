@@ -2748,7 +2748,7 @@ function searchImageISODevice {
                 $isoinfo -d -i $i 2>/dev/null|grep "Application id:"|cut -f2 -d:
             )
             mbrVID=$(echo $mbrVID)
-            if [ "$mbrVID" = "$mbrIID" ];then
+            if [ "${mbrVID^^}" = "${mbrIID^^}" ];then
                 # /.../
                 # found ISO header on a device, now check if there is
                 # also a partition for this device with the same
@@ -2763,7 +2763,7 @@ function searchImageISODevice {
                             grep "Application id:"|cut -f2 -d:
                         )
                         mbrVID=$(echo $mbrVID)
-                        if [ "$mbrVID" = "$mbrIID" ];then
+                        if [ "${mbrVID^^}" = "${mbrIID^^}" ];then
                             biosBootDevice=$pdev
                             echo; return 0
                         fi
