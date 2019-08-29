@@ -91,7 +91,7 @@
 %endif
 
 Name:           kiwi-boot-descriptions
-Version:        1.1.0
+Version:        1.2.0
 Release:        0
 Url:            https://github.com/SUSE/kiwi-descriptions
 Summary:        KIWI - Custom Boot Descriptions
@@ -126,7 +126,9 @@ Group:          System/Management
 Provides:       kiwi-boot:netboot
 Provides:       kiwi-boot:oemboot
 Requires:       kiwi-boot-descriptions
+%if !0%{?is_opensuse} || 0%{?sle_version} < 150200
 Requires:       %(echo `cat %{S:1}|grep %{_target_cpu}:%{distro}:|cut -f3- -d:`)
+%endif
 
 %description -n kiwi-boot-requires
 Meta package for the buildservice to pull in all required packages in
