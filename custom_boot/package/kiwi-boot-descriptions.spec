@@ -155,7 +155,7 @@ Provides:       kiwi-image:iso
 Requires:       checkmedia
 Requires:       dosfstools
 Requires:       jing
-%if 0%{suse_version} >= 1500
+%if 0%{?suse_version} >= 1500
 Requires:       mkisofs
 %else
 Requires:       genisoimage
