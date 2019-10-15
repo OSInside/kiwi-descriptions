@@ -2745,7 +2745,7 @@ function searchImageISODevice {
                 continue
             fi
             mbrVID=$(
-                $isoinfo -d -i $i 2>/dev/null|grep "Application id:"|cut -f2 -d:
+                $isoinfo -d -i $i 2>/dev/null|grep "Application id:"|cut -f2 -d:|tr [:upper:] [:lower:]
             )
             mbrVID=$(echo $mbrVID)
             if [ "${mbrVID^^}" = "${mbrIID^^}" ];then
