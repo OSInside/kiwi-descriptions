@@ -5,7 +5,7 @@
         <author>Marcus Schaefer</author>
         <contact>ms@suse.de</contact>
         <specification>
-            Factory JeOS, is a small text based image
+            Tumbleweed JeOS, is a small text based image
         </specification>
     </description>
     <preferences>
@@ -24,7 +24,7 @@
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
     <repository type="rpm-md" alias="kiwi" priority="1">
-        <source path="obs://Virtualization:Appliances:Builder/Factory"/>
+        <source path="obs://Virtualization:Appliances:Builder/openSUSE_Tumbleweed"/>
     </repository>
     <repository type="yast2" alias="Tumbleweed" imageinclude="true">
         <source path="http://download.opensuse.org/tumbleweed/repo/oss"/>
