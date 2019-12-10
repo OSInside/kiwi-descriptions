@@ -27,11 +27,6 @@ test -f /.profile && . /.profile
 echo "Configure image: [$kiwi_iname]..."
 
 #======================================
-# Mount system filesystems
-#--------------------------------------
-baseMount
-
-#======================================
 # Activate services
 #--------------------------------------
 baseInsertService sshd
@@ -40,10 +35,3 @@ baseInsertService sshd
 # Setup default target, multi-user
 #--------------------------------------
 baseSetRunlevel 3
-
-#======================================
-# Umount kernel filesystems
-#--------------------------------------
-baseCleanMount
-
-exit 0

@@ -27,11 +27,6 @@ test -f /.profile && . /.profile
 echo "Configure image: [$kiwi_iname]..."
 
 #======================================
-# Mount system filesystems
-#--------------------------------------
-baseMount
-
-#======================================
 # Setup baseproduct link
 #--------------------------------------
 suseSetupProduct
@@ -40,11 +35,6 @@ suseSetupProduct
 # Activate services
 #--------------------------------------
 suseInsertService sshd
-if [[ ${kiwi_type} =~ oem|vmx ]];then
-    suseInsertService grub_config
-else
-    suseRemoveService grub_config
-fi
 
 #======================================
 # Setup default target, multi-user
@@ -56,10 +46,3 @@ baseSetRunlevel 3
 #------------------------------------------
 rm -rf /usr/share/doc/packages/*
 rm -rf /usr/share/doc/manual/*
-
-#======================================
-# Umount kernel filesystems
-#--------------------------------------
-baseCleanMount
-
-exit 0

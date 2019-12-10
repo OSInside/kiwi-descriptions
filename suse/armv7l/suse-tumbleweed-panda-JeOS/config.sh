@@ -42,11 +42,6 @@ suseInsertService NetworkManager
 suseRemoveService avahi-dnsconfd
 suseRemoveService avahi-daemon
 
-#======================================
-# Add missing gpg keys to rpm
-#--------------------------------------
-suseImportBuildKey
-
 #==========================================
 # remove package docs
 #------------------------------------------
@@ -161,10 +156,3 @@ cat > /etc/modprobe.d/50-omapdrm.conf <<EOF
 # Ensure that panel-tfp410 is loaded before omapdrm
 softdep omapdrm pre: panel-tfp410
 EOF
-
-#======================================
-# Umount kernel filesystems
-#--------------------------------------
-baseCleanMount
-
-exit 0

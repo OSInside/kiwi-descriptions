@@ -42,5 +42,3 @@ baseInsertService symlink-resolvconf
 apt-get clean
 rm -r /var/lib/apt/*
 rm -r /var/cache/apt/*
-
-exit 0

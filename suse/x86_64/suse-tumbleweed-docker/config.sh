@@ -32,11 +32,6 @@ echo "Configure image: [$kiwi_iname]..."
 suseSetupProduct
 
 #======================================
-# Import repositories' keys
-#--------------------------------------
-suseImportBuildKey
-
-#======================================
 # Disable recommends
 #--------------------------------------
 sed -i 's/.*solver.onlyRequires.*/solver.onlyRequires = true/g' /etc/zypp/zypp.conf
@@ -50,6 +45,3 @@ sed -i 's/.*rpm.install.excludedocs.*/# rpm.install.excludedocs = yes/g' /etc/zy
 # Remove locale files
 #--------------------------------------
 (cd /usr/share/locale && find -name '*.mo' | xargs rm)
-
-
-exit 0

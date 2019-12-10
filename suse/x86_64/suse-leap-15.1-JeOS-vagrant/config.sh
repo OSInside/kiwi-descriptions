@@ -27,11 +27,6 @@ test -f /.profile && . /.profile
 echo "Configure image: [$kiwi_iname]..."
 
 #======================================
-# Mount system filesystems
-#--------------------------------------
-baseMount
-
-#======================================
 # Setup baseproduct link
 #--------------------------------------
 suseSetupProduct
@@ -40,11 +35,6 @@ suseSetupProduct
 # Activate services
 #--------------------------------------
 suseInsertService sshd
-if [[ ${kiwi_type} =~ oem|vmx ]];then
-    suseInsertService grub_config
-else
-    suseRemoveService grub_config
-fi
 
 #======================================
 # Setup default target, multi-user
@@ -68,10 +58,3 @@ chown -R vagrant:users /home/vagrant/.ssh
 
 groupadd vagrant
 usermod -a -G vagrant vagrant
-
-#======================================
-# Umount kernel filesystems
-#--------------------------------------
-baseCleanMount
-
-exit 0
