@@ -133,7 +133,6 @@
         <package name="fbiterm"/>
         <package name="gettext-runtime"/>
         <package name="hwinfo"/>
-        <package name="ifplugd"/>
         <package name="iproute2"/>
         <package name="iputils"/>
         <package name="kbd"/>

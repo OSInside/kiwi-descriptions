@@ -53,7 +53,6 @@
         <package name="gpg2"/>
         <package name="grub2"/>
         <package name="grub2-arm-efi"/>
-        <package name="ifplugd"/>
         <package name="insserv-compat"/>
         <package name="iproute2"/>
         <package name="iputils"/>
