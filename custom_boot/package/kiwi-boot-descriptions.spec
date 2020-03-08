@@ -136,6 +136,16 @@ order to have them in the buildservice created repositories to allow
 kiwi to build the custom boot image.
 %endif
 
+%package -n kiwi-image-wsl-requires
+Summary:        KIWI - buildservice host requirements for wsl images
+Group:          System/Management
+Provides:       kiwi-image:wsl
+Requires:       fb-util-for-appx
+
+%description -n kiwi-image-wsl-requires
+Meta package for the buildservice to pull in all required packages
+for the build host to build wsl/appx images
+
 %package -n kiwi-image-docker-requires
 Summary:        KIWI - buildservice host requirements for docker images
 Group:          System/Management
@@ -258,6 +268,9 @@ make buildroot=%{buildroot} install
 %files -n kiwi-boot-requires
 %defattr(-, root, root)
 %endif
+
+%files -n kiwi-image-wsl-requires
+%defattr(-, root, root)
 
 %files -n kiwi-image-docker-requires
 %defattr(-, root, root)
