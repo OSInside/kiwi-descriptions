@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- The line below is required in order to use the multibuild OBS features -->
-<!-- OBS-Profiles: @BUILD_FLAVOR@ -->
-
 <image schemaversion="6.9" name="LimeJeOS-Ubuntu-18.04">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.com</contact>
-        <specification>vmx disk test build for Ubuntu</specification>
+        <specification>Image description for Ubuntu 18.04</specification>
     </description>
     <preferences>
         <version>1.16.4</version>
@@ -18,8 +15,15 @@
         <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <type image="iso" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
-        <type image="vmx" filesystem="ext4" bootloader="grub2" kernelcmdline="console=ttyS0 splash"/>
+        <type image="iso" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="efi"/>
+        <type image="vmx" filesystem="ext4" bootloader="grub2" kernelcmdline="console=ttyS0 splash" firmware="efi"/>
+        <type image="oem" filesystem="ext4" initrd_system="dracut" bootloader="grub2" firmware="efi" installiso="true">
+            <oemconfig>
+                <oem-swap>true</oem-swap>
+                <oem-device-filter>/dev/ram</oem-device-filter>
+                <oem-multipath-scan>false</oem-multipath-scan>
+            </oemconfig>
+        </type>
     </preferences>
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
@@ -40,12 +44,16 @@
         <package name="grub2-themes-ubuntu-mate"/>
         <package name="plymouth-theme-sabily"/>
         <package name="plymouth"/>
+        <package name="grub-efi-amd64"/>
+        <package name="grub-common"/>
+        <package name="grub2-common"/>
+        <package name="grub-pc-bin"/>
         <package name="linux-generic"/>
         <package name="isolinux"/>
         <package name="syslinux"/>
         <package name="syslinux-common"/>
+        <package name="systemd"/>
         <package name="dracut"/>
-        <package name="grub2"/>
         <package name="init"/>
         <package name="gnupg"/>
         <package name="iproute2"/>
@@ -59,6 +67,12 @@
     <packages type="iso">
         <package name="dracut-kiwi-live"/>
     </packages>
-    <!-- Needed to make sure debootstrap is called -->
-    <packages type="bootstrap"/>
+    <packages type="oem">
+        <package name="dracut-kiwi-oem-repart"/>
+        <package name="dracut-kiwi-oem-dump"/>
+    </packages>
+    <packages type="bootstrap">
+        <!-- comptibility package for /usr/lib paths -->
+        <package name="usrmerge"/>
+    </packages>
 </image>
