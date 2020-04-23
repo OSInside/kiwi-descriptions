@@ -1,3 +1,0 @@
-Dice.configure do |config|
-  config.ssh_user = "vagrant"
-end
