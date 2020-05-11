@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="LimeJeOS-Fedora-29.0">
+<image schemaversion="6.8" name="LimeJeOS-Fedora-32.0">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.de</contact>
-        <specification>Fedora 29 JeOS</specification>
+        <specification>Fedora 32 JeOS</specification>
     </description>
     <preferences>
         <version>1.0.0</version>
@@ -16,19 +16,19 @@
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
         <type image="iso" flags="overlay" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
-        <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="efi"/>
+        <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="uefi"/>
     </preferences>
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <repository type="rpm-md" alias="Fedora29">
-        <source path="http://download.fedoraproject.org/pub/fedora/linux/releases/29/Everything/x86_64/os"/>
+    <repository type="rpm-md" alias="Fedora32" sourcetype="metalink">
+        <source path="https://mirrors.fedoraproject.org/metalink?repo=fedora-32&amp;arch=x86_64"/>
     </repository>
-    <repository type="rpm-md" alias="Fedora29-updates">
-        <source path="http://download.fedoraproject.org/pub/fedora/linux/updates/29/Everything/x86_64"/>
+    <repository type="rpm-md" alias="Fedora32-updates" sourcetype="metalink">
+        <source path="https://mirrors.fedoraproject.org/metalink?repo=updates-released-f32&amp;arch=x86_64"/>
     </repository>
     <repository type="rpm-md" priority="1" alias="kiwi-common-boot">
-        <source path="obs://Virtualization:Appliances:Builder/Fedora_29"/>
+        <source path="obs://Virtualization:Appliances:Builder/Fedora_32"/>
     </repository>
     <packages type="image">
         <namedCollection name="network-server"/>
