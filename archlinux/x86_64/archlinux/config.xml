@@ -31,8 +31,11 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <repository alias="Arch_KIWI" components="home_dcassany_Arch_Arch">
-        <source path="https://download.opensuse.org/repositories/home:/dcassany:/Arch/Arch/x86_64/"/>
+    <repository alias="KIWI" components="Virtualization_Appliances_Builder_Arch_Linux">
+        <source path="https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/Arch_Linux/x86_64/"/>
+    </repository>
+    <repository alias="dracut_hooks" components="Virtualization_Appliances_Images_Testing_x86_archlinux">
+        <source path="https://download.opensuse.org/repositories/Virtualization:/Appliances:/Images:/Testing_x86:/archlinux/standard/x86_64/"/>
     </repository>
     <repository alias="ArchOS" components="core extra community">
         <source path="http://ftp.heanet.ie/mirrors/ftp.archlinux.org/$repo/os/$arch"/>
