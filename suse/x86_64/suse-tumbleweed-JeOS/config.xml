@@ -61,6 +61,7 @@
     <packages type="bootstrap">
         <package name="udev"/>
         <package name="filesystem"/>
+        <package name="gawk"/>
         <package name="glibc-locale"/>
         <package name="cracklib-dict-full"/>
         <package name="ca-certificates"/>
