@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="LimeJeOS-Debian-Jessie">
+<image schemaversion="6.8" name="LimeJeOS-Debian-Buster">
     <description type="system">
         <author>Marcus Schäfer</author>
         <contact>ms@suse.de</contact>
-        <specification>Debian Jessie JeOS</specification>
+        <specification>Debian Buster JeOS</specification>
     </description>
     <preferences>
-        <version>8.9</version>
+        <version>10.4</version>
         <packagemanager>apt-get</packagemanager>
         <bootsplash-theme>fade-in</bootsplash-theme>
         <bootloader-theme>starfield</bootloader-theme>
+        <rpm-check-signatures>false</rpm-check-signatures>
         <locale>en_US</locale>
         <keytable>us</keytable>
         <timezone>Europe/Berlin</timezone>
-        <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" firmware="efi"/>
+        <type image="iso" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="efi"/>
+        <type image="vmx" filesystem="ext4" kernelcmdline="console=ttyS0 splash" firmware="efi"/>
+        <type image="oem" filesystem="ext4" initrd_system="dracut" firmware="efi" installiso="true">
+            <oemconfig>
+                <oem-swap>true</oem-swap>
+                <oem-device-filter>/dev/ram</oem-device-filter>
+                <oem-multipath-scan>false</oem-multipath-scan>
+            </oemconfig>
+        </type>
     </preferences>
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <repository type="apt-deb" distribution="jessie" components="main contrib non-free">
+    <repository type="apt-deb" distribution="buster" components="main contrib non-free" repository_gpgcheck="false">
         <source path="http://ftp.halifax.rwth-aachen.de/debian"/>
     </repository>
-    <repository type="apt-deb">
-        <source path="obs://Virtualization:Appliances:Builder/Debian_8.0"/>
+    <repository type="apt-deb" repository_gpgcheck="false">
+        <source path="obs://Virtualization:Appliances:Builder/Debian_10"/>
     </repository>
     <packages type="image">
         <package name="grub-theme-starfield"/>
@@ -48,9 +57,16 @@
         <package name="netbase"/>
         <package name="bsdmainutils"/>
     </packages>
+    <packages type="iso">
+        <package name="dracut-kiwi-live"/>
+    </packages>
+    <packages type="oem">
+        <package name="dracut-kiwi-oem-repart"/>
+        <package name="dracut-kiwi-oem-dump"/>
+    </packages>
     <packages type="bootstrap">
-        <package name="initramfs-tools"/>
-        <package name="linux-image-amd64"/>
         <package name="grub2"/>
+        <!-- comptibility package for /usr/lib paths -->
+        <package name="usrmerge"/>
     </packages>
 </image>

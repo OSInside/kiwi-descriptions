@@ -9,7 +9,7 @@
 #               :
 # BELONGS TO    : Operating System images
 #               :
-# DESCRIPTION   : configuration script for Debian based
+# DESCRIPTION   : configuration script for Ubuntu based
 #               : operating systems
 #               :
 #               :
@@ -27,11 +27,18 @@ test -f /.profile && . /.profile
 echo "Configure image: [$kiwi_iname]..."
 
 #======================================
-# Activate services
-#--------------------------------------
-baseInsertService sshd
-
-#======================================
 # Setup default target, multi-user
 #--------------------------------------
 baseSetRunlevel 3
+
+#======================================
+# Enable firstboot resolv.conf setting
+#--------------------------------------
+baseInsertService symlink-resolvconf
+
+#======================================
+# Clear apt-get data
+#--------------------------------------
+apt-get clean
+rm -r /var/lib/apt/*
+rm -r /var/cache/apt/*
