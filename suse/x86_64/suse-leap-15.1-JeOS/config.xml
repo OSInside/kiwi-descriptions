@@ -22,6 +22,7 @@
     </preferences>
     <preferences>
         <type image="kis" filesystem="ext4"/>
+        <type image="pxe" filesystem="ext4" boot="netboot/suse-leap15.1"/>
         <type image="vmx" filesystem="ext4" bootloader="grub2" kernelcmdline="splash" firmware="efi"/>
         <type image="oem" filesystem="ext4" initrd_system="dracut" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi">
             <oemconfig>
