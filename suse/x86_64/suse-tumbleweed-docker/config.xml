@@ -24,7 +24,6 @@
   <packages type="image">
     <package name="ca-certificates"/>
     <package name="ca-certificates-mozilla"/>
-    <package name="coreutils"/>
     <package name="iputils"/>
     <package name="openSUSE-build-key"/>
     <package name="krb5"/>
@@ -37,5 +36,6 @@
     <package name="filesystem"/>
     <package name="openSUSE-release"/>
     <package name="shadow"/>
+    <package name="busybox-coreutils"/>
   </packages>
 </image>
