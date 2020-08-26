@@ -3574,6 +3574,9 @@ function setupNetworkWicked {
     local dhcp_info
     local wicked_request
     local wicked_dhcp4=/usr/lib/wicked/bin/wickedd-dhcp4
+    if [ -e /usr/libexec/wicked/bin/wickedd-dhcp4 ] ; then
+        wicked_dhcp4=/usr/libexec/wicked/bin/wickedd-dhcp4
+    fi
     for try_iface in ${dev_list[*]}; do
         # try DHCP_DISCOVER on all interfaces
         if checkLinkUp $try_iface; then
