@@ -1,4 +1,4 @@
-<image schemaversion="7.2" name="LimeJeOS-CentOS-8">
+<image schemaversion="6.8" name="LimeJeOS-CentOS-8">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.de</contact>
@@ -12,14 +12,9 @@
         <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <type image="iso" flags="overlay" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true" kernelcmdline="console=ttyS0">
-            <bootloader name="grub2" console="serial gfxterm"/>
-        </type>
-        <type image="vmx" primary="true" filesystem="ext3" kernelcmdline="rhgb console=ttyS0" firmware="bios">
-            <bootloader name="grub2" console="serial gfxterm"/>
-        </type>
-        <type image="oem" initrd_system="dracut" filesystem="ext3" installiso="true" firmware="uefi" kernelcmdline="console=ttyS0">
-            <bootloader name="grub2" console="serial gfxterm"/>
+        <type image="iso" flags="overlay" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true" kernelcmdline="console=ttyS0"/>
+        <type image="vmx" primary="true" filesystem="ext3" kernelcmdline="rhgb console=ttyS0" firmware="uefi" bootloader="grub2"/>
+        <type image="oem" initrd_system="dracut" filesystem="ext3" installiso="true" firmware="uefi" kernelcmdline="console=ttyS0" bootloader="grub2">
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
                 <oem-swap>true</oem-swap>
