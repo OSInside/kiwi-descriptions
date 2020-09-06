@@ -554,7 +554,7 @@ then
                 dump_pid=$!
                 echo "cat /progress | dialog \
                     --backtitle \"$TEXT_INSTALLTITLE\" \
-                    --progressbox 3 65
+                    --progressbox 5 80
                 " > /tmp/progress.sh
                 if FBOK;then
                     fbiterm -m $UFONT -- bash -e /tmp/progress.sh || \
