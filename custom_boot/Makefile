@@ -28,11 +28,13 @@ po:
 install: po
 	install -d -m 755 ${kiwi_boot_images}
 	install -m 644 functions.sh ${kiwi_boot_images}
-	cp -a arch/${arch}/* ${kiwi_boot_images}
-	(cd ${kiwi_boot_images}; for i in `find -name include`; do \
-		rm -f $$i;\
-		(cd `dirname $$i`; ln -s ../../../functions.sh include);\
-	done)
+	if [ -d arch/$$arch ];then \
+		cp -a arch/${arch}/* ${kiwi_boot_images} ;\
+		(cd ${kiwi_boot_images}; for i in `find -name include`; do \
+			rm -f $$i;\
+			(cd `dirname $$i`; ln -s ../../../functions.sh include);\
+		done) \
+	fi
 
 build:
 	# provide rpm boot packages source
