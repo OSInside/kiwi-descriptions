@@ -91,7 +91,7 @@
 %endif
 
 Name:           kiwi-boot-descriptions
-Version:        1.2.0
+Version:        1.3.0
 Release:        0
 Url:            https://github.com/SUSE/kiwi-descriptions
 Summary:        KIWI - Custom Boot Descriptions
