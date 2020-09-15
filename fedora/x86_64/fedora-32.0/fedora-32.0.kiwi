@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="6.8" name="Fedora-32.0_appliance">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>ms@suse.de</contact>
+        <specification>Fedora 32 Appliance</specification>
+    </description>
+    <preferences>
+        <version>1.0.0</version>
+        <packagemanager>dnf</packagemanager>
+        <bootsplash-theme>charge</bootsplash-theme>
+        <bootloader-theme>breeze</bootloader-theme>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <type image="iso" flags="overlay" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+        <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="uefi"/>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="rpm-md" alias="Fedora32" sourcetype="metalink">
+        <source path="https://mirrors.fedoraproject.org/metalink?repo=fedora-32&amp;arch=x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="Fedora32-updates" sourcetype="metalink">
+        <source path="https://mirrors.fedoraproject.org/metalink?repo=updates-released-f32&amp;arch=x86_64"/>
+    </repository>
+    <repository type="rpm-md" priority="1" alias="kiwi-common-boot">
+        <source path="obs://Virtualization:Appliances:Builder/Fedora_32"/>
+    </repository>
+    <packages type="image">
+        <namedCollection name="network-server"/>
+        <package name="grub2"/>
+        <package name="grubby"/>
+        <package name="kernel"/>
+        <package name="plymouth-theme-charge"/>
+        <package name="grub2-breeze-theme"/>
+        <package name="selinux-policy-targeted"/>
+        <package name="dhclient"/>
+    </packages>
+    <packages type="iso">
+        <package name="dracut-kiwi-live"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="filesystem"/>
+        <package name="basesystem"/>
+        <package name="grub2-efi-x64"/>
+        <package name="grub2-efi-x64-modules"/>
+        <package name="shim-x64"/>
+        <package name="syslinux"/>
+        <package name="syslinux-efi64"/>
+    </packages>
+</image>

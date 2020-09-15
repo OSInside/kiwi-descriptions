@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="6.8" name="Mageia-06.0_appliance">
+    <description type="system">
+        <author>Neal Gompa</author>
+        <contact>ngompa@mageia.org</contact>
+        <specification>Mageia 6 Appliance</specification>
+    </description>
+    <preferences>
+        <version>0.6.0</version>
+        <packagemanager>dnf</packagemanager>
+        <bootsplash-theme>mageia-Default</bootsplash-theme>
+        <bootloader-theme>maggy</bootloader-theme>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <type image="vmx" filesystem="ext4" bootloader="grub2" firmware="bios"/>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="rpm-md" alias="Mageia6-core">
+        <source path="https://mirrors.kernel.org/mageia/distrib/6/x86_64/media/core/release/"/>
+    </repository>
+    <repository type="rpm-md" alias="Mageia6-core-updates">
+        <source path="https://mirrors.kernel.org/mageia/distrib/6/x86_64/media/core/updates/"/>
+    </repository>
+    <packages type="image">
+        <package name="mageia-release"/>
+        <package name="mageia-theme"/>
+        <package name="grub2-mageia-theme"/>
+        <package name="dhcp-client"/>
+        <package name="dnf-plugins-core"/>
+        <package name="dnf-utils"/>
+        <package name="dnf-yum"/>
+    </packages>
+    <packages type="image">
+        <ignore name="perl-URPM"/>
+        <ignore name="urpmi"/>
+    </packages>
+    <packages type="bootstrap">
+        <ignore name="perl-URPM"/>
+        <ignore name="urpmi"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="kernel-server-latest"/>
+        <package name="filesystem"/>
+        <package name="locales-en"/>
+        <package name="basesystem"/>
+        <package name="grub2"/>
+        <package name="dnf"/>
+    </packages>
+</image>
