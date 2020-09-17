@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="LimeJeOS-Arch">
+<image schemaversion="6.8" name="Arch_appliance">
     <description type="system">
         <author>David Cassany</author>
         <contact>dcassany@suse.de</contact>
-        <specification>Arch JeOS</specification>
+        <specification>Arch Appliance</specification>
     </description>
     <profiles>
         <profile name="Live" description="Live image of Fedora 28"/>
