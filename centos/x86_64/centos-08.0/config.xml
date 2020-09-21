@@ -4,6 +4,11 @@
         <contact>ms@suse.de</contact>
         <specification>CentOS Enterprise 8 Appliance</specification>
     </description>
+    <profiles>
+        <profile name="Live" description="Live image" import="true"/>
+        <profile name="Virtual" description="Simple Disk image"/>
+        <profile name="Disk" description="Expandable Disk image"/>
+    </profiles>
     <preferences>
         <version>1.2.0</version>
         <packagemanager>dnf</packagemanager>
@@ -12,8 +17,14 @@
         <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences profiles="Live">
         <type image="iso" flags="overlay" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true" kernelcmdline="console=ttyS0"/>
+    </preferences>
+    <preferences profiles="Virtual">
         <type image="vmx" primary="true" filesystem="ext3" kernelcmdline="rhgb console=ttyS0" firmware="uefi" bootloader="grub2"/>
+    </preferences>
+    <preferences profiles="Disk">
         <type image="oem" initrd_system="dracut" filesystem="ext3" installiso="true" firmware="uefi" kernelcmdline="console=ttyS0" bootloader="grub2">
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>

@@ -6,6 +6,9 @@
         <contact>ms@suse.de</contact>
         <specification>Debian Stretch Appliance</specification>
     </description>
+    <profiles>
+        <profile name="Virtual" description="Simple Disk image" import="true"/>
+    </profiles>
     <preferences>
         <version>9.2</version>
         <packagemanager>apt-get</packagemanager>
@@ -14,6 +17,8 @@
         <locale>en_US</locale>
         <keytable>us</keytable>
         <timezone>Europe/Berlin</timezone>
+    </preferences>
+    <preferences profiles="Virtual">
         <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" firmware="efi"/>
     </preferences>
     <users>

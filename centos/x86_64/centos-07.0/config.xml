@@ -6,6 +6,11 @@
         <contact>ms@suse.de</contact>
         <specification>CentOS Enterprise 7 Appliance</specification>
     </description>
+    <profiles>
+        <profile name="Live" description="Live image" import="true"/>
+        <profile name="Virtual" description="Simple Disk image"/>
+        <profile name="Disk" description="Expandable Disk image"/>
+    </profiles>
     <strip type="delete">
         <file name="/usr/lib*/python*"/>
         <file name="/usr/lib*/gconv"/>
@@ -22,8 +27,14 @@
         <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences profiles="Live">
         <type image="iso" flags="overlay" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+    </preferences>
+    <preferences profiles="Virtual">
         <type image="vmx" primary="true" filesystem="ext3" kernelcmdline="rhgb" bootloader="grub2" firmware="uefi"/>
+    </preferences>
+    <preferences profiles="Disk">
         <type image="oem" initrd_system="dracut" filesystem="ext3" installiso="true" bootloader="grub2" firmware="uefi">
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>

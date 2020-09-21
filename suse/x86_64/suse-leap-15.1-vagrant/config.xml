@@ -5,11 +5,10 @@
         <author>Marcus Schaefer</author>
         <contact>ms@suse.de</contact>
         <specification>
-            Leap 15.1 Appliance, is a small text based image
+            Leap 15.1 box System for vagrant
         </specification>
     </description>
     <preferences>
-        <type image="iso" primary="true" flags="overlay" hybrid="true" firmware="efi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true" mediacheck="true"/>
         <version>1.15.1</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_US</locale>
@@ -24,18 +23,6 @@
         <type image="vmx" filesystem="ext4" format="vagrant" bootloader="grub2" kernelcmdline="root=/dev/vda1 disk=/dev/vda nomodeset LOCAL_BOOT=yes" boottimeout="0">
           <vagrantconfig provider="libvirt" virtualsize="64" boxname="opensuse/leap151"/>
           <size unit="G">64</size>
-        </type>
-        <type image="oem" filesystem="ext4" initrd_system="dracut" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi">
-            <oemconfig>
-                <oem-systemsize>2048</oem-systemsize>
-                <oem-swap>true</oem-swap>
-                <oem-device-filter>/dev/ram</oem-device-filter>
-                <oem-multipath-scan>false</oem-multipath-scan>
-            </oemconfig>
-            <machine memory="512" guestOS="suse" HWversion="4">
-                <vmdisk id="0" controller="ide"/>
-                <vmnic driver="e1000" interface="0" mode="bridged"/>
-            </machine>
         </type>
     </preferences>
     <users>

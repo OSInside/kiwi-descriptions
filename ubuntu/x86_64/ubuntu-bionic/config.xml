@@ -6,6 +6,11 @@
         <contact>ms@suse.com</contact>
         <specification>Image description for Ubuntu 18.04</specification>
     </description>
+    <profiles>
+        <profile name="Live" description="Live image" import="true"/>
+        <profile name="Virtual" description="Simple Disk image"/>
+        <profile name="Disk" description="Expandable Disk image"/>
+    </profiles>
     <preferences>
         <version>1.16.4</version>
         <packagemanager>apt-get</packagemanager>
@@ -15,8 +20,14 @@
         <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences profiles="Live">
         <type image="iso" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="efi"/>
+    </preferences>
+    <preferences profiles="Virtual">
         <type image="vmx" filesystem="ext4" bootloader="grub2" kernelcmdline="console=ttyS0 splash" firmware="efi"/>
+    </preferences>
+    <preferences profiles="Disk">
         <type image="oem" filesystem="ext4" initrd_system="dracut" bootloader="grub2" firmware="efi" installiso="true">
             <oemconfig>
                 <oem-swap>true</oem-swap>

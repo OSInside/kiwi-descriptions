@@ -6,6 +6,10 @@
         <contact>ms@suse.de</contact>
         <specification>Fedora 30 Appliance</specification>
     </description>
+    <profiles>
+        <profile name="Live" description="Live image" import="true"/>
+        <profile name="Virtual" description="Simple Disk image"/>
+    </profiles>
     <preferences>
         <version>1.0.0</version>
         <packagemanager>dnf</packagemanager>
@@ -15,7 +19,11 @@
         <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences profiles="Live">
         <type image="iso" flags="overlay" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+    </preferences>
+    <preferences profiles="Virtual">
         <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="uefi"/>
     </preferences>
     <users>
