@@ -1,0 +1,44 @@
+image:
+  '@name': openSUSE-Tumbleweed-container-image
+  '@schemaversion': '7.3'
+  description:
+    '@type': system
+    author: David Cassany
+    contact: dcassany@suse.com
+    specification: openSUSE Tumbleweed container
+  packages:
+  - '@type': image
+    package:
+    - '@name': ca-certificates
+    - '@name': ca-certificates-mozilla
+    - '@name': iputils
+    - '@name': openSUSE-build-key
+    - '@name': krb5
+    - '@name': netcfg
+    - '@name': kubic-locale-archive
+  - '@type': bootstrap
+    package:
+    - '@name': aaa_base
+    - '@name': cracklib-dict-small
+    - '@name': filesystem
+    - '@name': openSUSE-release
+    - '@name': shadow
+    - '@name': busybox-coreutils
+  preferences:
+    packagemanager: zypper
+    rpm-check-signatures: 'false'
+    rpm-excludedocs: 'true'
+    type:
+      '@image': docker
+      containerconfig:
+        '@maintainer': David Cassany <dcassany@suse.com>
+        '@name': opensuse
+        '@tag': tumbleweed
+    version: 1.0.4
+  repository:
+    '@alias': OSS
+    '@imageinclude': 'true'
+    '@type': rpm-md
+    source:
+      '@path': obs://openSUSE:Tumbleweed/standard
+
