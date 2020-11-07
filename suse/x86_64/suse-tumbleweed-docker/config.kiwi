@@ -1,5 +1,5 @@
 image:
-  '@name': openSUSE-Tumbleweed-container-image
+  '@name': Tumbleweed-container
   '@schemaversion': '7.3'
   description:
     '@type': system
