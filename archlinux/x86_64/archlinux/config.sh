@@ -30,4 +30,9 @@ baseInsertService systemd-resolved
 #--------------------------------------
 sed -ie '0,/#Server/s/#Server/Server/' /etc/pacman.d/mirrorlist
 
-exit 0
+#======================================
+# Generate system locale and configure it
+#--------------------------------------
+sed -ie '0,/#en_US.UTF-8/s/#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
+locale-gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf

@@ -7,9 +7,9 @@
         <specification>Arch Appliance</specification>
     </description>
     <profiles>
-        <profile name="Live" description="Live image of Fedora 28"/>
-        <profile name="Virtual" description="Virtual image of Fedora 28"/>
-        <profile name="Disk" description="OEM image of Fedora 28"/>
+        <profile name="Live" description="Live image of Arch Linux"/>
+        <profile name="Virtual" description="Virtual image of Arch Linux"/>
+        <profile name="Disk" description="OEM image of Arch Linux"/>
     </profiles>
     <preferences>
         <version>1.0.0</version>
@@ -20,13 +20,19 @@
         <rpm-check-signatures>false</rpm-check-signatures>
     </preferences>
     <preferences profiles="Live">
-        <type image="iso" flags="overlay" hybrid="true" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="efi"/>
+        <type image="iso" flags="overlay" hybrid="true" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
     </preferences>
     <preferences profiles="Virtual">
-        <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" firmware="efi"/>
+        <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" firmware="efi" editbootinstall="editbootinstall_arch.sh"/>
     </preferences>
     <preferences profiles="Disk">
-        <type image="oem" initrd_system="dracut" filesystem="ext4" bootloader="grub2"/>
+        <!--
+             KIWI does not natively provide EFI support for Arch Linux,
+             because of that the editbootinstall script is used to hot pacth
+             grub.cfg file. This hotpatch only applies for disk images
+             therefore the installation ISO does not support EFI
+        -->
+        <type image="oem" initrd_system="dracut" filesystem="ext4" bootloader="grub2" editbootinstall="editbootinstall_arch.sh"/>
     </preferences>
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
