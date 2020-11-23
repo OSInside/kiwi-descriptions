@@ -7,9 +7,9 @@
         <specification>Arch Appliance</specification>
     </description>
     <profiles>
-        <profile name="Live" description="Live image of Fedora 28"/>
-        <profile name="Virtual" description="Virtual image of Fedora 28"/>
-        <profile name="Disk" description="OEM image of Fedora 28"/>
+        <profile name="Live" description="Live image of Arch Linux"/>
+        <profile name="Virtual" description="Virtual image of Arch Linux"/>
+        <profile name="Disk" description="OEM image of Arch Linux"/>
     </profiles>
     <preferences>
         <version>1.0.0</version>
