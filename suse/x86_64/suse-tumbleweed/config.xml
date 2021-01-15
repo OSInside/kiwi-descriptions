@@ -10,6 +10,11 @@
     </description>
     <preferences>
         <type image="iso" primary="true" flags="overlay" hybrid="true" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+        <type image="oem" filesystem="xfs">
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+        </type>
         <version>1.99.1</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_US</locale>
