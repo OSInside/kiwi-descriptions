@@ -2,6 +2,6 @@ This is an openSUSE Tumbleweed Appliance System.
 To upgrade your system call:
 
         zypper refresh
-        zypper up
+        zypper dup
 
 Have a lot of fun...
