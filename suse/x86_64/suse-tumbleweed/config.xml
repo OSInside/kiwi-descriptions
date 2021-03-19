@@ -74,5 +74,6 @@
         <package name="cracklib-dict-full"/>
         <package name="ca-certificates"/>
         <package name="openSUSE-release"/>
+        <package name="xz" />
     </packages>
 </image>
