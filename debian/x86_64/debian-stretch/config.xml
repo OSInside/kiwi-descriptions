@@ -24,11 +24,11 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <repository type="apt-deb" distribution="stretch" components="main contrib non-free">
+    <repository type="apt-deb" distribution="stretch" components="main contrib non-free" repository_gpgcheck="false">
         <source path="http://ftp.halifax.rwth-aachen.de/debian"/>
     </repository>
-    <repository type="apt-deb">
-        <source path="obs://Virtualization:Appliances:Builder/Debian_9.0"/>
+    <repository type="apt-deb" repository_gpgcheck="false">
+        <source path="obs://Virtualization:Appliances:Staging/Debian_10"/>
     </repository>
     <packages type="image">
         <package name="grub-theme-starfield"/>
@@ -57,5 +57,11 @@
         <package name="initramfs-tools"/>
         <package name="linux-image-amd64"/>
         <package name="grub2"/>
+        <package name="apt-utils"/>
+        <package name="libc-bin"/>
+        <package name="tar"/>
+        <package name="openrc"/>
+        <package name="dpkg"/>
+        <package name="bash"/>
     </packages>
 </image>
