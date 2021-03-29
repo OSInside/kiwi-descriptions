@@ -1,0 +1,55 @@
+<image schemaversion="6.8" name="AlmaLinux-8_appliance">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>ms@suse.de</contact>
+        <specification>Alma Linux 8 Appliance</specification>
+    </description>
+    <profiles>
+        <profile name="Live" description="Live image" import="true"/>
+        <profile name="Virtual" description="Simple Disk image"/>
+    </profiles>
+    <preferences>
+        <version>8.3.0</version>
+        <packagemanager>dnf</packagemanager>
+        <bootsplash-theme>charge</bootsplash-theme>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences profiles="Live">
+        <type image="iso" flags="dmsquash" firmware="uefi" kernelcmdline="console=ttyS0"/>
+    </preferences>
+    <preferences profiles="Virtual">
+        <type image="vmx" primary="true" filesystem="xfs" kernelcmdline="rhgb console=ttyS0" firmware="uefi" bootloader="grub2"/>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="rpm-md" alias="AlmaLinux8-BaseOS">
+        <source path="https://repo.almalinux.org/almalinux/8/BaseOS/x86_64/os/"/>
+    </repository>
+    <repository type="rpm-md" alias="AlmaLinux8-AppStream">
+        <source path="https://repo.almalinux.org/almalinux/8/AppStream/x86_64/os/"/>
+    </repository>
+    <repository type="rpm-md" alias="AlmaLinux8-PowerTools">
+        <source path="https://repo.almalinux.org/almalinux/8/PowerTools/x86_64/os/"/>
+    </repository>
+    <repository type="rpm-md" alias="AlmaLinux8-Extras">
+        <source path="https://repo.almalinux.org/almalinux/8/extras/x86_64/os/"/>
+    </repository>
+    <packages type="image">
+        <namedCollection name="core"/>
+        <package name="syslinux"/>
+        <package name="grub2"/>
+        <package name="kernel"/>
+        <package name="plymouth-theme-charge"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="filesystem"/>
+        <package name="basesystem"/>
+        <package name="grub2-efi-x64-modules"/>
+        <package name="grub2-efi-x64"/>
+        <package name="shim-x64" arch="x86_64"/>
+    </packages>
+</image>
