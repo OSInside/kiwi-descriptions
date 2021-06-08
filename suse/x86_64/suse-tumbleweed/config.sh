@@ -53,13 +53,3 @@ rm -rf /opt/kde*
 # installed; no syntax highlighting
 #--------------------------------------
 sed -i -e's/^syntax on/" syntax on/' /etc/vimrc
-
-#======================================
-# SuSEconfig
-#--------------------------------------
-suseConfig
-
-#======================================
-# Remove yast if not in use
-#--------------------------------------
-suseRemoveYaST

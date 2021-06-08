@@ -25,17 +25,3 @@ test -f /.profile && . /.profile
 # Greeting...
 #--------------------------------------
 echo "Configure image: [$kiwi_iname]..."
-
-#======================================
-# Keep UTF-8 locale
-#--------------------------------------
-baseStripLocales \
-    $(for i in $(echo $kiwi_language | tr "," " ");do echo -n "$i.utf8 ";done)
-baseStripTranslations kiwi.mo
-
-#======================================
-# Umount kernel filesystems
-#--------------------------------------
-baseCleanMount
-
-exit 0
