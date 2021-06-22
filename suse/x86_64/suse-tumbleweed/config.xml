@@ -60,6 +60,8 @@
         <package name="which"/>
         <package name="kernel-default"/>
         <package name="timezone"/>
+        <package name="xz" />
+        <package name="wicked"/>
     </packages>
     <packages type="iso">
         <package name="dracut-kiwi-live"/>
