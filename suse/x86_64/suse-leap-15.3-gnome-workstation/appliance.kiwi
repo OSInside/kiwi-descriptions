@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<image schemaversion="6.8" name="Workstation">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>marcus.schaefer@gmail.com</contact>
+        <specification>A Gnome based Linux workstation</specification>
+    </description>
+    <preferences>
+        <type image="oem" filesystem="xfs" initrd_system="dracut" installiso="true" bootloader="grub2" kernelcmdline="splash=silent quiet" firmware="uefi">
+            <oemconfig>
+                <oem-swap>true</oem-swap>
+                <oem-swapsize>4096</oem-swapsize> 
+                <oem-device-filter>/dev/ram</oem-device-filter>
+                <oem-multipath-scan>false</oem-multipath-scan>
+            </oemconfig>
+        </type>
+        <version>1.1.0</version>
+        <bootloader-theme>openSUSE</bootloader-theme>
+        <bootsplash-theme>bgrt</bootsplash-theme>
+        <packagemanager>zypper</packagemanager>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <locale>en_US</locale>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <packages type="image" patternType="plusRecommended">
+        <package name="kernel-default"/>
+        <package name="kernel-firmware"/>
+        <package name="gfxboot-branding-openSUSE"/>
+        <package name="grub2-branding-openSUSE"/>
+        <package name="grub2-x86_64-efi" arch="x86_64"/>
+        <package name="grub2-arm64-efi" arch="aarch64"/>
+        <package name="memtest86+" arch="i686,x86_64"/>
+        <package name="dracut-kiwi-oem-repart"/>
+        <package name="dracut-kiwi-oem-dump"/>
+        <namedCollection name="apparmor"/>
+        <namedCollection name="games"/>
+        <namedCollection name="gnome"/>
+        <namedCollection name="gnome_basis"/>
+        <namedCollection name="gnome_imaging"/>
+        <namedCollection name="gnome_internet"/>
+        <namedCollection name="gnome_multimedia"/>
+        <namedCollection name="gnome_office"/>
+        <namedCollection name="gnome_utilities"/>
+        <namedCollection name="gnome_yast"/>
+        <namedCollection name="imaging"/>
+        <namedCollection name="multimedia"/>
+        <namedCollection name="office"/>
+        <namedCollection name="sw_management_gnome"/>
+        <namedCollection name="yast2_basis"/>
+        <namedCollection name="yast2_install_wf"/>
+        <namedCollection name="yast2_basis"/>
+        <namedCollection name="enhanced_base"/>
+        <namedCollection name="x11"/>
+        <namedCollection name="sw_management"/>
+    </packages>
+    <packages type="bootstrap" patternType="plusRecommended">
+        <package name="udev"/>
+        <package name="filesystem"/>
+        <package name="glibc-locale"/>
+        <package name="cracklib-dict-full"/>
+        <package name="ca-certificates"/>
+        <package name="ca-certificates-mozilla"/>
+        <package name="openSUSE-release"/>
+    </packages>
+    <repository type="rpm-md" alias="Leap_15_3" imageinclude="true">
+        <source path="obs://openSUSE:Leap:15.3:Update/standard"/>
+    </repository>
+    <repository type="rpm-md" alias="Leap_15_3" imageinclude="true">
+        <source path="obs://openSUSE:Leap:15.3/standard"/>
+    </repository>
+</image>
