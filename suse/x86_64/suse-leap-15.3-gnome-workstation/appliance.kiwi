@@ -1,16 +1,20 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="Workstation">
+<image schemaversion="7.4" name="Workstation">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>marcus.schaefer@gmail.com</contact>
         <specification>A Gnome based Linux workstation</specification>
     </description>
     <preferences>
-        <type image="oem" filesystem="xfs" initrd_system="dracut" installiso="true" bootloader="grub2" kernelcmdline="splash=silent quiet" firmware="uefi">
+        <type image="oem" filesystem="xfs" installiso="true" kernelcmdline="splash=silent quiet" firmware="uefi" bootpartition="true" installboot="install" luks="linux">
+            <bootloader name="grub2"/>
+            <systemdisk>
+                <volume name="home"/>
+            </systemdisk>
             <oemconfig>
                 <oem-swap>true</oem-swap>
-                <oem-swapsize>4096</oem-swapsize> 
+                <oem-swapsize>4096</oem-swapsize>
                 <oem-device-filter>/dev/ram</oem-device-filter>
                 <oem-multipath-scan>false</oem-multipath-scan>
             </oemconfig>
@@ -26,6 +30,7 @@
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
     <packages type="image" patternType="plusRecommended">
+        <package name="cryptsetup"/>
         <package name="kernel-default"/>
         <package name="kernel-firmware"/>
         <package name="gfxboot-branding-openSUSE"/>
@@ -57,6 +62,9 @@
         <namedCollection name="sw_management"/>
     </packages>
     <packages type="bootstrap" patternType="plusRecommended">
+        <package name="gawk"/>
+        <package name="grep"/>
+        <package name="xz"/>
         <package name="udev"/>
         <package name="filesystem"/>
         <package name="glibc-locale"/>
