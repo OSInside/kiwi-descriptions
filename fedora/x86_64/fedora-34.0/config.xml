@@ -7,7 +7,8 @@
         <specification>Fedora 34 Appliance</specification>
     </description>
     <profiles>
-        <profile name="Live" description="Live image" import="true"/>
+        <profile name="DracutLive" description="Dracut Live image" import="true"/>
+        <profile name="Live" description="Live image"/>
         <profile name="Virtual" description="Simple Disk image"/>
     </profiles>
     <preferences>
@@ -19,6 +20,9 @@
         <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences profiles="DracutLive">
+        <type image="iso" flags="dmsquash" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
     </preferences>
     <preferences profiles="Live">
         <type image="iso" flags="overlay" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
@@ -50,6 +54,7 @@
         <package name="selinux-policy-targeted"/>
         <package name="dhclient"/>
         <package name="NetworkManager"/>
+        <package name="glibc-langpack-en"/>
         <package name="vim"/>
         <package name="tzdata"/>
         <package name="python-kiwi"/>
@@ -58,13 +63,16 @@
     <packages type="iso">
         <package name="dracut-kiwi-live"/>
     </packages>
+    <packages type="bootstrap" profiles="DracutLive">
+        <package name="dmsquash-live"/>
+        <package name="livenet"/>
+    </packages>
     <packages type="bootstrap">
-        <package name="glibc-all-langpacks"/>
         <package name="filesystem"/>
         <package name="basesystem"/>
         <package name="grub2-efi-x64"/>
         <package name="grub2-efi-x64-modules"/>
-        <package name="shim-x64"/>
+        <package name="shim" arch="x86_64"/>
         <package name="syslinux"/>
         <package name="syslinux-efi64"/>
     </packages>
