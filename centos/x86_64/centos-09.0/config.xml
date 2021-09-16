@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.4" name="CentOS-9_appliance">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>marcus.schaefer@gmail.com</contact>
+        <specification>CentOS Enterprise 9 Appliance</specification>
+    </description>
+    <profiles>
+        <profile name="Live" description="Live image of CentOS 9"/>
+        <profile name="Virtual" description="Virtual image of CentOS 9"/>
+    </profiles>
+    <preferences>
+        <version>1.1.0</version>
+        <packagemanager>dnf</packagemanager>
+        <bootsplash-theme>charge</bootsplash-theme>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences profiles="Live">
+        <type image="iso" flags="dmsquash" firmware="bios" hybridpersistent_filesystem="ext4" hybridpersistent="true" kernelcmdline="console=ttyS0">
+            <bootloader name="grub2" console="serial"/>
+        </type>
+    </preferences>
+    <preferences profiles="Virtual">
+        <type image="oem" primary="true" filesystem="ext4" kernelcmdline="console=ttyS0" firmware="bios" format="qcow2">
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+            <bootloader name="grub2" console="serial"/>
+        </type>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="rpm-md" alias="CentOS9-CRB" sourcetype="metalink">
+        <source path="https://mirrors.centos.org/metalink?repo=centos-crb-9-stream&amp;arch=x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="CentOS9-AppStream" sourcetype="metalink">
+        <source path="https://mirrors.centos.org/metalink?repo=centos-appstream-9-stream&amp;arch=x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="CentOS9-BaseOS" sourcetype="metalink">
+        <source path="https://mirrors.centos.org/metalink?repo=centos-baseos-9-stream&amp;arch=x86_64"/>
+    </repository>
+    <packages type="image">
+        <package name="syslinux"/>
+        <package name="gdisk"/>
+        <package name="grub2"/>
+        <package name="kernel"/>
+        <package name="plymouth-theme-charge"/>
+        <package name="audit"/>
+        <package name="dhclient"/>
+        <package name="e2fsprogs"/>
+        <package name="firewalld"/>
+        <package name="hostname"/>
+        <package name="initscripts"/>
+        <package name="iprutils"/>
+        <package name="irqbalance"/>
+        <package name="kbd"/>
+        <package name="kexec-tools"/>
+        <package name="openssh-clients"/>
+        <package name="openssh-server"/>
+        <package name="parted"/>
+        <package name="passwd"/>
+        <package name="policycoreutils"/>
+        <package name="rootfiles"/>
+        <package name="rsyslog"/>
+        <package name="selinux-policy-targeted"/>
+        <package name="xfsprogs"/>
+        <package name="NetworkManager"/>
+        <package name="iputils"/>
+        <package name="fipscheck"/>
+        <package name="glibc-all-langpacks"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="filesystem"/>
+        <package name="basesystem"/>
+<!-- Currently no grub x86 efi modules are published
+        <package name="grub2-efi-x64" arch="x86_64"/>
+        <package name="grub2-efi-x64-modules" arch="x86_64"/>
+        <package name="shim-x64" arch="x86_64"/>
+        <package name="libdb-utils"/>
+-->
+    </packages>
+</image>
