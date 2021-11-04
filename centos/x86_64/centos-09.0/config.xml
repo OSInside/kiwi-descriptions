@@ -20,12 +20,12 @@
         <rpm-check-signatures>false</rpm-check-signatures>
     </preferences>
     <preferences profiles="Live">
-        <type image="iso" flags="dmsquash" firmware="bios" hybridpersistent_filesystem="ext4" hybridpersistent="true" kernelcmdline="console=ttyS0">
+        <type image="iso" flags="dmsquash" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true" kernelcmdline="console=ttyS0">
             <bootloader name="grub2" console="serial"/>
         </type>
     </preferences>
     <preferences profiles="Virtual">
-        <type image="oem" primary="true" filesystem="ext4" kernelcmdline="console=ttyS0" firmware="bios" format="qcow2">
+        <type image="oem" primary="true" filesystem="ext4" kernelcmdline="console=ttyS0" firmware="uefi" format="qcow2">
             <oemconfig>
                 <oem-resize>false</oem-resize>
             </oemconfig>
@@ -71,17 +71,14 @@
         <package name="xfsprogs"/>
         <package name="NetworkManager"/>
         <package name="iputils"/>
-        <package name="fipscheck"/>
         <package name="glibc-all-langpacks"/>
     </packages>
     <packages type="bootstrap">
         <package name="filesystem"/>
         <package name="basesystem"/>
-<!-- Currently no grub x86 efi modules are published
         <package name="grub2-efi-x64" arch="x86_64"/>
         <package name="grub2-efi-x64-modules" arch="x86_64"/>
         <package name="shim-x64" arch="x86_64"/>
         <package name="libdb-utils"/>
--->
     </packages>
 </image>
