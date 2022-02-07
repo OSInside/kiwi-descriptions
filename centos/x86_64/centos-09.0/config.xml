@@ -35,6 +35,9 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
+    <repository type="rpm-md" alias="CentOS9-ExtrasCommon" sourcetype="metalink">
+        <source path="https://mirrors.centos.org/metalink?repo=centos-extras-sig-extras-common-9-stream&amp;arch=x86_64"/>
+    </repository>
     <repository type="rpm-md" alias="CentOS9-CRB" sourcetype="metalink">
         <source path="https://mirrors.centos.org/metalink?repo=centos-crb-9-stream&amp;arch=x86_64"/>
     </repository>
