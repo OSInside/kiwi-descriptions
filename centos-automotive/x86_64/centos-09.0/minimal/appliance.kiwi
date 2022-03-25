@@ -1,0 +1,83 @@
+image:
+  '@name': CentOS-9-automotive-minimal
+  '@schemaversion': '7.5'
+  description:
+    '@type': system
+    author: Marcus Schaefer
+    contact: marcus.schaefer@gmail.com
+    specification: CentOS 9 Automotive Minimal System
+  packages:
+  - '@type': image
+    package:
+    - '@name': grub2
+    - '@name': kernel-auto
+    - '@name': dhclient
+    - '@name': openssh-clients
+    - '@name': openssh-server
+    - '@name': selinux-policy-targeted
+    - '@name': NetworkManager
+    - '@name': iputils
+    - '@name': binutils
+    - '@name': glibc-langpack-en
+  - '@type': bootstrap
+    package:
+    - '@name': filesystem
+    - '@name': basesystem
+    - '@arch': x86_64
+      '@name': grub2-efi-x64
+    - '@arch': x86_64
+      '@name': grub2-efi-x64-modules
+    - '@name': dracut-kiwi-overlay
+  - '@type': uninstall
+    package:
+      '@name': linux-firmware
+  preferences:
+  - keytable: us
+    locale: en_US
+    packagemanager: microdnf
+    rpm-excludedocs: 'true'
+    timezone: UTC
+    version: 1.1.0
+  - type:
+      '@bootpartsize': '90'
+      '@efipartsize': '10'
+      '@filesystem': ext4
+      '@firmware': efi
+      '@format': qcow2
+      '@image': oem
+      '@kernelcmdline': console=ttyS0
+      '@overlayroot': 'true'
+      '@overlayroot_readonly_partsize': '140'
+      bootloader:
+        '@console': serial
+        '@name': grub2
+      oemconfig:
+        oem-resize: 'false'
+      size:
+        '#text': '512'
+        '@unit': M
+  repository:
+  - '@alias': KIWI
+    '@type': rpm-md
+    source:
+      '@path': https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/CentOS_9
+  - '@alias': CentOS9-AppStream
+    '@sourcetype': metalink
+    '@type': rpm-md
+    source:
+      '@path': https://mirrors.centos.org/metalink?repo=centos-appstream-9-stream&arch=x86_64
+  - '@alias': CentOS9-BaseOS
+    '@sourcetype': metalink
+    '@type': rpm-md
+    source:
+      '@path': https://mirrors.centos.org/metalink?repo=centos-baseos-9-stream&arch=x86_64
+  - '@alias': CentOS9-Automotive
+    '@type': rpm-md
+    source:
+      '@path': https://buildlogs.centos.org/9-stream/automotive/x86_64/packages-main
+  users:
+    user:
+      '@groups': root
+      '@home': /root
+      '@name': root
+      '@password': $1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0
