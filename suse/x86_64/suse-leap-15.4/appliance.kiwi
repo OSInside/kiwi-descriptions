@@ -32,7 +32,7 @@
         <type image="iso" primary="true" flags="overlay" hybrid="true" firmware="efi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true" mediacheck="true"/>
     </preferences>
     <preferences profiles="Virtual">
-        <type image="vmx" filesystem="xfs" bootloader="grub2" kernelcmdline="splash" firmware="uefi">
+        <type image="vmx" filesystem="xfs" bootloader="grub2" kernelcmdline="splash" firmware="uefi" bootpartition="true" bootfilesystem="ext4">
             <machine memory="512" guestOS="suse" HWversion="4">
                 <vmdisk id="0" controller="ide"/>
                 <vmnic driver="e1000" interface="0" mode="bridged"/>
