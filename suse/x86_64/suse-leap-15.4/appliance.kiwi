@@ -60,6 +60,7 @@
     </repository>
     <packages type="image">
         <package name="checkmedia"/>
+        <package name="cryptsetup"/>
         <package name="patterns-openSUSE-base"/>
         <package name="plymouth-theme-bgrt"/>
         <package name="plymouth-dracut"/>
@@ -88,11 +89,10 @@
         <package name="timezone"/>
     </packages>
     <packages profiles="DracutLive" type="iso">
-	<package name="bind-utils"/>
-	<package name="e2fsprogs"/>
+        <package name="bind-utils"/>
+        <package name="e2fsprogs"/>
         <package name="btrfsprogs"/>
         <package name="cifs-utils"/>
-        <package name="cryptsetup"/>
         <package name="curl"/>
         <package name="dmraid"/>
         <package name="fcoe-utils"/>
