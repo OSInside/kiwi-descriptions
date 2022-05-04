@@ -60,5 +60,5 @@ baseSetRunlevel 3
 # Clear apt-get data
 #--------------------------------------
 apt-get clean
-rm -r /var/lib/apt/*
-rm -r /var/cache/apt/*
+rm -rf /var/lib/apt/*
+rm -rf /var/cache/apt/*
