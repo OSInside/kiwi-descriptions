@@ -31,7 +31,7 @@ echo "FONT_UNIMAP=" >> /etc/vconsole.conf
 #=======================================
 # Setup system timezone
 #---------------------------------------
-[ -f /etc/localtime ] && rm /etc/localtime
+[ -e /etc/localtime ] && rm /etc/localtime
 ln -s /usr/share/zoneinfo/${kiwi_timezone} /etc/localtime
 
 #=======================================
