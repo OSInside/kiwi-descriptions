@@ -15,6 +15,7 @@ suseSetupProduct
 # Activate services
 #--------------------------------------
 suseInsertService sshd
+suseInsertService resize_lvm
 
 #======================================
 # Setup default target, multi-user
