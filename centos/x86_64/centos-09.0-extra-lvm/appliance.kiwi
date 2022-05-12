@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.4" name="CentOS-9-extra-lvm">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>marcus.schaefer@gmail.com</contact>
+        <specification>
+            Disk image with extra LVM for custom add-ons
+        </specification>
+    </description>
+    <preferences>
+        <version>1.0.9</version>
+        <packagemanager>dnf</packagemanager>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-excludedocs>true</rpm-excludedocs>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <type image="oem" filesystem="xfs" initrd_system="dracut" firmware="uefi" bootpartition="true" bootfilesystem="ext4" spare_part="1G" spare_part_is_last="true" editbootconfig="custom_lvm_create.sh" kernelcmdline="console=ttyS0" installiso="true">
+            <size unit="G">4</size>
+            <bootloader name="grub2" console="serial" timeout="10"/>
+            <oemconfig>
+                <oem-swap>true</oem-swap>
+                <oem-swapsize>512</oem-swapsize>
+                <oem-resize>false</oem-resize>
+                <oem-device-filter>/dev/ram</oem-device-filter>
+                <oem-multipath-scan>false</oem-multipath-scan>
+            </oemconfig>
+        </type>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="rpm-md" alias="kiwi-next-generation" priority="1">
+        <source path="obs://Virtualization:Appliances:Builder/CentOS_9"/>
+    </repository>
+    <repository type="rpm-md" alias="CentOS9-ExtrasCommon" sourcetype="metalink">
+        <source path="https://mirrors.centos.org/metalink?repo=centos-extras-sig-extras-common-9-stream&amp;arch=x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="CentOS9-CRB" sourcetype="metalink">
+        <source path="https://mirrors.centos.org/metalink?repo=centos-crb-9-stream&amp;arch=x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="CentOS9-AppStream" sourcetype="metalink">
+        <source path="https://mirrors.centos.org/metalink?repo=centos-appstream-9-stream&amp;arch=x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="CentOS9-BaseOS" sourcetype="metalink">
+        <source path="https://mirrors.centos.org/metalink?repo=centos-baseos-9-stream&amp;arch=x86_64"/>
+    </repository>
+    <packages type="image">
+        <package name="syslinux"/>
+        <package name="gdisk"/>
+        <package name="grub2"/>
+        <package name="kernel"/>
+        <package name="plymouth-theme-charge"/>
+        <package name="audit"/>
+        <package name="dhclient"/>
+        <package name="e2fsprogs"/>
+        <package name="firewalld"/>
+        <package name="hostname"/>
+        <package name="initscripts"/>
+        <package name="iprutils"/>
+        <package name="irqbalance"/>
+        <package name="kbd"/>
+        <package name="kexec-tools"/>
+        <package name="openssh-clients"/>
+        <package name="openssh-server"/>
+        <package name="parted"/>
+        <package name="passwd"/>
+        <package name="policycoreutils"/>
+        <package name="rootfiles"/>
+        <package name="rsyslog"/>
+        <package name="selinux-policy-targeted"/>
+        <package name="xfsprogs"/>
+        <package name="NetworkManager"/>
+        <package name="iputils"/>
+        <package name="lvm2"/>
+        <package name="glibc-all-langpacks"/>
+        <package name="dracut-kiwi-oem-repart"/>
+        <package name="dracut-kiwi-oem-dump"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="filesystem"/>
+        <package name="basesystem"/>
+        <package name="grub2-efi-x64" arch="x86_64"/>
+        <package name="grub2-efi-x64-modules" arch="x86_64"/>
+        <package name="shim-x64" arch="x86_64"/>
+        <package name="libdb-utils"/>
+    </packages>
+</image>
