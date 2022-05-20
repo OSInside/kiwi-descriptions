@@ -31,7 +31,7 @@ echo "FONT_UNIMAP=" >> /etc/vconsole.conf
 #=======================================
 # Setup system timezone
 #---------------------------------------
-[ -f /etc/localtime ] && rm /etc/localtime
+[ -e /etc/localtime ] && rm /etc/localtime
 ln -s /usr/share/zoneinfo/${kiwi_timezone} /etc/localtime
 
 #=======================================
@@ -60,5 +60,5 @@ baseSetRunlevel 3
 # Clear apt-get data
 #--------------------------------------
 apt-get clean
-rm -r /var/lib/apt/*
-rm -r /var/cache/apt/*
+rm -rf /var/lib/apt/*
+rm -rf /var/cache/apt/*
