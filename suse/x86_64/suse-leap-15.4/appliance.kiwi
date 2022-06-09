@@ -53,7 +53,7 @@
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
     <repository type="rpm-md" alias="kiwi" priority="1">
-        <source path="obs://Virtualization:Appliances:Builder/15.4"/>
+        <source path="obs://Virtualization:Appliances:Builder/openSUSE_Leap_15.4"/>
     </repository>
     <repository type="rpm-md" alias="Leap_15_4" imageinclude="true">
         <source path="obs://openSUSE:Leap:15.4/standard"/>
