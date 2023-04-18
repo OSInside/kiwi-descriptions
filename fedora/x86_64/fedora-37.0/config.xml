@@ -8,6 +8,7 @@
     </description>
     <profiles>
         <profile name="Virtual" description="Simple Disk image" import="true"/>
+        <profile name="Live" description="Live image"/>
     </profiles>
     <preferences>
         <version>1.0.0</version>
@@ -18,6 +19,9 @@
         <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences profiles="Live">
+        <type image="iso" flags="dmsquash" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
     </preferences>
     <preferences profiles="Virtual">
         <type image="vmx" filesystem="xfs" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="uefi">
@@ -47,6 +51,10 @@
         <package name="tzdata"/>
         <package name="python-kiwi"/>
         <package name="git"/>
+    </packages>
+    <packages type="iso">
+        <package name="grub2-efi-x64-cdboot"/>
+        <package name="dracut-live"/>
     </packages>
     <packages type="bootstrap">
         <package name="glibc-all-langpacks"/>
