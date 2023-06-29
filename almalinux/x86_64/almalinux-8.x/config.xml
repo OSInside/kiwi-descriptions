@@ -10,7 +10,7 @@
         <profile name="Disk" description="Expandable Disk image"/>
     </profiles>
     <preferences>
-        <version>8.3.0</version>
+        <version>8</version>
         <packagemanager>dnf</packagemanager>
         <bootsplash-theme>charge</bootsplash-theme>
         <locale>en_US</locale>
