@@ -8,7 +8,7 @@ tmp_mount=$(mktemp -d disk_XXXXX)
 
 mount "${mapped_dev}" "${tmp_mount}"
 
-grub_config="${tmp_mount}/boot/grub/grub.cfg"
+grub_config="${tmp_mount}/boot/grub2/grub.cfg"
 
 if [ -f  "${grub_config}" ]; then
     echo "Patching grub configuration file: ${grub_config}"
