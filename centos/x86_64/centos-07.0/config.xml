@@ -32,7 +32,7 @@
         <type image="iso" flags="overlay" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
     </preferences>
     <preferences profiles="Virtual">
-        <type image="vmx" primary="true" filesystem="ext3" kernelcmdline="rhgb" bootloader="grub2" firmware="uefi"/>
+        <type image="vmx" primary="true" filesystem="ext3" kernelcmdline="rhgb" bootloader="grub2" firmware="bios"/>
     </preferences>
     <preferences profiles="Disk">
         <type image="oem" initrd_system="dracut" filesystem="ext3" installiso="true" bootloader="grub2" firmware="uefi">
@@ -47,9 +47,6 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <repository type="rpm-md" alias="kiwi-next-generation" priority="1">
-        <source path="obs://Virtualization:Appliances:Builder/CentOS_7"/>
-    </repository>
     <repository type="rpm-md" alias="Fedora-EPEL7">
         <source path="http://download.fedoraproject.org/pub/epel/7/x86_64"/>
     </repository>
@@ -73,7 +70,7 @@
     <packages type="iso">
         <package name="dracut-kiwi-live"/>
     </packages>
-    <packages type="oem">
+    <packages type="oem" profiles="Disk">
         <package name="dracut-kiwi-oem-repart"/>
         <package name="dracut-kiwi-oem-dump"/>
     </packages>
