@@ -1,0 +1,13 @@
+How to build:
+
+    ./build
+
+How to use:
+
+    The image is a components image consisting out of a kernel, initrd
+    and filesystem rootfs image. For creating a running system out of
+    these components a remote boot (aka PXE) infrastructure must be
+    present and the respective component files needs to be placed there.
+    Some documentation exists to support users with this task:
+
+    * https://osinside.github.io/kiwi/working_with_images/setup_network_bootserver.html

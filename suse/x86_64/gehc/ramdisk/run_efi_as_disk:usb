@@ -1,0 +1,11 @@
+#!/bin/bash
+
+sudo qemu-kvm \
+    -cpu Broadwell-v2 \
+    -m 4096 \
+    -netdev user,id=user0 \
+    -device virtio-net-pci,netdev=user0 \
+    -display none \
+    -serial stdio \
+    -bios /usr/share/qemu/ovmf-x86_64-ms.bin \
+    -hda image/ramdisk_appliance.x86_64-1.15.4.install.iso

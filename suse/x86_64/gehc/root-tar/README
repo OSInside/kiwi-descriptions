@@ -1,0 +1,9 @@
+How to build:
+
+    ./build
+
+How to use:
+
+    The image is a simple tarball of the rootfs. To create a running
+    system using this rootfs some post processing steps according to
+    your use case are required

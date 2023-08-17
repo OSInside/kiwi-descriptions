@@ -1,0 +1,33 @@
+How to build:
+
+    ./build
+
+How to use:
+
+    The image is a bootable install media ISO which installs itself
+    into a ramdisk on boot. For testing several run scripts exists
+
+    ./run_bios_as_cdrom
+
+    ==> Boot in BIOS mode as CD/DVD
+
+    ./run_bios_as_disk:usb
+
+    ==> Boot in BIOS mode as disk (same as booting from USB stick)
+
+    ./run_efi_as_cdrom
+
+    ==> Boot in EFO mode as CD/DVD 
+
+    run_efi_as_disk:usb
+
+    ==> Boot in EFI mode as disk (same as booting from USB stick)
+
+Also Interesting:
+
+    A ramdisk deployment can also be done over the network. In this
+    case the installiso="true" needs to be replaced by installpxe="true"
+    and the "rd.kiwi.ramdisk=1 ramdisk_size=byte-value" boot options needs to
+    be passed in the PXE config. Further information here:
+
+    * https://osinside.github.io/kiwi/building_images/build_expandable_disk.html#network-deployment
