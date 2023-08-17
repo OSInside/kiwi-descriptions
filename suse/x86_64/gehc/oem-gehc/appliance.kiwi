@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<image schemaversion="7.5" name="myimage">
+    <description type="system">
+        <author>JA</author>
+        <contact>my@email</contact>
+        <specification>MyImage</specification>
+    </description>
+    <preferences>
+        <version>1.0.0</version>
+        <packagemanager>zypper</packagemanager>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-excludedocs>true</rpm-excludedocs>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <!--<bootsplash-theme>SLE</bootsplash-theme>-->
+        <!--<bootloader-theme>SLE</bootloader-theme>-->
+        <type image="oem" 
+        filesystem="ext3" 
+        kernelcmdline="console=ttyS0" 
+        firmware="efi" 
+        installiso="true" 
+        bootpartition="true"
+        initrd_system="dracut"
+        installboot="install">
+            <bootloader name="grub2" console="serial" timeout="10"/>   
+            <oemconfig>
+                <oem-unattended>true</oem-unattended>
+            </oemconfig>
+        </type>
+    </preferences>
+    <repository type="rpm-md" alias="kiwi" priority="1">
+        <source path="obs://Virtualization:Appliances:Builder/openSUSE_Leap_15.4"/>
+    </repository>
+    <repository type="rpm-md" alias="Leap_15_4" imageinclude="true">
+        <source path="obs://openSUSE:Leap:15.4/standard"/>
+    </repository>
+    <users>
+        <user password="linux" home="/root" name="root" groups="root"/>
+    </users>
+    <packages type="bootstrap">
+        <package name="udev" />
+        <package name="filesystem" />
+        <package name="glibc-locale" />
+        <package name="cracklib-dict-full" />
+        <package name="ca-certificates" />
+        <package name="ca-certificates-mozilla"/>
+<!--        <package name="sles-release" />-->
+        <package name="createrepo_c" />
+        <package name="dracut" /> 
+    </packages>
+
+    <packages type="image">
+    <!--Kiwi specific packages -->
+        <package name="dracut-kiwi-live"/>
+        <package name="dracut-kiwi-overlay"/>
+        <package name="dracut-kiwi-oem-repart"/>
+        <package name="dracut-kiwi-oem-dump"/>
+        <package name="dracut-kiwi-lib"/>
+        <package name="dracut-mkinitrd-deprecated" />
+
+        <package name="ImageMagick" />
+        <package name="Mesa-libGL1-32bit" />
+        <package name="MozillaFirefox" />
+        <package name="aaa_base-extras" />
+        <package name="acct" />
+        <package name="adobe-sourcecodepro-fonts" />
+        <package name="aide" />
+        <package name="alee-fonts" />
+        <package name="alsa-firmware" />
+        <package name="alsa-plugins-32bit" />
+        <package name="alsa-plugins-pulse" />
+        <package name="alsa-plugins" />
+        <package name="alsa-utils" />
+        <package name="apache2" />
+        <package name="apparmor-docs" />
+        <package name="apparmor-parser" />
+        <package name="apparmor-profiles" />
+        <package name="apparmor-utils" />
+        <package name="arphic-uming-fonts" />
+        <package name="audit-audispd-plugins" />
+        <package name="audit" />
+        <package name="baekmuk-bitmap-fonts" />
+        <package name="baekmuk-ttf-fonts" />
+        <package name="bc" />
+        <package name="biosdevname" />
+        <package name="bzip2" />
+        <package name="cdrecord" />
+        <package name="colord" />
+        <package name="createrepo_c" />
+        <package name="cronie" />
+        <package name="cryptsetup" />
+        <package name="cups-backends" />
+        <package name="cups-client" />
+        <package name="cups-config" />
+        <package name="cups-filters" />
+        <package name="cups-pk-helper" />
+        <package name="cups" />
+        <package name="dejavu-fonts" />
+        <package name="dhcp-server" />
+        <package name="dmidecode" />
+        <package name="docker" />
+        <package name="dos2unix" />
+        <package name="dosfstools" />
+        <package name="dvd+rw-tools" />
+        <package name="ed" />
+        <package name="efont-unicode-bitmap-fonts" />
+        <package name="enscript" />
+        <package name="ethtool" />
+        <package name="evince-plugin-pdfdocument" />
+        <package name="evince" />
+        <package name="expect" />
+        <package name="gcc" />
+        <package name="gdb" />
+        <package name="gedit" />
+        <package name="ghostscript-fonts-other" />
+        <package name="ghostscript-fonts-std" />
+        <package name="gimp" />
+        <package name="glibc-locale-base-32bit" />
+        <package name="gnome-calculator" />
+        <package name="gnome-terminal" />
+        <package name="google-caladea-fonts" />
+        <package name="google-carlito-fonts" />
+        <package name="gptfdisk" />
+        <package name="grub2"/>
+        <package name="grub2-x86_64-efi" arch="x86_64"/>
+        <package name="grub2-i386-pc"/>
+        <package name="gtk3-metatheme-adwaita" />
+        <package name="gutenprint" />
+        <package name="gv" />
+        <package name="gvfs-backends" />
+        <package name="gvfs-fuse" />
+        <package name="gvfs" />
+        <package name="haveged" />
+        <package name="hplip-hpijs" />
+        <package name="hplip" />
+        <package name="icedtea-web" />
+        <package name="inotify-tools" />
+        <package name="insserv-compat" />
+        <package name="intlfonts-arabic-bitmap-fonts" />
+        <package name="intlfonts-chinese-big-bitmap-fonts" />
+        <package name="intlfonts-chinese-bitmap-fonts" />
+        <package name="intlfonts-euro-bitmap-fonts" />
+        <package name="intlfonts-japanese-big-bitmap-fonts" />
+        <package name="intlfonts-japanese-bitmap-fonts" />
+        <package name="ipmitool" />
+        <package name="iptables" />
+        <package name="iputils" />
+        <package name="kdump" />
+        <package name="kernel-default"/>
+        <package name="kernel-default-devel" />
+        <package name="kernel-firmware-all" />
+        <package name="kernel-source" />
+        <package name="khmeros-fonts" />
+        <package name="libGLU1" />
+        <package name="libICE6-32bit" />
+        <package name="libICE6" />
+        <package name="libSM6-32bit" />
+        <package name="libSM6" />
+        <package name="libXaw7" />
+        <package name="libXext6-32bit" />
+        <package name="libXi6-32bit" />
+        <package name="libXm4-32bit" />
+        <package name="libXm4" />
+        <package name="libXrender1-32bit" />
+        <package name="libXt6" />
+        <package name="libXtst6-32bit" />
+        <package name="libXxf86vm1-32bit" />
+        <package name="libapparmor1" />
+        <package name="libcurl4-32bit" />
+        <package name="libcurl4" />
+        <package name="libfreeipmi17" />
+        <package name="libgcc_s1-32bit" />
+        <package name="libglvnd-32bit" />
+        <package name="libglvnd-devel" />
+        <package name="libicu-suse65_1" />
+        <package name="libjpeg62" />
+        <package name="libopenssl1_1-32bit" />
+        <package name="libpng12-0" />
+        <package name="libstdc++6-32bit" />
+        <package name="libudev1-32bit" />
+        <package name="libusb-1_0-0-32bit" />
+        <package name="libwsman3" />
+        <package name="libxcb-res0" />
+        <package name="libxml2-2-32bit" />
+        <package name="libxml2-tools" />
+        <package name="libxslt-tools" />
+        <package name="lightdm" />
+        <package name="lsof" />
+        <package name="make" />
+        <package name="man" />
+        <package name="mlocate" />
+        <package name="motif" />
+        <package name="mozilla-nss-sysinit" />
+        <package name="nautilus" />
+        <package name="net-tools-deprecated" />
+        <package name="nfs-kernel-server" />
+        <package name="nmap" />
+        <package name="ntfs-3g" />
+        <package name="ntfsprogs" />
+        <package name="ntp" />
+        <package name="openscap" />
+        <package name="paps" />
+        <package name="patch" />
+        <package name="pciutils" />
+        <package name="perl-CGI-Session" />
+        <package name="perl-CGI" />
+        <package name="perl-DBD-SQLite" />
+        <package name="perl-Date-Manip" />
+        <package name="perl-File-Copy-Recursive" />
+        <package name="perl-File-Find-Rule-Perl" />
+        <package name="perl-File-Find-Rule" />
+        <package name="perl-File-HomeDir" />
+        <package name="perl-File-Path" />
+        <package name="perl-File-Remove" />
+        <package name="perl-File-Slurp-Tiny" />
+        <package name="perl-File-Slurp-Unicode" />
+        <package name="perl-File-Slurp" />
+        <package name="perl-File-Temp" />
+        <package name="perl-File-Which" />
+        <package name="perl-File-pushd" />
+        <package name="perl-Module-Build" />
+        <package name="perl-Module-Install" />
+        <package name="perl-Module-ScanDeps" />
+        <package name="perl-Net-LibIDN" />
+        <package name="perl-Net-Telnet" />
+        <package name="perl-NetAddr-IP" />
+        <package name="perl-Number-Compare" />
+        <package name="perl-Switch" />
+        <package name="perl-Term-ReadKey" />
+        <package name="perl-Term-UI" />
+        <package name="perl-Text-Diff" />
+        <package name="perl-Text-Glob" />
+        <package name="perl-Text-Iconv" />
+        <package name="perl-Text-Unidecode" />
+        <package name="perl-Tie-IxHash" />
+        <package name="perl-Try-Tiny" />
+        <package name="perl-XML-LibXSLT" />
+        <package name="perl-XML-Parser" />
+        <package name="perl-XML-RegExp" />
+        <package name="perl-XML-SAX" />
+        <package name="perl-XML-Simple" />
+        <package name="perl-XML-XPath" />
+        <package name="perl-YAML-Tiny" />
+        <package name="perl-apparmor" />
+        <package name="perl-libwww-perl" />
+        <package name="perl-libxml-perl" />
+        <package name="plymouth-dracut" />
+        <package name="pnm2ppa" />
+        <package name="polkit-gnome" />
+        <package name="poppler-tools" />
+        <package name="postgresql-jdbc" />
+        <package name="postgresql-plperl" />
+        <package name="postgresql-server" />
+        <package name="postgresql" />
+        <package name="procmail" />
+        <package name="psmisc" />
+        <package name="pulseaudio" />
+        <package name="python3-gobject-Gdk" />
+        <package name="python3-paramiko" />
+        <package name="python3-pip" />
+        <package name="python3-pyinotify" />
+        <package name="python3-pysmbc" />
+        <package name="python3-python-dateutil" />
+        <package name="python3-pyudev" />
+        <package name="python3-rpmfile" />
+        <package name="python3-tk" />
+        <package name="rabbitmq-server" />
+        <package name="rpcbind" />
+        <package name="rsync" />
+        <package name="rsyslog" />
+        <package name="screen" />
+        <package name="sensors" />
+        <package name="sharutils" />
+<!--        <package name="sle-module-python3-release" />-->
+        <package name="smartmontools" />
+        <package name="socat" />
+        <package name="sudo" />
+        <package name="syslinux" />
+        <package name="syslog-service" />
+        <package name="sysstat" />
+        <package name="system-config-printer-common" />
+        <package name="tcl-32bit" />
+        <package name="tcl" />
+        <package name="tcsh" />
+        <package name="telnet" />
+        <package name="tftp" />
+        <package name="tk" />
+        <package name="tomcat" />
+        <package name="traceroute" />
+        <package name="tuned" />
+        <package name="udftools" />
+        <package name="udisks2" />
+        <package name="usbutils" />
+        <package name="vim-data" />
+        <package name="vim" />
+        <package name="wget" />
+        <package name="wqy-microhei-fonts" />
+        <package name="wqy-zenhei-fonts" />
+        <package name="wsmancli" />
+        <package name="xclock" />
+        <package name="xdpyinfo" />
+        <package name="xf86-input-evdev" />
+        <package name="xf86-input-keyboard" />
+        <package name="xf86-input-libinput" />
+        <package name="xf86-input-mouse" />
+        <package name="xf86-input-wacom" />
+        <package name="xfsprogs" />
+        <package name="xinput" />
+        <package name="xkbutils" />
+        <package name="xkill" />
+        <package name="xorg-x11-devel" />
+        <package name="xorg-x11-driver-video" />
+        <package name="xorg-x11-essentials" />
+        <package name="xorg-x11-fonts-converted" />
+        <package name="xorg-x11-fonts-legacy" />
+        <package name="xorg-x11-fonts" />
+        <package name="xorg-x11-libs" />
+        <package name="xorg-x11-server" />
+        <package name="xorg-x11-util-devel" />
+        <package name="xorg-x11" />
+        <package name="xrandr" />
+        <package name="xrefresh" />
+        <package name="xvidtune" />
+        <package name="xwd" />
+        <package name="xwininfo" />
+        <package name="yast2-apparmor" />
+        <package name="yast2-printer" />
+        <package name="zenity" />
+        <package name="zip" />
+        <package name="libcrypt1-32bit" />
+        <package name="libcryptsetup12-hmac-32bit" />
+        <package name="libfreebl3-hmac-32bit" />
+        <package name="libgcrypt20-hmac-32bit" />
+        <package name="libopenssl1_1-hmac-32bit" />
+        <package name="libsoftokn3-hmac-32bit" />
+        <package name="fipscheck" />
+        <package name="openssl" />
+        <package name="python3-dicttoxml" />
+        <package name="python3-libxml2" />
+        <package name="xerces-j2" />
+        <package name="x11vnc" />
+        <package name="libpulse-mainloop-glib0" />
+        <package name="libXcursor1-32bit" />
+        <package name="adwaita-icon-theme"/>
+    </packages>
+</image>

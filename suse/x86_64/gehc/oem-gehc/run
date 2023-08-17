@@ -1,0 +1,19 @@
+#!/bin/bash
+
+pushd image
+
+sudo rm -f mydisk
+sudo qemu-img create mydisk 20g
+
+popd
+
+sudo qemu-kvm \
+    -cpu Broadwell-v2 \
+    -m 4096 \
+    -netdev user,id=user0 \
+    -device virtio-net-pci,netdev=user0 \
+    -display none \
+    -serial stdio \
+    -drive file=image/mydisk,format=raw \
+    -bios /usr/share/qemu/ovmf-x86_64.bin \
+    -cdrom image/myimage.x86_64-1.0.0.install.iso

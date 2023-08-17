@@ -1,0 +1,12 @@
+How to build:
+
+    ./build
+
+How to use:
+
+    The image is a bootable install media ISO which installs to
+    a selectable target disk. For testing call
+
+    ./run
+
+    ==> Installs system to image/mydisk
