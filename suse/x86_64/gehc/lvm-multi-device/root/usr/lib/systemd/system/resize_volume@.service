@@ -1,7 +1,7 @@
 [Unit]
 Description=Resize Volume %i
-Requires=add_device.service
-After=add_device.service network-online.target
+Requires=add_device@.service
+After=add_device@.service
 
 [Service]
 Type=simple

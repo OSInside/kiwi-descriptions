@@ -8,4 +8,6 @@ if [ ! "$(blkid -s TYPE -o value "${device}")" = "LVM2_member" ];then
     if pvcreate "${device}";then
         vgextend systemVG "${device}"
     fi
+else
+    false
 fi
