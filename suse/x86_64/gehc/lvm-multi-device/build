@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo kiwi-ng system build --description . --target-dir ./image --allow-existing-root

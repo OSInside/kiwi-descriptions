@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -ex
+
+volume=/dev/systemVG/$1
+
+sync
+
+#sleep 5
+
+if lvextend -l +100%FREE "${volume}"; then
+    xfs_growfs "${volume}"
+fi

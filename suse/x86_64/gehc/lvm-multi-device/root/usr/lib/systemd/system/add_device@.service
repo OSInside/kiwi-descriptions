@@ -1,0 +1,10 @@
+[Unit]
+Description=Add device to LVM %i
+After=syslog.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/add_device %i
+
+[Install]
+WantedBy=multi-user.target

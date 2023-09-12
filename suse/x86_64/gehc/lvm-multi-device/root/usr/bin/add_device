@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -ex
+
+device=/dev/$1
+
+if [ ! "$(blkid -s TYPE -o value "${device}")" = "LVM2_member" ];then
+    if pvcreate "${device}";then
+        vgextend systemVG "${device}"
+    fi
+fi

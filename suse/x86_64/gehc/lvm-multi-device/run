@@ -1,0 +1,19 @@
+#!/bin/bash
+
+pushd image
+
+if [ ! -e attached_disk ];then
+    sudo qemu-img create attached_disk 20g
+fi
+
+popd
+
+sudo qemu-kvm \
+    -cpu Broadwell-v2 \
+    -m 4096 \
+    -netdev user,id=user0 \
+    -device virtio-net-pci,netdev=user0 \
+    -display none \
+    -serial stdio \
+    -drive file=$(echo image/lvm_appliance.*.raw),if=virtio,format=raw \
+    -drive file=image/attached_disk,if=virtio,format=raw
