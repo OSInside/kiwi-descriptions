@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="6.8" name="Fedora-37.0_appliance">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>ms@suse.de</contact>
+        <specification>Fedora 37 Appliance</specification>
+    </description>
+    <profiles>
+        <profile name="Virtual" description="Simple Disk image" import="true"/>
+        <profile name="Live" description="Live image"/>
+    </profiles>
+    <preferences>
+        <version>1.0.0</version>
+        <packagemanager>dnf</packagemanager>
+        <bootsplash-theme>charge</bootsplash-theme>
+        <bootloader-theme>breeze</bootloader-theme>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences profiles="Live">
+        <type image="iso" flags="dmsquash" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+    </preferences>
+    <preferences profiles="Virtual">
+        <type image="vmx" filesystem="xfs" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="uefi">
+            <size unit="G">10</size>
+        </type>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="rpm-md" alias="Fedora37" sourcetype="metalink">
+        <source path="https://mirrors.fedoraproject.org/metalink?repo=fedora-37&amp;arch=x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="Fedora37-updates" sourcetype="metalink">
+        <source path="https://mirrors.fedoraproject.org/metalink?repo=updates-released-f37&amp;arch=x86_64"/>
+    </repository>
+    <packages type="image">
+        <namedCollection name="network-server"/>
+        <package name="grub2"/>
+        <package name="grubby"/>
+        <package name="kernel"/>
+        <package name="plymouth-theme-charge"/>
+        <package name="grub2-breeze-theme"/>
+        <package name="selinux-policy-targeted"/>
+        <package name="dhclient"/>
+        <package name="NetworkManager"/>
+        <package name="vim"/>
+        <package name="tzdata"/>
+        <package name="python-kiwi"/>
+        <package name="git"/>
+    </packages>
+    <packages type="iso">
+        <package name="grub2-efi-x64-cdboot"/>
+        <package name="dracut-live"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="glibc-all-langpacks"/>
+        <package name="filesystem"/>
+        <package name="basesystem"/>
+        <package name="grub2-efi-x64"/>
+        <package name="grub2-efi-x64-modules"/>
+        <package name="shim-x64"/>
+        <package name="syslinux"/>
+        <package name="syslinux-efi64"/>
+    </packages>
+</image>

@@ -1,0 +1,11 @@
+[Unit]
+Description=Resize LVM
+ConditionPathExists=/.kiwi_lvm_resize.trigger
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/resize_lvm.sh
+ExecStartPost=/bin/bash -c 'rm -f /.kiwi_lvm_resize.trigger'
+
+[Install]
+WantedBy=multi-user.target
