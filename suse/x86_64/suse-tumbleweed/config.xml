@@ -69,6 +69,7 @@
     <packages type="bootstrap">
         <package name="udev"/>
         <package name="filesystem"/>
+        <package name="diffutils"/>
         <package name="gawk"/>
         <package name="grep"/>
         <package name="gzip"/>
