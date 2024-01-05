@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="6.8" name="Debian-Bookworm_appliance">
+    <description type="system">
+        <author>Marcus Schäfer</author>
+        <contact>marcus.schaefer@gmail.com</contact>
+        <specification>Debian Bookworm Appliance</specification>
+    </description>
+    <profiles>
+        <profile name="Live" description="Live image" import="true"/>
+        <profile name="Virtual" description="Simple Disk image"/>
+        <profile name="Disk" description="Expandable Disk image"/>
+    </profiles>
+    <preferences>
+        <version>12.0</version>
+        <packagemanager>apt-get</packagemanager>
+        <bootsplash-theme>fade-in</bootsplash-theme>
+        <bootloader-theme>starfield</bootloader-theme>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>Europe/Berlin</timezone>
+    </preferences>
+    <preferences profiles="Live">
+        <type image="iso" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="efi"/>
+    </preferences>
+    <preferences profiles="Virtual">
+        <type image="vmx" filesystem="ext4" kernelcmdline="console=ttyS0 splash" firmware="efi" format="qcow2"/>
+    </preferences>
+    <preferences profiles="Disk">
+        <type image="oem" filesystem="ext4" initrd_system="dracut" firmware="efi" installiso="true">
+            <oemconfig>
+                <oem-swap>true</oem-swap>
+                <oem-device-filter>/dev/ram</oem-device-filter>
+                <oem-multipath-scan>false</oem-multipath-scan>
+            </oemconfig>
+        </type>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="apt-deb" distribution="bookworm" components="main contrib non-free" repository_gpgcheck="false">
+        <source path="http://ftp.halifax.rwth-aachen.de/debian"/>
+    </repository>
+    <repository type="apt-deb" repository_gpgcheck="false">
+        <source path="obs://Virtualization:Appliances:Builder/Debian_12"/>
+    </repository>
+    <packages type="image">
+        <package name="grub-theme-starfield"/>
+        <package name="plymouth-themes"/>
+        <package name="vim"/>
+        <package name="plymouth"/>
+        <package name="grub-efi-amd64"/>
+        <package name="dracut"/>
+        <package name="xz-utils"/>
+        <package name="binutils"/>
+        <package name="linux-image-amd64"/>
+        <package name="isolinux"/>
+        <package name="syslinux"/>
+        <package name="syslinux-common"/>
+        <package name="init"/>
+        <package name="gnupg"/>
+        <package name="iproute2"/>
+        <package name="iptables"/>
+        <package name="iputils-ping"/>
+        <package name="ifupdown"/>
+        <package name="isc-dhcp-client"/>
+        <package name="netbase"/>
+        <package name="bsdmainutils"/>
+        <package name="netplan.io"/>
+        <package name="networkd-dispatcher"/>
+        <package name="net-tools"/>
+        <package name="netbase"/>
+        <package name="dbus"/>
+        <package name="zstd"/>
+        <package name="util-linux"/> 
+        <package name="locales-all"/>
+    </packages>
+    <packages type="iso">
+        <package name="dracut-kiwi-live"/>
+    </packages>
+    <packages type="oem">
+        <package name="dracut-kiwi-oem-repart"/>
+        <package name="dracut-kiwi-oem-dump"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="grub2"/>
+        <!-- comptibility package for /usr/lib paths -->
+        <package name="usrmerge"/>
+    </packages>
+</image>
