@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="7.4" name="Workstation">
+<image schemaversion="7.6" name="Workstation">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>marcus.schaefer@gmail.com</contact>

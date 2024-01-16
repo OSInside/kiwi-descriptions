@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="Debian-Stretch_appliance">
+<image schemaversion="7.6" name="Debian-Stretch_appliance">
     <description type="system">
         <author>Marcus Schäfer</author>
         <contact>ms@suse.de</contact>
@@ -11,7 +11,7 @@
     </profiles>
     <preferences>
         <version>9.2</version>
-        <packagemanager>apt-get</packagemanager>
+        <packagemanager>apt</packagemanager>
         <bootsplash-theme>fade-in</bootsplash-theme>
         <bootloader-theme>starfield</bootloader-theme>
         <locale>en_US</locale>
@@ -19,7 +19,12 @@
         <timezone>Europe/Berlin</timezone>
     </preferences>
     <preferences profiles="Virtual">
-        <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" firmware="efi"/>
+        <type image="oem" primary="true" filesystem="ext4" firmware="efi">
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+            <bootloader name="grub2"/>
+        </type>
     </preferences>
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>

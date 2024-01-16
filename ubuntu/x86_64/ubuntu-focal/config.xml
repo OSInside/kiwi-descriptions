@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="Ubuntu-20.04_appliance">
+<image schemaversion="7.6" name="Ubuntu-20.04_appliance">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.com</contact>
@@ -13,7 +13,7 @@
     </profiles>
     <preferences>
         <version>1.16.4</version>
-        <packagemanager>apt-get</packagemanager>
+        <packagemanager>apt</packagemanager>
         <bootsplash-theme>sabily</bootsplash-theme>
         <bootloader-theme>ubuntu-mate</bootloader-theme>
         <locale>en_US</locale>
@@ -25,7 +25,12 @@
         <type image="iso" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="efi"/>
     </preferences>
     <preferences profiles="Virtual">
-        <type image="vmx" filesystem="ext4" kernelcmdline="console=ttyS0" firmware="uefi" bootloader="grub2"/>
+        <type image="oem" filesystem="ext4" kernelcmdline="console=ttyS0" firmware="uefi">
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+            <bootloader name="grub2"/>
+        </type>
     </preferences>
     <preferences profiles="Disk">
         <type image="oem" filesystem="ext4" initrd_system="dracut" firmware="efi" installiso="true">
@@ -87,7 +92,6 @@
         <package name="dracut-kiwi-oem-dump"/>
     </packages>
     <packages type="bootstrap">
-        <!-- comptibility package for /usr/lib paths -->
         <package name="usrmerge"/>
     </packages>
 </image>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="7.4" name="CentOS-9-extra-lvm">
+<image schemaversion="7.6" name="CentOS-9-extra-lvm">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>marcus.schaefer@gmail.com</contact>
@@ -10,7 +10,7 @@
     </description>
     <preferences>
         <version>1.0.9</version>
-        <packagemanager>dnf</packagemanager>
+        <packagemanager>dnf4</packagemanager>
         <locale>en_US</locale>
         <keytable>us</keytable>
         <timezone>UTC</timezone>

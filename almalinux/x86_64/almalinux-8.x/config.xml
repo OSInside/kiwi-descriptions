@@ -1,4 +1,6 @@
-<image schemaversion="6.8" name="AlmaLinux-8_appliance">
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.6" name="AlmaLinux-8_appliance">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.de</contact>
@@ -11,7 +13,7 @@
     </profiles>
     <preferences>
         <version>8</version>
-        <packagemanager>dnf</packagemanager>
+        <packagemanager>dnf4</packagemanager>
         <bootsplash-theme>charge</bootsplash-theme>
         <locale>en_US</locale>
         <keytable>us</keytable>
@@ -22,10 +24,16 @@
         <type image="iso" flags="dmsquash" firmware="uefi" kernelcmdline="console=ttyS0"/>
     </preferences>
     <preferences profiles="Virtual">
-        <type image="vmx" primary="true" filesystem="xfs" kernelcmdline="rhgb console=ttyS0" firmware="uefi" bootloader="grub2"/>
+        <type image="oem" primary="true" filesystem="xfs" kernelcmdline="rhgb console=ttyS0" firmware="uefi">
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+            <bootloader name="grub2"/>
+        </type>
     </preferences>
     <preferences profiles="Disk">
-        <type image="oem" initrd_system="dracut" filesystem="ext3" installiso="true" firmware="uefi" kernelcmdline="console=ttyS0" bootloader="grub2">
+        <type image="oem" initrd_system="dracut" filesystem="ext3" installiso="true" firmware="uefi" kernelcmdline="console=ttyS0">
+            <bootloader name="grub2"/>
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
                 <oem-swap>true</oem-swap>

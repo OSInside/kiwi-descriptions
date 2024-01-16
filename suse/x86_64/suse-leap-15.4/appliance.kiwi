@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="Leap-15.4_appliance">
+<image schemaversion="7.6" name="Leap-15.4_appliance">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.de</contact>
@@ -26,13 +26,17 @@
         <bootloader-theme>openSUSE</bootloader-theme>
     </preferences>
     <preferences profiles="DracutLive">
-        <type image="iso" primary="true" flags="dmsquash" hybrid="true" firmware="efi"  hybridpersistent_filesystem="ext4" hybridpersistent="true" mediacheck="false"/>
+        <type image="iso" primary="true" flags="dmsquash" firmware="efi" hybridpersistent_filesystem="ext4" hybridpersistent="true" mediacheck="false"/>
     </preferences>
     <preferences profiles="Live">
-        <type image="iso" primary="true" flags="overlay" hybrid="true" firmware="efi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true" mediacheck="true"/>
+        <type image="iso" primary="true" flags="overlay" firmware="efi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true" mediacheck="true"/>
     </preferences>
     <preferences profiles="Virtual">
-        <type image="vmx" filesystem="xfs" bootloader="grub2" kernelcmdline="splash" firmware="uefi" bootpartition="true" bootfilesystem="ext4">
+        <type image="oem" filesystem="xfs" kernelcmdline="splash" firmware="uefi" bootpartition="true" bootfilesystem="ext4">
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+            <bootloader name="grub2"/>
             <machine memory="512" guestOS="suse" HWversion="4">
                 <vmdisk id="0" controller="ide"/>
                 <vmnic driver="e1000" interface="0" mode="bridged"/>
@@ -40,7 +44,8 @@
         </type>
     </preferences>
     <preferences profiles="Disk">
-        <type image="oem" filesystem="ext4" initrd_system="dracut" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi">
+        <type image="oem" filesystem="ext4" initrd_system="dracut" installiso="true" kernelcmdline="splash" firmware="efi">
+            <bootloader name="grub2"/>
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
                 <oem-swap>true</oem-swap>

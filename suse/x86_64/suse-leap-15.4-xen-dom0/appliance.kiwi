@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="Leap-15.4_xen_dom0_appliance">
+<image schemaversion="7.6" name="Leap-15.4_xen_dom0_appliance">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>marcus.schaefer@gmail.com</contact>
@@ -20,7 +20,9 @@
         <bootloader-theme>openSUSE</bootloader-theme>
     </preferences>
     <preferences>
-        <type image="oem" filesystem="xfs" bootloader="grub2" kernelcmdline="splash" firmware="uefi" xen_server="true" initrd_system="dracut"/>
+        <type image="oem" filesystem="xfs" kernelcmdline="splash" firmware="uefi" xen_server="true" initrd_system="dracut">
+            <bootloader name="grub2"/>
+        </type>
     </preferences>
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>

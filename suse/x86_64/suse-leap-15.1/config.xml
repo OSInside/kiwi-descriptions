@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="Leap-15.1_appliance">
+<image schemaversion="7.6" name="Leap-15.1_appliance">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.de</contact>
@@ -27,7 +27,7 @@
         <bootloader-theme>openSUSE</bootloader-theme>
     </preferences>
     <preferences profiles="Live">
-        <type image="iso" primary="true" flags="overlay" hybrid="true" firmware="efi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true" mediacheck="true"/>
+        <type image="iso" primary="true" flags="overlay" firmware="efi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true" mediacheck="true"/>
     </preferences>
     <preferences profiles="KIS">
         <type image="kis" filesystem="ext4"/>
@@ -36,7 +36,11 @@
         <type image="pxe" filesystem="ext4" boot="netboot/suse-leap15.1"/>
     </preferences>
     <preferences profiles="Virtual">
-        <type image="vmx" filesystem="ext4" bootloader="grub2" kernelcmdline="splash" firmware="efi">
+        <type image="oem" filesystem="ext4" kernelcmdline="splash" firmware="efi">
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+            <bootloader name="grub2"/>
             <machine memory="512" guestOS="suse" HWversion="4">
                 <vmdisk id="0" controller="ide"/>
                 <vmnic driver="e1000" interface="0" mode="bridged"/>
@@ -44,7 +48,8 @@
         </type>
     </preferences>
     <preferences profiles="Disk">
-        <type image="oem" filesystem="ext4" initrd_system="dracut" installiso="true" bootloader="grub2" kernelcmdline="splash" firmware="efi">
+        <type image="oem" filesystem="ext4" initrd_system="dracut" installiso="true" kernelcmdline="splash" firmware="efi">
+            <bootloader name="grub2"/>
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
                 <oem-swap>true</oem-swap>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="Fedora-31.0_appliance">
+<image schemaversion="7.6" name="Fedora-31.0_appliance">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.de</contact>
@@ -8,15 +8,20 @@
     </description>
     <preferences>
         <version>1.0.0</version>
-        <packagemanager>dnf</packagemanager>
+        <packagemanager>dnf4</packagemanager>
         <bootsplash-theme>charge</bootsplash-theme>
         <bootloader-theme>breeze</bootloader-theme>
         <locale>en_US</locale>
         <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <type image="iso" flags="overlay" hybrid="true" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
-        <type image="vmx" primary="true" filesystem="ext4" bootloader="grub2" kernelcmdline="selinux=targeted" firmware="uefi"/>
+        <type image="iso" flags="overlay" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+        <type image="oem" primary="true" filesystem="ext4" kernelcmdline="selinux=targeted" firmware="uefi">
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+            <bootloader name="grub2"/>
+        </type>
     </preferences>
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>

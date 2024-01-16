@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="tumbleweed">
+<image schemaversion="7.6" name="tumbleweed">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>ms@suse.de</contact>
@@ -9,7 +9,7 @@
         </specification>
     </description>
     <preferences>
-        <type image="iso" primary="true" flags="overlay" hybrid="true" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="uefi"/>
+        <type image="iso" primary="true" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="uefi"/>
         <type image="oem" filesystem="xfs">
             <oemconfig>
                 <oem-resize>false</oem-resize>
@@ -31,7 +31,7 @@
     <repository type="rpm-md" alias="kiwi" priority="1">
         <source path="obs://Virtualization:Appliances:Builder/openSUSE_Tumbleweed"/>
     </repository>
-    <repository type="yast2" alias="Tumbleweed" imageinclude="true">
+    <repository alias="Tumbleweed" imageinclude="true">
         <source path="http://download.opensuse.org/tumbleweed/repo/oss"/>
     </repository>
     <packages type="image">
@@ -60,7 +60,7 @@
         <package name="which"/>
         <package name="kernel-default"/>
         <package name="timezone"/>
-        <package name="xz" />
+        <package name="xz"/>
         <package name="wicked"/>
     </packages>
     <packages type="iso">
@@ -76,6 +76,6 @@
         <package name="cracklib-dict-full"/>
         <package name="ca-certificates"/>
         <package name="openSUSE-release"/>
-        <package name="xz" />
+        <package name="xz"/>
     </packages>
 </image>

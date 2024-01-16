@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="6.8" name="Leap-15.3_appliance">
+<image schemaversion="7.6" name="Leap-15.3_appliance">
     <description type="system">
         <author>Marcus Schaefer</author>
         <contact>marcus.schaefer@gmail.com</contact>
@@ -18,7 +18,8 @@
         <rpm-check-signatures>false</rpm-check-signatures>
         <bootsplash-theme>bgrt</bootsplash-theme>
         <bootloader-theme>openSUSE</bootloader-theme>
-        <type image="oem" filesystem="xfs" initrd_system="dracut" bootloader="grub2" firmware="uefi" bootpartition="true" bootfilesystem="ext4" spare_part="1G" spare_part_is_last="true" editbootconfig="custom_lvm_create.sh">
+        <type image="oem" filesystem="xfs" initrd_system="dracut" firmware="uefi" bootpartition="true" bootfilesystem="ext4" spare_part="1G" spare_part_is_last="true" editbootconfig="custom_lvm_create.sh">
+            <bootloader name="grub2"/>
             <size unit="G">4</size>
             <oemconfig>
                 <oem-swap>true</oem-swap>
