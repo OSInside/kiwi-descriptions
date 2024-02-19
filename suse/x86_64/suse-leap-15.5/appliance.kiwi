@@ -57,8 +57,17 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
+    <repository type="rpm-md" alias="Leap_15_5_sle" imageinclude="true">
+        <source path="https://download.opensuse.org/update/leap/15.5/sle"/>
+    </repository>
+    <repository type="rpm-md" alias="Leap_15_5_backports" imageinclude="true">
+        <source path="https://download.opensuse.org/update/leap/15.5/backports"/>
+    </repository>
+    <repository type="rpm-md" alias="Leap_15_5_update" imageinclude="true">
+        <source path="https://download.opensuse.org/update/leap/15.5/oss"/>
+    </repository>
     <repository type="rpm-md" alias="Leap_15_5" imageinclude="true">
-        <source path="obs://openSUSE:Leap:15.5/standard"/>
+        <source path="https://download.opensuse.org/distribution/leap/15.5/repo/oss"/>
     </repository>
     <packages type="image">
         <package name="checkmedia"/>
