@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.6" name="Ubuntu-23.04_appliance">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>ms@suse.com</contact>
+        <specification>Image description for Ubuntu 23.04</specification>
+    </description>
+    <profiles>
+        <profile name="Live" description="Live image" import="true"/>
+        <profile name="Virtual" description="Simple Disk image"/>
+        <profile name="Disk" description="Expandable Disk image"/>
+    </profiles>
+    <preferences>
+        <version>1.16.4</version>
+        <packagemanager>apt</packagemanager>
+        <bootsplash-theme>sabily</bootsplash-theme>
+        <bootloader-theme>ubuntu-mate</bootloader-theme>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences profiles="Live">
+        <type image="iso" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="efi"/>
+    </preferences>
+    <preferences profiles="Virtual">
+        <type image="oem" filesystem="ext4" kernelcmdline="console=ttyS0" firmware="uefi">
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+            <bootloader name="grub2"/>
+        </type>
+    </preferences>
+    <preferences profiles="Disk">
+        <type image="oem" filesystem="ext4" initrd_system="dracut" firmware="efi" installiso="true">
+            <oemconfig>
+                <oem-swap>true</oem-swap>
+                <oem-device-filter>/dev/ram</oem-device-filter>
+                <oem-multipath-scan>false</oem-multipath-scan>
+            </oemconfig>
+        </type>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="apt-deb" repository_gpgcheck="false" package_gpgcheck="false" imageinclude="true">
+        <source path="obs://Virtualization:Appliances:Builder/xUbuntu_23.04"/>
+    </repository>
+    <repository type="apt-deb" alias="Lunar-security" distribution="lunar-security" components="main multiverse restricted universe" repository_gpgcheck="false">
+        <source path="http://security.ubuntu.com/ubuntu"/>
+    </repository>
+    <repository type="apt-deb" alias="Lunar-updates" distribution="lunar-updates" components="main multiverse restricted universe" repository_gpgcheck="false">
+        <source path="http://us.archive.ubuntu.com/ubuntu/"/>
+    </repository>
+    <repository type="apt-deb" alias="Lunar" distribution="lunar" components="main multiverse restricted universe" repository_gpgcheck="false">
+        <source path="http://us.archive.ubuntu.com/ubuntu/"/>
+    </repository>
+    <packages type="image">
+        <package name="grub2-themes-ubuntu-mate"/>
+        <package name="plymouth-theme-sabily"/>
+        <package name="plymouth"/>
+        <package name="grub-efi-amd64"/>
+        <package name="grub-common"/>
+        <package name="grub2-common"/>
+        <package name="grub-pc-bin"/>
+        <package name="linux-generic"/>
+        <package name="isolinux"/>
+        <package name="syslinux"/>
+        <package name="syslinux-common"/>
+        <package name="systemd"/>
+        <package name="dracut"/>
+        <package name="init"/>
+        <package name="gnupg"/>
+        <package name="iproute2"/>
+        <package name="iptables"/>
+        <package name="iputils-ping"/>
+        <package name="ifupdown"/>
+        <package name="isc-dhcp-client"/>
+        <package name="netbase"/>
+        <package name="dbus"/>
+        <package name="xz-utils"/>
+        <package name="btrfs-progs"/>
+        <package name="shim"/>
+        <package name="shim-signed"/>
+    </packages>
+    <packages type="iso">
+        <package name="dracut-kiwi-live"/>
+    </packages>
+    <packages type="oem">
+        <package name="dracut-kiwi-oem-repart"/>
+        <package name="dracut-kiwi-oem-dump"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="usrmerge"/>
+    </packages>
+</image>
