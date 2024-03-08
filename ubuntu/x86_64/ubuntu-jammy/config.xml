@@ -45,7 +45,7 @@
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
     <repository type="apt-deb" repository_gpgcheck="false" package_gpgcheck="false" imageinclude="true">
-        <source path="obs://Virtualization:Appliances:Builder/xUbuntu_22.04"/>
+        <source path="obs://Virtualization:Appliances:Builder:Deprecated/xUbuntu_22.04"/>
     </repository>
     <repository type="apt-deb" alias="Jammy-security" distribution="jammy-security" components="main multiverse restricted universe" repository_gpgcheck="false">
         <source path="http://security.ubuntu.com/ubuntu"/>
