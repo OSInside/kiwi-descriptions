@@ -69,7 +69,6 @@
         <package name="iputils-ping"/>
         <package name="ifupdown"/>
         <package name="isc-dhcp-client"/>
-        <package name="netbase"/>
         <package name="bsdmainutils"/>
         <package name="netplan.io"/>
         <package name="networkd-dispatcher"/>
