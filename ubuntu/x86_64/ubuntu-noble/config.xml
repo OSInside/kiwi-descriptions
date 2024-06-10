@@ -83,6 +83,8 @@
         <package name="btrfs-progs"/>
         <package name="shim"/>
         <package name="shim-signed"/>
+        <package name="locales-all"/>
+        <package name="tzdata"/>
     </packages>
     <packages type="iso">
         <package name="dracut-kiwi-live"/>
