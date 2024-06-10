@@ -17,7 +17,6 @@
         <bootsplash-theme>sabily</bootsplash-theme>
         <bootloader-theme>ubuntu-mate</bootloader-theme>
         <locale>en_US</locale>
-        <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-check-signatures>false</rpm-check-signatures>
     </preferences>
