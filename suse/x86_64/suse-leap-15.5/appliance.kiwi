@@ -99,6 +99,8 @@
         <package name="kernel-default"/>
         <package name="timezone"/>
         <package name="chrony"/>
+        <package name="squashfs"/>
+        <package name="NetworkManager"/>
     </packages>
     <packages profiles="DracutLive" type="iso">
         <package name="bind-utils"/>
