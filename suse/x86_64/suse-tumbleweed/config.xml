@@ -74,6 +74,7 @@
         <package name="gawk"/>
         <package name="grep"/>
         <package name="gzip"/>
+        <package name="procps"/>
         <package name="glibc-locale"/>
         <package name="cracklib-dict-full"/>
         <package name="ca-certificates"/>
