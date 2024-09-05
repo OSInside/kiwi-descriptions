@@ -84,6 +84,7 @@
         <package name="shim-signed"/>
         <package name="locales-all"/>
         <package name="tzdata"/>
+        <package name="language-pack-en"/>
     </packages>
     <packages type="iso">
         <package name="dracut-kiwi-live"/>
