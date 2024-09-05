@@ -58,6 +58,7 @@
         <source path="http://us.archive.ubuntu.com/ubuntu/"/>
     </repository>
     <packages type="image">
+        <package name="libpam-runtime"/>
         <package name="grub2-themes-ubuntu-mate"/>
         <package name="plymouth-theme-sabily"/>
         <package name="plymouth"/>
