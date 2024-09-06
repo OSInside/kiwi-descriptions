@@ -31,6 +31,11 @@
         <source path="http://ports.ubuntu.com/ubuntu-ports"/>
     </repository>
     <packages type="image">
+        <package name="gawk"/>
+        <package name="apt-utils"/>
+        <package name="debconf"/>
+        <package name="mawk"/>
+        <package name="dialog"/>
         <package name="libpam-runtime"/>
         <package name="language-pack-en"/>
         <package name="linux-raspi"/>
@@ -65,11 +70,5 @@
         <package name="vim"/>
         <package name="fdisk"/>
     </packages>
-    <packages type="bootstrap">
-        <package name="gawk"/>
-        <package name="apt-utils"/>
-        <package name="debconf"/>
-        <package name="mawk"/>
-        <package name="dialog"/>
-    </packages>
+    <packages type="bootstrap"/>
 </image>
