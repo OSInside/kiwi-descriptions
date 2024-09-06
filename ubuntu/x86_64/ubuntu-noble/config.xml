@@ -46,9 +46,6 @@
     <repository type="apt-deb" repository_gpgcheck="false" package_gpgcheck="false" imageinclude="true">
         <source path="obs://Virtualization:Appliances:Builder/xUbuntu_24.04"/>
     </repository>
-    <repository type="apt-deb" alias="Noble-security" distribution="noble-security" components="main multiverse restricted universe" repository_gpgcheck="false">
-        <source path="http://security.ubuntu.com/ubuntu"/>
-    </repository>
     <repository type="apt-deb" alias="Noble-updates" distribution="noble-updates" components="main multiverse restricted universe" repository_gpgcheck="false">
         <source path="http://us.archive.ubuntu.com/ubuntu/"/>
     </repository>
