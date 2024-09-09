@@ -30,6 +30,15 @@
     <repository type="apt-deb" alias="Noble" distribution="noble" components="main multiverse restricted universe" repository_gpgcheck="false">
         <source path="http://ports.ubuntu.com/ubuntu-ports"/>
     </repository>
+    <repository type="apt-deb" alias="Noble-Updates" distribution="noble-updates" components="main multiverse restricted universe" repository_gpgcheck="false">
+        <source path="http://ports.ubuntu.com/ubuntu-ports"/>
+    </repository>
+    <repository type="apt-deb" alias="Noble-Backports" distribution="noble-backports" components="main multiverse restricted universe" repository_gpgcheck="false">
+        <source path="http://ports.ubuntu.com/ubuntu-ports"/>
+    </repository>
+    <repository type="apt-deb" alias="Noble-Security" distribution="noble-security" components="main multiverse restricted universe" repository_gpgcheck="false">
+        <source path="http://ports.ubuntu.com/ubuntu-ports"/>
+    </repository>
     <packages type="image">
         <package name="gawk"/>
         <package name="apt-utils"/>
@@ -40,6 +49,7 @@
         <package name="language-pack-en"/>
         <package name="linux-raspi"/>
         <package name="ubuntu-raspi-settings"/>
+        <package name="linux-firmware-raspi"/>
         <package name="linux-firmware"/>
         <package name="u-boot-rpi"/>
         <package name="u-boot-tools"/>
