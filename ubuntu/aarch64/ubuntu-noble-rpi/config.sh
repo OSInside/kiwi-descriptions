@@ -14,12 +14,6 @@ echo "Configure image: [$kiwi_iname]..."
 CONSOLE_FONT="eurlatgr.psfu"
 
 #======================================
-# Install firmware
-#--------------------------------------
-dpkg -i /var/tmp/firmware/linux-firmware-raspi_6-0ubuntu3_arm64.deb
-dpkg -i /var/tmp/firmware/linux-firmware-raspi2_6-0ubuntu3_arm64.deb
-
-#======================================
 # Setup default target, multi-user
 #--------------------------------------
 baseSetRunlevel 3

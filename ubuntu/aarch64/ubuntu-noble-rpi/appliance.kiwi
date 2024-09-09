@@ -7,10 +7,9 @@
         <specification>Disk image for RaspberryPi test build</specification>
     </description>
     <preferences>
-        <version>1.22.4</version>
+        <version>1.24.4</version>
         <packagemanager>apt</packagemanager>
         <locale>en_US</locale>
-        <keytable>us</keytable>
         <timezone>UTC</timezone>
         <rpm-excludedocs>true</rpm-excludedocs>
         <type image="oem" filesystem="xfs" firmware="efi" bootpartition="false" efipartsize="128" devicepersistency="by-label" editbootinstall="editbootinstall_rpi.sh">
@@ -79,6 +78,7 @@
         <package name="less"/>
         <package name="vim"/>
         <package name="fdisk"/>
+        <package name="dracut"/>
     </packages>
     <packages type="bootstrap"/>
 </image>
