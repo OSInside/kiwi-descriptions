@@ -43,8 +43,8 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <repository type="apt-deb" repository_gpgcheck="false" package_gpgcheck="false" imageinclude="true">
-        <source path="obs://Virtualization:Appliances:Builder/xUbuntu_24.04"/>
+    <repository type="apt-deb" repository_gpgcheck="false" package_gpgcheck="false" imageinclude="true" arch="x86_64">
+        <source path="obs://Virtualization:Appliances:Builder/xUbuntu_24.04_x86_64"/>
     </repository>
     <repository type="apt-deb" alias="Noble-updates" distribution="noble-updates" components="main multiverse restricted universe" repository_gpgcheck="false">
         <source path="http://us.archive.ubuntu.com/ubuntu/"/>
@@ -53,7 +53,13 @@
         <source path="http://us.archive.ubuntu.com/ubuntu/"/>
     </repository>
     <packages type="image">
+        <package name="gawk"/>
+        <package name="apt-utils"/>
+        <package name="debconf"/>
+        <package name="mawk"/>
+        <package name="dialog"/>
         <package name="libpam-runtime"/>
+        <package name="language-pack-en"/>
         <package name="grub2-themes-ubuntu-mate"/>
         <package name="plymouth-theme-sabily"/>
         <package name="plymouth"/>
@@ -62,10 +68,12 @@
         <package name="grub2-common"/>
         <package name="grub-pc-bin"/>
         <package name="linux-generic"/>
-        <package name="isolinux"/>
-        <package name="syslinux"/>
-        <package name="syslinux-common"/>
+        <package name="bash-completion"/>
+        <package name="git"/>
+        <package name="sudo"/>
+        <package name="net-tools"/>
         <package name="systemd"/>
+        <package name="systemd-timesyncd"/>
         <package name="dracut"/>
         <package name="init"/>
         <package name="gnupg"/>
@@ -82,7 +90,6 @@
         <package name="shim-signed"/>
         <package name="locales-all"/>
         <package name="tzdata"/>
-        <package name="language-pack-en"/>
     </packages>
     <packages type="iso">
         <package name="dracut-kiwi-live"/>
