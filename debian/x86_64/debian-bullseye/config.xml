@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.6" name="Debian-bullseye_appliance">
+    <description type="system">
+        <author>Marcus Schäfer</author>
+        <contact>marcus.schaefer@gmail.com</contact>
+        <specification>Debian bullseye Appliance</specification>
+    </description>
+    <profiles>
+        <profile name="Live" description="Live image" import="true"/>
+        <profile name="Virtual" description="Simple Disk image"/>
+    </profiles>
+    <preferences>
+        <version>12.0</version>
+        <packagemanager>apt</packagemanager>
+        <bootsplash-theme>fade-in</bootsplash-theme>
+        <bootloader-theme>starfield</bootloader-theme>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>Europe/Berlin</timezone>
+    </preferences>
+    <preferences profiles="Live">
+        <type image="iso" flags="dmsquash" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="efi" eficsm="false"/>
+    </preferences>
+    <preferences profiles="Virtual">
+        <type image="oem" filesystem="ext4" kernelcmdline="console=ttyS0 splash" firmware="efi" format="qcow2" eficsm="false">
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+        </type>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="apt-deb" distribution="bullseye" components="main contrib non-free" repository_gpgcheck="false">
+        <source path="http://ftp.halifax.rwth-aachen.de/debian"/>
+    </repository>
+    <packages type="image">
+        <package name="grub-theme-starfield"/>
+        <package name="plymouth-themes"/>
+        <package name="vim"/>
+        <package name="plymouth"/>
+        <package name="grub-efi-amd64"/>
+        <package name="dracut"/>
+        <package name="xz-utils"/>
+        <package name="binutils"/>
+        <package name="linux-image-amd64"/>
+        <package name="isolinux"/>
+        <package name="syslinux"/>
+        <package name="syslinux-common"/>
+        <package name="init"/>
+        <package name="gnupg"/>
+        <package name="iproute2"/>
+        <package name="iptables"/>
+        <package name="iputils-ping"/>
+        <package name="ifupdown"/>
+        <package name="isc-dhcp-client"/>
+        <package name="bsdmainutils"/>
+        <package name="netplan.io"/>
+        <package name="networkd-dispatcher"/>
+        <package name="net-tools"/>
+        <package name="netbase"/>
+        <package name="dbus"/>
+        <package name="zstd"/>
+        <package name="util-linux"/>
+        <package name="locales-all"/>
+        <package name="usrmerge"/>
+    </packages>
+    <packages type="bootstrap"/>
+</image>
