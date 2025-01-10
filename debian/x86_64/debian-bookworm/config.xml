@@ -19,10 +19,10 @@
         <rpm-check-signatures>false</rpm-check-signatures>
     </preferences>
     <preferences profiles="Live">
-        <type image="iso" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="efi"/>
+        <type image="iso" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="efi" eficsm="false"/>
     </preferences>
     <preferences profiles="Virtual">
-        <type image="oem" filesystem="ext4" kernelcmdline="console=ttyS0 splash" firmware="efi" format="qcow2">
+        <type image="oem" filesystem="ext4" kernelcmdline="console=ttyS0 splash" firmware="efi" format="qcow2" eficsm="false">
             <oemconfig>
                 <oem-resize>false</oem-resize>
             </oemconfig>
