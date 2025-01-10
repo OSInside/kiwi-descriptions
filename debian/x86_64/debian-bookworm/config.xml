@@ -47,7 +47,7 @@
         <source path="http://ftp.halifax.rwth-aachen.de/debian"/>
     </repository>
     <repository type="apt-deb" repository_gpgcheck="false">
-        <source path="obs://Virtualization:Appliances:Builder/Debian_12"/>
+        <source path="obs://Virtualization:Appliances:Builder/Debian_12_x86_64"/>
     </repository>
     <packages type="image">
         <package name="grub-theme-starfield"/>
@@ -78,6 +78,7 @@
         <package name="zstd"/>
         <package name="util-linux"/>
         <package name="locales-all"/>
+        <package name="grub-efi-amd64"/>
     </packages>
     <packages type="iso">
         <package name="dracut-kiwi-live"/>
@@ -86,8 +87,5 @@
         <package name="dracut-kiwi-oem-repart"/>
         <package name="dracut-kiwi-oem-dump"/>
     </packages>
-    <packages type="bootstrap">
-        <package name="grub2"/>
-        <package name="usrmerge"/>
-    </packages>
+    <packages type="bootstrap"/>
 </image>
