@@ -17,9 +17,6 @@
         <bootsplash-theme>fade-in</bootsplash-theme>
         <bootloader-theme>starfield</bootloader-theme>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <locale>en_US</locale>
-        <keytable>us</keytable>
-        <timezone>Europe/Berlin</timezone>
     </preferences>
     <preferences profiles="Live">
         <type image="iso" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="efi"/>
