@@ -1,2 +1,0 @@
-auto lan0
-iface lan0 inet dhcp

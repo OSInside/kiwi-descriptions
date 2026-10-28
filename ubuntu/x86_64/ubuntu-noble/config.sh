@@ -1,13 +1,5 @@
 #!/bin/bash
-#======================================
-# Functions...
-#--------------------------------------
-test -f /.kconfig && . /.kconfig
-
-#======================================
-# Greeting...
-#--------------------------------------
-echo "Configure image: [${kiwi_iname}]..."
+set -ex
 
 # On Debian based distributions the kiwi built in way
 # to setup locale, keyboard and timezone via systemd tools
@@ -23,42 +15,40 @@ echo "LANG=${kiwi_language}" > /etc/locale.conf
 #=======================================
 # Setup system keymap
 #---------------------------------------
-echo "KEYMAP=${kiwi_keytable}" > /etc/vconsole.conf
-echo "FONT=eurlatgr.psfu" >> /etc/vconsole.conf
-echo "FONT_MAP=" >> /etc/vconsole.conf
-echo "FONT_UNIMAP=" >> /etc/vconsole.conf
+{
+    echo "KEYMAP=${kiwi_keytable:-us}"
+    echo "FONT=eurlatgr.psfu"
+    echo "FONT_MAP="
+    echo "FONT_UNIMAP="
+} > /etc/vconsole.conf
 
 #=======================================
 # Setup system timezone
 #---------------------------------------
-[ -e /etc/localtime ] && rm /etc/localtime
-ln -s /usr/share/zoneinfo/${kiwi_timezone} /etc/localtime
+ln -sf /usr/share/zoneinfo/"${kiwi_timezone}" /etc/localtime
 
 #=======================================
 # Setup HW clock to UTC
 #---------------------------------------
-echo "0.0 0 0.0" > /etc/adjtime
-echo "0" >> /etc/adjtime
-echo "UTC" >> /etc/adjtime
+{
+    echo "0.0 0 0.0"
+    echo "0"
+    echo "UTC"
+} > /etc/adjtime
 
 #======================================
-# Disable systemd NTP timesync
+# Activate services
 #--------------------------------------
-baseRemoveService systemd-timesyncd
-
-#======================================
-# Enable firstboot resolv.conf setting
-#--------------------------------------
-baseInsertService symlink-resolvconf
+systemctl enable ssh
+systemctl enable symlink-resolvconf
 
 #======================================
 # Setup default target, multi-user
 #--------------------------------------
-baseSetRunlevel 3
+systemctl set-default multi-user.target
 
 #======================================
 # Clear apt-get data
 #--------------------------------------
 apt-get clean
-rm -rf /var/lib/apt/*
-rm -rf /var/cache/apt/*
+rm -rf /var/lib/apt/lists/*

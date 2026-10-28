@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.6" name="Fedora-44_appliance">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>ms@suse.de</contact>
+        <specification>Fedora 44 Appliance</specification>
+    </description>
+    <profiles>
+        <profile name="Live" description="Live image"/>
+        <profile name="Virtual" description="Simple Disk image"/>
+        <profile name="Disk" description="Expandable Disk image"/>
+    </profiles>
+    <preferences>
+        <version>44.0.0</version>
+        <packagemanager>dnf5</packagemanager>
+        <bootsplash-theme>charge</bootsplash-theme>
+        <bootloader-theme>breeze</bootloader-theme>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences profiles="Live">
+        <type image="iso" flags="overlay" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true" kernelcmdline="console=tty1 console=ttyS0">
+            <bootloader name="grub2" timeout="10"/>
+        </type>
+    </preferences>
+    <preferences profiles="Virtual">
+        <type image="oem" filesystem="xfs" kernelcmdline="console=tty1 console=ttyS0" firmware="uefi" format="qcow2">
+            <bootloader name="grub2" timeout="10"/>
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+            <size unit="G">10</size>
+        </type>
+    </preferences>
+    <preferences profiles="Disk">
+        <type image="oem" filesystem="ext4" installiso="true" firmware="uefi" kernelcmdline="console=tty1 console=ttyS0">
+            <bootloader name="grub2" timeout="10"/>
+            <oemconfig>
+                <oem-systemsize>2048</oem-systemsize>
+                <oem-swap>true</oem-swap>
+                <oem-swapsize>512</oem-swapsize>
+                <oem-multipath-scan>false</oem-multipath-scan>
+            </oemconfig>
+        </type>
+    </preferences>
+    <users>
+        <user password="$6$kiwiDescr$Pk4z8v/uAP/UM8zWcddBBXWcqTx8T9jYU30fXC6fLXguQ8Kp.quDokrGuzXF3JzzkYX75YKJYdiF75aCZOOEP1" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="rpm-md" alias="Fedora44-updates" sourcetype="metalink">
+        <source path="https://mirrors.fedoraproject.org/metalink?repo=updates-released-f44&amp;arch=x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="Fedora44" sourcetype="metalink">
+        <source path="https://mirrors.fedoraproject.org/metalink?repo=fedora-44&amp;arch=x86_64"/>
+    </repository>
+    <packages type="image">
+        <package name="grub2"/>
+        <package name="grubby"/>
+        <package name="kernel"/>
+        <package name="plymouth-theme-charge"/>
+        <package name="grub2-breeze-theme"/>
+        <package name="selinux-policy-targeted"/>
+        <package name="glibc-all-langpacks"/>
+        <package name="vim"/>
+        <package name="tzdata"/>
+        <package name="NetworkManager"/>
+        <package name="openssh-server"/>
+        <package name="xfsprogs"/>
+        <package name="e2fsprogs"/>
+    </packages>
+    <packages type="iso">
+        <package name="dracut-kiwi-live"/>
+    </packages>
+    <packages type="oem">
+        <package name="dracut-kiwi-oem-repart"/>
+        <package name="dracut-kiwi-oem-dump"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="filesystem"/>
+        <package name="basesystem"/>
+        <package name="grub2-efi-x64-modules"/>
+        <package name="grub2-efi-x64"/>
+        <package name="shim-x64"/>
+        <package name="fedora-release"/>
+        <package name="shadow-utils"/>
+    </packages>
+</image>

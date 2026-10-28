@@ -1,7 +1,0 @@
-This is an openSUSE Tumbleweed Appliance System.
-To upgrade your system call:
-
-        zypper refresh
-        zypper dup
-
-Have a lot of fun...

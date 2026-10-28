@@ -1,19 +1,11 @@
 #!/bin/bash
-#======================================
-# Functions...
-#--------------------------------------
-test -f /.kconfig && . /.kconfig
-test -f /.profile && . /.profile
+set -ex
 
 #======================================
-# Greeting...
+# Activate services
 #--------------------------------------
-echo "Configure image: [$kiwi_iname]..."
-
-#======================================
-# Setup default target, multi-user
-#--------------------------------------
-baseSetRunlevel 3
+systemctl enable sshd
+systemctl enable systemd-resolved
 
 #======================================
 # Enable lan0 interface
@@ -21,13 +13,18 @@ baseSetRunlevel 3
 netctl enable ethernet-dhcp
 
 #======================================
-# Enable dns resolution
+# Setup default target, multi-user
 #--------------------------------------
-baseInsertService systemd-resolved
+systemctl set-default multi-user.target
 
 #======================================
 # Enable first mirror in mirrorlist
 #--------------------------------------
-sed -ie '0,/#Server/s/#Server/Server/' /etc/pacman.d/mirrorlist
+sed -i -e '0,/#Server/s/#Server/Server/' /etc/pacman.d/mirrorlist
 
-exit 0
+#======================================
+# Generate system locale and configure it
+#--------------------------------------
+sed -i -e '0,/#en_US.UTF-8/s/#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
+locale-gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.6" name="CentOS-Stream-10_appliance">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>marcus.schaefer@gmail.com</contact>
+        <specification>CentOS Stream 10 Appliance</specification>
+    </description>
+    <profiles>
+        <profile name="Live" description="Live image"/>
+        <profile name="Virtual" description="Simple Disk image"/>
+        <profile name="Disk" description="Expandable Disk image"/>
+    </profiles>
+    <preferences>
+        <version>10.0.0</version>
+        <packagemanager>dnf4</packagemanager>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences profiles="Live">
+        <type image="iso" flags="overlay" firmware="uefi" hybridpersistent_filesystem="ext4" hybridpersistent="true" kernelcmdline="console=tty0 console=ttyS0">
+            <bootloader name="grub2" timeout="10"/>
+        </type>
+    </preferences>
+    <preferences profiles="Virtual">
+        <type image="oem" filesystem="xfs" kernelcmdline="console=tty0 console=ttyS0" firmware="uefi" format="qcow2">
+            <bootloader name="grub2" timeout="10"/>
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+        </type>
+    </preferences>
+    <preferences profiles="Disk">
+        <type image="oem" filesystem="xfs" installiso="true" firmware="uefi" kernelcmdline="console=tty0 console=ttyS0">
+            <bootloader name="grub2" timeout="10"/>
+            <oemconfig>
+                <oem-systemsize>2048</oem-systemsize>
+                <oem-swap>true</oem-swap>
+                <oem-swapsize>512</oem-swapsize>
+                <oem-multipath-scan>false</oem-multipath-scan>
+            </oemconfig>
+        </type>
+    </preferences>
+    <users>
+        <user password="$6$kiwiDescr$Pk4z8v/uAP/UM8zWcddBBXWcqTx8T9jYU30fXC6fLXguQ8Kp.quDokrGuzXF3JzzkYX75YKJYdiF75aCZOOEP1" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="rpm-md" alias="EPEL10" sourcetype="metalink">
+        <source path="https://mirrors.fedoraproject.org/metalink?repo=epel-10&amp;arch=x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="CentOS10-CRB" sourcetype="metalink">
+        <source path="https://mirrors.centos.org/metalink?repo=centos-crb-10-stream&amp;arch=x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="CentOS10-AppStream" sourcetype="metalink">
+        <source path="https://mirrors.centos.org/metalink?repo=centos-appstream-10-stream&amp;arch=x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="CentOS10-BaseOS" sourcetype="metalink">
+        <source path="https://mirrors.centos.org/metalink?repo=centos-baseos-10-stream&amp;arch=x86_64"/>
+    </repository>
+    <packages type="image">
+        <package name="grub2"/>
+        <package name="kernel"/>
+        <package name="audit"/>
+        <package name="e2fsprogs"/>
+        <package name="xfsprogs"/>
+        <package name="firewalld"/>
+        <package name="hostname"/>
+        <package name="irqbalance"/>
+        <package name="kexec-tools"/>
+        <package name="openssh-clients"/>
+        <package name="openssh-server"/>
+        <package name="parted"/>
+        <package name="gdisk"/>
+        <package name="passwd"/>
+        <package name="policycoreutils"/>
+        <package name="rootfiles"/>
+        <package name="rsyslog"/>
+        <package name="selinux-policy-targeted"/>
+        <package name="NetworkManager"/>
+        <package name="iputils"/>
+        <package name="glibc-all-langpacks"/>
+        <package name="vim-minimal"/>
+        <package name="tar"/>
+        <package name="less"/>
+    </packages>
+    <!-- the kiwi dracut modules are provided by EPEL -->
+    <packages type="iso">
+        <package name="dracut-kiwi-live"/>
+    </packages>
+    <packages type="oem">
+        <package name="dracut-kiwi-oem-repart"/>
+        <package name="dracut-kiwi-oem-dump"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="filesystem"/>
+        <package name="basesystem"/>
+        <package name="centos-stream-release"/>
+        <package name="glibc-langpack-en"/>
+        <package name="grub2-efi-x64-modules" arch="x86_64"/>
+        <package name="grub2-efi-x64" arch="x86_64"/>
+        <package name="shim-x64" arch="x86_64"/>
+    </packages>
+</image>

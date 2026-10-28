@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.6" name="Debian-Bookworm_appliance">
+    <description type="system">
+        <author>Marcus Schäfer</author>
+        <contact>marcus.schaefer@gmail.com</contact>
+        <specification>Debian 12 (Bookworm) Appliance</specification>
+    </description>
+    <profiles>
+        <profile name="Live" description="Live image"/>
+        <profile name="Virtual" description="Simple Disk image"/>
+        <profile name="Disk" description="Expandable Disk image"/>
+    </profiles>
+    <preferences>
+        <version>12.12.0</version>
+        <packagemanager>apt</packagemanager>
+        <bootsplash-theme>fade-in</bootsplash-theme>
+        <bootloader-theme>starfield</bootloader-theme>
+        <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <!-- bookworm conflicts on the grub-pc and grub-efi packages, thus no CSM mode -->
+    <preferences profiles="Live">
+        <type image="iso" flags="overlay" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="efi" eficsm="false">
+            <bootloader name="grub2" timeout="10"/>
+        </type>
+    </preferences>
+    <preferences profiles="Virtual">
+        <type image="oem" filesystem="ext4" kernelcmdline="console=ttyS0 console=tty0 splash" firmware="efi" format="qcow2" eficsm="false">
+            <bootloader name="grub2" timeout="10"/>
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+        </type>
+    </preferences>
+    <preferences profiles="Disk">
+        <type image="oem" filesystem="ext4" firmware="efi" installiso="true" eficsm="false">
+            <bootloader name="grub2" timeout="10"/>
+            <oemconfig>
+                <oem-swap>true</oem-swap>
+                <oem-device-filter>/dev/ram</oem-device-filter>
+                <oem-multipath-scan>false</oem-multipath-scan>
+            </oemconfig>
+        </type>
+    </preferences>
+    <users>
+        <user password="$6$kiwiDescr$Pk4z8v/uAP/UM8zWcddBBXWcqTx8T9jYU30fXC6fLXguQ8Kp.quDokrGuzXF3JzzkYX75YKJYdiF75aCZOOEP1" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="apt-deb" alias="Bookworm-security" distribution="bookworm-security" components="main contrib non-free non-free-firmware" repository_gpgcheck="false">
+        <source path="http://security.debian.org/debian-security"/>
+    </repository>
+    <repository type="apt-deb" alias="Bookworm-updates" distribution="bookworm-updates" components="main contrib non-free non-free-firmware" repository_gpgcheck="false">
+        <source path="http://deb.debian.org/debian"/>
+    </repository>
+    <repository type="apt-deb" alias="Bookworm" distribution="bookworm" components="main contrib non-free non-free-firmware" repository_gpgcheck="false">
+        <source path="http://deb.debian.org/debian"/>
+    </repository>
+    <packages type="image">
+        <package name="grub-theme-starfield"/>
+        <package name="plymouth-themes"/>
+        <package name="vim"/>
+        <package name="plymouth"/>
+        <package name="grub-efi-amd64"/>
+        <package name="dracut"/>
+        <package name="xz-utils"/>
+        <package name="binutils"/>
+        <package name="linux-image-amd64"/>
+        <package name="init"/>
+        <package name="gnupg"/>
+        <package name="iproute2"/>
+        <package name="iptables"/>
+        <package name="iputils-ping"/>
+        <package name="ifupdown"/>
+        <package name="isc-dhcp-client"/>
+        <package name="bsdmainutils"/>
+        <package name="net-tools"/>
+        <package name="netbase"/>
+        <package name="dbus"/>
+        <package name="zstd"/>
+        <package name="util-linux"/>
+        <package name="locales-all"/>
+        <package name="tzdata"/>
+        <package name="openssh-server"/>
+    </packages>
+    <!-- Debian provides the kiwi dracut modules as kiwi-dracut-* -->
+    <packages type="iso">
+        <package name="kiwi-dracut-live"/>
+    </packages>
+    <packages type="oem">
+        <package name="kiwi-dracut-oem-repart"/>
+        <package name="kiwi-dracut-oem-dump"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="ca-certificates"/>
+    </packages>
+</image>

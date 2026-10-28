@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.6" name="Arch_appliance">
+    <description type="system">
+        <author>David Cassany</author>
+        <contact>dcassany@suse.com</contact>
+        <specification>Arch Linux Appliance</specification>
+    </description>
+    <profiles>
+        <profile name="Live" description="Live image"/>
+        <profile name="Virtual" description="Simple Disk image"/>
+        <profile name="Disk" description="Expandable Disk image"/>
+    </profiles>
+    <preferences>
+        <version>1.1.0</version>
+        <packagemanager>pacman</packagemanager>
+        <locale>POSIX</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <!--
+        Arch Linux does not provide the linuxefi grub command which
+        kiwi uses for EFI boot. Thus the iso_boot.template and the
+        editbootinstall_arch.sh script are used to adapt grub.cfg
+    -->
+    <preferences profiles="Live">
+        <type image="iso" firmware="efi" flags="dmsquash" kernelcmdline="console=tty0 console=ttyS0">
+            <bootloader name="grub2" timeout="10" grub_template="iso_boot.template"/>
+        </type>
+    </preferences>
+    <preferences profiles="Virtual">
+        <type image="oem" filesystem="ext4" firmware="efi" kernelcmdline="console=tty0 console=ttyS0" editbootinstall="editbootinstall_arch.sh" format="qcow2">
+            <bootloader name="grub2" timeout="10"/>
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+        </type>
+    </preferences>
+    <preferences profiles="Disk">
+        <type image="oem" filesystem="ext4" firmware="efi" kernelcmdline="console=tty0 console=ttyS0" editbootinstall="editbootinstall_arch.sh">
+            <bootloader name="grub2" timeout="10"/>
+            <oemconfig>
+                <oem-swap>true</oem-swap>
+                <oem-swapsize>512</oem-swapsize>
+                <oem-multipath-scan>false</oem-multipath-scan>
+            </oemconfig>
+        </type>
+    </preferences>
+    <users>
+        <user password="$6$kiwiDescr$Pk4z8v/uAP/UM8zWcddBBXWcqTx8T9jYU30fXC6fLXguQ8Kp.quDokrGuzXF3JzzkYX75YKJYdiF75aCZOOEP1" home="/root" name="root" groups="root"/>
+    </users>
+    <repository alias="kiwi" components="Virtualization_Appliances_Builder_Arch_Linux">
+        <source path="https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/Arch_Linux/x86_64/"/>
+    </repository>
+    <repository alias="dracut_hooks" components="Virtualization_Appliances_Images_Testing_x86_archlinux">
+        <source path="https://download.opensuse.org/repositories/Virtualization:/Appliances:/Images:/Testing_x86:/archlinux/standard/x86_64/"/>
+    </repository>
+    <repository alias="Arch" components="core extra">
+        <source path="https://geo.mirror.pkgbuild.com/$repo/os/$arch"/>
+    </repository>
+    <packages type="image">
+        <package name="base"/>
+        <package name="linux"/>
+        <package name="linux-firmware"/>
+        <package name="dracut"/>
+        <!--
+            dracut-hooks provides pacman hooks to ensure
+            dracut recreates the initrd on kernel update
+        -->
+        <package name="dracut-hooks"/>
+        <package name="cpio"/>
+        <package name="busybox"/>
+        <package name="binutils"/>
+        <package name="systemd"/>
+        <package name="systemd-resolvconf"/>
+        <package name="openssh"/>
+        <package name="dhclient"/>
+        <package name="netctl"/>
+        <package name="ifplugd"/>
+        <package name="parted"/>
+        <package name="efibootmgr"/>
+        <package name="dosfstools"/>
+        <package name="grub"/>
+        <package name="vim"/>
+    </packages>
+    <packages type="oem" profiles="Disk">
+        <package name="dracut-kiwi-oem-repart"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="filesystem"/>
+        <package name="pacman-mirrorlist"/>
+        <package name="archlinux-keyring"/>
+    </packages>
+</image>

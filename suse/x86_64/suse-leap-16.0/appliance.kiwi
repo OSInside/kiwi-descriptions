@@ -28,20 +28,16 @@
         <type image="iso" primary="true" flags="overlay" firmware="efi" kernelcmdline="splash" hybridpersistent_filesystem="ext4" hybridpersistent="true" mediacheck="true"/>
     </preferences>
     <preferences profiles="Virtual">
-        <type image="oem" filesystem="xfs" kernelcmdline="splash" firmware="uefi" bootfilesystem="ext4">
+        <type image="oem" filesystem="xfs" kernelcmdline="splash console=ttyS0 console=tty0" firmware="uefi" format="qcow2">
+            <bootloader name="grub2" timeout="10"/>
             <oemconfig>
                 <oem-resize>false</oem-resize>
             </oemconfig>
-            <bootloader name="grub2"/>
-            <machine memory="512" guestOS="suse" HWversion="4">
-                <vmdisk id="0" controller="ide"/>
-                <vmnic driver="e1000" interface="0" mode="bridged"/>
-            </machine>
         </type>
     </preferences>
     <preferences profiles="Disk">
-        <type image="oem" filesystem="ext4" initrd_system="dracut" installiso="true" kernelcmdline="splash" firmware="efi">
-            <bootloader name="grub2"/>
+        <type image="oem" filesystem="ext4" installiso="true" kernelcmdline="splash" firmware="efi">
+            <bootloader name="grub2" timeout="10"/>
             <oemconfig>
                 <oem-systemsize>2048</oem-systemsize>
                 <oem-swap>true</oem-swap>
@@ -51,9 +47,9 @@
         </type>
     </preferences>
     <users>
-        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+        <user password="$6$kiwiDescr$Pk4z8v/uAP/UM8zWcddBBXWcqTx8T9jYU30fXC6fLXguQ8Kp.quDokrGuzXF3JzzkYX75YKJYdiF75aCZOOEP1" home="/root" name="root" groups="root"/>
     </users>
-    <repository type="rpm-md" alias="Leap_16" imageinclude="true">
+    <repository type="rpm-md" alias="Leap_16.0" imageinclude="true">
         <source path="https://download.opensuse.org/distribution/leap/16.0/repo/oss"/>
     </repository>
     <packages type="image">
@@ -77,7 +73,6 @@
         <package name="iproute2"/>
         <package name="less"/>
         <package name="bash-completion"/>
-        <package name="dhcp-client"/>
         <package name="which"/>
         <package name="shim"/>
         <package name="kernel-default"/>
@@ -88,11 +83,9 @@
         <package name="procps"/>
     </packages>
     <packages type="iso">
-        <package name="gfxboot-branding-openSUSE"/>
         <package name="dracut-kiwi-live"/>
     </packages>
     <packages type="oem">
-        <package name="gfxboot-branding-openSUSE"/>
         <package name="dracut-kiwi-oem-repart"/>
         <package name="dracut-kiwi-oem-dump"/>
     </packages>
@@ -103,5 +96,6 @@
         <package name="cracklib-dict-full"/>
         <package name="ca-certificates"/>
         <package name="ca-certificates-mozilla"/>
+        <package name="Leap-release"/>
     </packages>
 </image>

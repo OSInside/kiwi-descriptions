@@ -1,23 +1,6 @@
 #!/bin/bash
 set -ex
 
-#======================================
-# Functions...
-#--------------------------------------
-test -f /.kconfig && . /.kconfig
-
-echo "Configure image: [$kiwi_iname]..."
-
-#======================================
-# add missing fonts
-#--------------------------------------
-CONSOLE_FONT="eurlatgr.psfu"
-
-#======================================
-# Setup default target, multi-user
-#--------------------------------------
-baseSetRunlevel 3
-
 # On Debian based distributions the kiwi built in way
 # to setup locale, keyboard and timezone via systemd tools
 # does not work because not(yet) provided by the distribution.
@@ -32,43 +15,45 @@ echo "LANG=${kiwi_language}" > /etc/locale.conf
 #=======================================
 # Setup system keymap
 #---------------------------------------
-echo "KEYMAP=${kiwi_keytable}" > /etc/vconsole.conf
-echo "FONT=eurlatgr.psfu" >> /etc/vconsole.conf
-echo "FONT_MAP=" >> /etc/vconsole.conf
-echo "FONT_UNIMAP=" >> /etc/vconsole.conf
+{
+    echo "KEYMAP=${kiwi_keytable:-us}"
+    echo "FONT=eurlatgr.psfu"
+    echo "FONT_MAP="
+    echo "FONT_UNIMAP="
+} > /etc/vconsole.conf
 
 #=======================================
 # Setup system timezone
 #---------------------------------------
-rm -f /etc/localtime
-ln -s /usr/share/zoneinfo/${kiwi_timezone} /etc/localtime
+ln -sf /usr/share/zoneinfo/"${kiwi_timezone}" /etc/localtime
 
 #=======================================
 # Setup HW clock to UTC
 #---------------------------------------
-echo "0.0 0 0.0" > /etc/adjtime
-echo "0" >> /etc/adjtime
-echo "UTC" >> /etc/adjtime
+{
+    echo "0.0 0 0.0"
+    echo "0"
+    echo "UTC"
+} > /etc/adjtime
 
 #======================================
 # Activate services
 #--------------------------------------
-baseInsertService ssh
-baseInsertService systemd-networkd
-baseInsertService symlink-resolvconf
-baseInsertService rpi-eeprom-update
-baseInsertService systemd-timesyncd
+systemctl enable ssh
+systemctl enable systemd-networkd
+systemctl enable symlink-resolvconf
+systemctl enable rpi-eeprom-update
+systemctl enable systemd-timesyncd
 
 #======================================
-# Sysconfig Update
+# Setup default target, multi-user
 #--------------------------------------
-# Systemd controls the console font now
-echo FONT="$CONSOLE_FONT" >> /etc/vconsole.conf
+systemctl set-default multi-user.target
 
 #======================================
 # Configure Raspberry Pi specifics
 #--------------------------------------
-# Add necessary kernel modules to initrd (will disappear with bsc#1084272)
+# Add necessary kernel modules to initrd
 echo 'add_drivers+=" bcm2835_dma dwc2 "' \
     > /etc/dracut.conf.d/raspberrypi_modules.conf
 
@@ -76,11 +61,11 @@ echo 'add_drivers+=" bcm2835_dma dwc2 "' \
 # No HDMI hotplug available
 # Prevent too many page allocations (bsc#1012449)
 cat > /etc/modprobe.d/50-rpi3.conf <<-EOF
-    options drm_kms_helper poll=0
-    options smsc95xx turbo_mode=N
+	options drm_kms_helper poll=0
+	options smsc95xx turbo_mode=N
 EOF
 
 # Avoid running out of DMA pages for smsc95xx (bsc#1012449)
 cat > /usr/lib/sysctl.d/50-rpi3.conf <<-EOF
-    vm.min_free_kbytes = 2048
+	vm.min_free_kbytes = 2048
 EOF

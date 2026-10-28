@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.6" name="Tumbleweed-container">
+    <description type="system">
+        <author>David Cassany</author>
+        <contact>dcassany@suse.com</contact>
+        <specification>openSUSE Tumbleweed container</specification>
+    </description>
+    <preferences>
+        <version>1.0.5</version>
+        <packagemanager>zypper</packagemanager>
+        <locale>en_US</locale>
+        <rpm-excludedocs>true</rpm-excludedocs>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <type image="docker">
+            <containerconfig name="opensuse" tag="tumbleweed" maintainer="David Cassany &lt;dcassany@suse.com&gt;">
+                <subcommand execute="/bin/bash"/>
+            </containerconfig>
+        </type>
+    </preferences>
+    <repository type="rpm-md" alias="Tumbleweed">
+        <source path="https://download.opensuse.org/tumbleweed/repo/oss"/>
+    </repository>
+    <packages type="image"/>
+    <packages type="bootstrap">
+        <package name="patterns-base-minimal_base"/>
+        <package name="ca-certificates"/>
+        <package name="ca-certificates-mozilla"/>
+        <package name="openSUSE-release"/>
+        <package name="zypper"/>
+        <package name="timezone"/>
+    </packages>
+</image>

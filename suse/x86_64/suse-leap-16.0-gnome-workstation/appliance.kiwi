@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.6" name="Leap-16.0_workstation">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>marcus.schaefer@gmail.com</contact>
+        <specification>A Gnome based Linux workstation</specification>
+    </description>
+    <preferences>
+        <version>1.16.0</version>
+        <packagemanager>zypper</packagemanager>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>Europe/Berlin</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <bootsplash-theme>bgrt</bootsplash-theme>
+        <bootloader-theme>openSUSE</bootloader-theme>
+        <type image="oem" filesystem="xfs" installiso="true" kernelcmdline="splash=silent quiet" firmware="uefi" bootpartition="true" installboot="install" luks="linux">
+            <bootloader name="grub2" timeout="10"/>
+            <systemdisk>
+                <volume name="home"/>
+            </systemdisk>
+            <oemconfig>
+                <oem-swap>true</oem-swap>
+                <oem-swapsize>4096</oem-swapsize>
+                <oem-device-filter>/dev/ram</oem-device-filter>
+                <oem-multipath-scan>false</oem-multipath-scan>
+            </oemconfig>
+        </type>
+    </preferences>
+    <users>
+        <user password="$6$kiwiDescr$Pk4z8v/uAP/UM8zWcddBBXWcqTx8T9jYU30fXC6fLXguQ8Kp.quDokrGuzXF3JzzkYX75YKJYdiF75aCZOOEP1" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="rpm-md" alias="Leap_16.0" imageinclude="true">
+        <source path="https://download.opensuse.org/distribution/leap/16.0/repo/oss"/>
+    </repository>
+    <packages type="image" patternType="plusRecommended">
+        <package name="cryptsetup"/>
+        <package name="kernel-default"/>
+        <package name="kernel-firmware-all"/>
+        <package name="shim"/>
+        <package name="grub2-branding-openSUSE"/>
+        <package name="grub2-x86_64-efi" arch="x86_64"/>
+        <package name="grub2-arm64-efi" arch="aarch64"/>
+        <package name="plymouth-theme-bgrt"/>
+        <package name="plymouth-dracut"/>
+        <package name="NetworkManager"/>
+        <package name="dracut-kiwi-oem-repart"/>
+        <package name="dracut-kiwi-oem-dump"/>
+        <namedCollection name="base"/>
+        <namedCollection name="enhanced_base"/>
+        <namedCollection name="selinux"/>
+        <namedCollection name="x11"/>
+        <namedCollection name="gnome"/>
+        <namedCollection name="gnome_basis"/>
+        <namedCollection name="gnome_imaging"/>
+        <namedCollection name="gnome_internet"/>
+        <namedCollection name="gnome_multimedia"/>
+        <namedCollection name="gnome_office"/>
+        <namedCollection name="gnome_utilities"/>
+        <namedCollection name="sw_management"/>
+        <namedCollection name="sw_management_gnome"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="gawk"/>
+        <package name="grep"/>
+        <package name="xz"/>
+        <package name="udev"/>
+        <package name="filesystem"/>
+        <package name="glibc-locale"/>
+        <package name="cracklib-dict-full"/>
+        <package name="ca-certificates"/>
+        <package name="ca-certificates-mozilla"/>
+        <package name="Leap-release"/>
+    </packages>
+</image>

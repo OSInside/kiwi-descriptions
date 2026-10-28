@@ -1,17 +1,18 @@
 #!/bin/bash
-test -f /.kconfig && . /.kconfig
-
-#======================================
-# Greeting...
-#--------------------------------------
-echo "Configure image: [$kiwi_iname]..."
+set -ex
 
 #======================================
 # Activate services
 #--------------------------------------
-baseInsertService sshd
+systemctl enable ssh
 
 #======================================
 # Setup default target, multi-user
 #--------------------------------------
-baseSetRunlevel 3
+systemctl set-default multi-user.target
+
+#======================================
+# Clear apt-get data
+#--------------------------------------
+apt-get clean
+rm -rf /var/lib/apt/lists/*

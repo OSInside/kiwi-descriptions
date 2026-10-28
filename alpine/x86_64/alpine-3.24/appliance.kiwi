@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.6" name="Alpine-3.24_appliance">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>marcus.schaefer@suse.com</contact>
+        <specification>Alpine Linux 3.24 Appliance</specification>
+    </description>
+    <preferences>
+        <version>3.24.0</version>
+        <packagemanager>apk</packagemanager>
+        <type image="oem" filesystem="ext4" kernelcmdline="console=tty0 console=ttyS0" firmware="efi" eficsm="false" format="qcow2">
+            <bootloader name="grub2" timeout="10"/>
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+        </type>
+    </preferences>
+    <users>
+        <user password="$6$kiwiDescr$Pk4z8v/uAP/UM8zWcddBBXWcqTx8T9jYU30fXC6fLXguQ8Kp.quDokrGuzXF3JzzkYX75YKJYdiF75aCZOOEP1" home="/root" name="root" groups="root"/>
+    </users>
+    <!-- the first repository is also used for bootstrap -->
+    <repository type="apk" alias="main">
+        <source path="https://dl-cdn.alpinelinux.org/alpine/v3.24/main/"/>
+    </repository>
+    <repository type="apk" alias="community">
+        <source path="https://dl-cdn.alpinelinux.org/alpine/v3.24/community/"/>
+    </repository>
+    <packages type="image">
+        <package name="shadow"/>
+        <package name="dracut"/>
+        <package name="fts"/>
+        <package name="linux-edge"/>
+        <package name="linux-firmware-none"/>
+        <package name="grub"/>
+        <package name="grub-efi"/>
+        <package name="openssh"/>
+        <package name="ifupdown-ng"/>
+        <package name="tzdata"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="alpine-base"/>
+    </packages>
+</image>
