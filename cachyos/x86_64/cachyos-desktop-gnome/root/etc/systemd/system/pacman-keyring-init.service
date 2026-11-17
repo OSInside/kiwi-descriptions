@@ -1,0 +1,15 @@
+[Unit]
+Description=Initialize the pacman keyring
+Documentation=man:pacman-key(8)
+ConditionPathExists=!/etc/pacman.d/gnupg/trustdb.gpg
+Before=cachy-update.service
+After=time-sync.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/pacman-key --init
+ExecStart=/usr/bin/pacman-key --populate archlinux cachyos
+
+[Install]
+WantedBy=multi-user.target

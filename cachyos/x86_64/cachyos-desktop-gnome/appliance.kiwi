@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="8.5" name="CachyOS_gnome">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>marcus.schaefer@gmail.com</contact>
+        <specification>
+            CachyOS GNOME desktop, expandable disk image with install ISO
+        </specification>
+    </description>
+    <preferences>
+        <version>1.0.0</version>
+        <packagemanager>pacman</packagemanager>
+        <locale>POSIX</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <bootloader-theme>cachyos</bootloader-theme>
+        <!--
+            The disk layout follows the CachyOS installer setup with
+            the GRUB bootloader: a GPT table with a 512 MB EFI
+            partition mounted at /boot/efi and a btrfs root
+            filesystem without a swap partition. CachyOS uses zram
+            for swap, set up by cachyos-settings. The btrfs volumes
+            are flat subvolumes on the top level of the filesystem,
+            mounted with noatime and zstd compression, and the root
+            filesystem is the subvolume @. The other subvolumes are
+            named by their mount path, e.g. home instead of @home,
+            as kiwi names a subvolume by its mount path.
+        -->
+        <type image="oem" filesystem="btrfs" installiso="true" installboot="install" firmware="efi" efipartsize="512" fsmountoptions="noatime,compress=zstd" kernelcmdline="quiet nowatchdog">
+            <bootloader name="grub2" timeout="5"/>
+            <systemdisk>
+                <volume name="@root=@"/>
+                <volume name="home" parent="/"/>
+                <volume name="root" parent="/"/>
+                <volume name="srv" parent="/"/>
+                <volume name="var/cache" parent="/"/>
+                <volume name="var/tmp" parent="/"/>
+                <volume name="var/log" parent="/"/>
+            </systemdisk>
+            <oemconfig>
+                <oem-device-filter>/dev/ram</oem-device-filter>
+                <oem-multipath-scan>false</oem-multipath-scan>
+            </oemconfig>
+        </type>
+    </preferences>
+    <!--
+        Only the root user is created. GDM does not allow root
+        to log in, the first user is created by GNOME Initial
+        Setup on the first boot of the installed system
+    -->
+    <users>
+        <user password="$6$kiwiDescr$Pk4z8v/uAP/UM8zWcddBBXWcqTx8T9jYU30fXC6fLXguQ8Kp.quDokrGuzXF3JzzkYX75YKJYdiF75aCZOOEP1" home="/root" name="root" groups="root"/>
+    </users>
+    <!--
+        dracut-kiwi-oem-dump and dracut-kiwi-oem-repart provide the
+        kiwi installer and disk resize for the initrd
+    -->
+    <repository alias="3_kiwi" components="Virtualization_Appliances_Builder_Arch_Linux">
+        <source path="https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/Arch_Linux/x86_64/"/>
+    </repository>
+    <!--
+        dracut-hooks provides pacman hooks to recreate the initrd
+        with dracut on kernel updates
+    -->
+    <repository alias="4_dracut_hooks" components="Virtualization_Appliances_Images_Testing_x86_archlinux">
+        <source path="https://download.opensuse.org/repositories/Virtualization:/Appliances:/Images:/Testing_x86:/archlinux/standard/x86_64/"/>
+    </repository>
+    <!--
+        The CachyOS repository for any x86_64 CPU. The CachyOS
+        installer selects the repositories optimized for the CPU
+        of the target, e.g. x86-64-v3, an image must run on any
+        x86_64 CPU. As on CachyOS, the CachyOS repository takes
+        precedence over the Arch Linux repositories. pacman uses
+        the repositories in the alphabetical order of their alias
+        names, the number in front of each alias sets this order
+    -->
+    <repository alias="1_cachyos" components="cachyos">
+        <source path="https://mirror.cachyos.org/repo/$arch/$repo"/>
+    </repository>
+    <repository alias="2_arch" components="core extra">
+        <source path="https://geo.mirror.pkgbuild.com/$repo/os/$arch"/>
+    </repository>
+    <packages type="image">
+        <!-- base system, kernel and boot, kiwi requires dracut -->
+        <package name="base"/>
+        <package name="linux-cachyos"/>
+        <package name="linux-cachyos-headers"/>
+        <package name="linux-firmware"/>
+        <package name="sof-firmware"/>
+        <package name="amd-ucode"/>
+        <package name="intel-ucode"/>
+        <package name="dracut"/>
+        <package name="dracut-hooks"/>
+        <package name="dracut-kiwi-oem-repart"/>
+        <package name="dracut-kiwi-oem-dump"/>
+        <package name="grub"/>
+        <package name="cachyos-grub-theme"/>
+        <package name="efibootmgr"/>
+        <package name="dosfstools"/>
+        <package name="btrfs-progs"/>
+        <package name="sudo"/>
+        <!-- CachyOS -->
+        <package name="cachyos-keyring"/>
+        <package name="cachyos-mirrorlist"/>
+        <package name="cachyos-rate-mirrors"/>
+        <package name="cachyos-hooks"/>
+        <package name="cachyos-settings"/>
+        <package name="cachyos-hello"/>
+        <package name="cachyos-kernel-manager"/>
+        <package name="cachyos-packageinstaller"/>
+        <package name="cachyos-wallpapers"/>
+        <package name="cachyos-fish-config"/>
+        <package name="cachyos-zsh-config"/>
+        <package name="chwd"/>
+        <package name="paru"/>
+        <!-- network, firewall, bluetooth -->
+        <package name="networkmanager"/>
+        <package name="networkmanager-openvpn"/>
+        <package name="iwd"/>
+        <package name="wpa_supplicant"/>
+        <package name="wireless-regdb"/>
+        <package name="modemmanager"/>
+        <package name="nss-mdns"/>
+        <package name="avahi"/>
+        <package name="openssh"/>
+        <package name="ufw"/>
+        <package name="ufw-extras"/>
+        <package name="bluez"/>
+        <package name="bluez-utils"/>
+        <!-- package management -->
+        <package name="pacman-contrib"/>
+        <package name="pkgfile"/>
+        <package name="reflector"/>
+        <!-- desktop integration, audio, fonts, power -->
+        <package name="accountsservice"/>
+        <package name="bash-completion"/>
+        <package name="xdg-user-dirs"/>
+        <package name="xdg-utils"/>
+        <package name="plocate"/>
+        <package name="pipewire"/>
+        <package name="pipewire-pulse"/>
+        <package name="pipewire-alsa"/>
+        <package name="wireplumber"/>
+        <package name="alsa-utils"/>
+        <package name="alsa-firmware"/>
+        <package name="noto-fonts"/>
+        <package name="noto-fonts-emoji"/>
+        <package name="noto-fonts-cjk"/>
+        <package name="cantarell-fonts"/>
+        <package name="ttf-dejavu"/>
+        <package name="ttf-liberation"/>
+        <package name="ttf-meslo-nerd"/>
+        <package name="power-profiles-daemon"/>
+        <package name="upower"/>
+        <package name="smartmontools"/>
+        <!-- GNOME desktop as selected by the CachyOS installer -->
+        <package name="cachyos-gnome-settings"/>
+        <package name="cachy-update"/>
+        <package name="fwupd"/>
+        <package name="gdm"/>
+        <package name="gnome-shell"/>
+        <package name="gnome-control-center"/>
+        <package name="gnome-keyring"/>
+        <package name="gnome-tweaks"/>
+        <package name="gnome-text-editor"/>
+        <package name="gnome-backgrounds"/>
+        <package name="gnome-initial-setup"/>
+        <package name="ptyxis"/>
+        <package name="nautilus"/>
+        <package name="sushi"/>
+        <package name="libnma"/>
+        <package name="papers"/>
+        <package name="loupe"/>
+        <package name="file-roller"/>
+        <package name="gnome-disk-utility"/>
+        <package name="gnome-calculator"/>
+        <package name="resources"/>
+        <package name="baobab"/>
+        <package name="showtime"/>
+        <package name="decibels"/>
+        <package name="snapshot"/>
+        <package name="gvfs-mtp"/>
+        <package name="gvfs-smb"/>
+        <!-- applications -->
+        <package name="firefox"/>
+        <package name="fastfetch"/>
+        <package name="btop"/>
+        <package name="git"/>
+        <package name="nano"/>
+        <package name="vim"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="filesystem"/>
+        <package name="pacman-mirrorlist"/>
+        <package name="archlinux-keyring"/>
+    </packages>
+</image>
